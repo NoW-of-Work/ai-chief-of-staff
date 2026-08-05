@@ -1,0 +1,28 @@
+{
+  "name": "now-of-work",
+  "description": "Plugins from The NoW of Work. AI systems for leaders and the teams around them, built to draft rather than act.",
+  "owner": {
+    "name": "The NoW of Work",
+    "url": "https://www.nowofwork.com"
+  },
+  "plugins": [
+    {
+      "name": "ai-chief-of-staff",
+      "source": "./plugin",
+      "description": "An AI chief of staff for a leader: morning briefs, meeting prep, meeting-to-actions, a commitment ledger, and a weekly review, grounded in files the leader controls.",
+      "version": "1.0.0",
+      "author": {
+        "name": "The NoW of Work",
+        "url": "https://www.nowofwork.com"
+      },
+      "license": "MIT",
+      "keywords": [
+        "chief-of-staff",
+        "executive-assistant",
+        "briefing",
+        "meetings",
+        "productivity"
+      ]
+    }
+  ]
+}
