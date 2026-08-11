@@ -199,4 +199,4 @@ Owner of this file: **[LEADER NAME]**. Last reviewed: **[DATE]**.
 
 ---
 
-*AI Chief of Staff v1.1.0. Created by The NoW of Work. MIT licensed. Yours to edit.*
+*AI Chief of Staff v1.2.0. Created by The NoW of Work. MIT licensed. Yours to edit.*

@@ -6,7 +6,14 @@ An AI chief of staff for one leader. Morning briefs, prep before the meetings th
 
 Runs on Claude and on ChatGPT. Both versions are generated from one source, so they cannot drift apart.
 
-### → **[READ ME FIRST](READ-ME-FIRST.md)** is the install guide. Start there.
+### Start here, on the platform the leader actually uses
+
+| The leader works in | Read |
+|---|---|
+| **Claude** (Code, Cowork, or ordinary chat) | **[docs/claude/READ-ME-FIRST.md](docs/claude/READ-ME-FIRST.md)** |
+| **ChatGPT** | **[docs/chatgpt/READ-ME-FIRST.md](docs/chatgpt/READ-ME-FIRST.md)** |
+
+Each set carries its own install guide, schedule prompts, and deployment runbook. Nothing in one applies to the other, so read only your own and ignore the rest.
 
 ---
 
@@ -19,7 +26,7 @@ Runs on Claude and on ChatGPT. Both versions are generated from one source, so t
 
 Then say **"run onboarding"** and answer six questions. Everything else is inferred from the calendar and mail the leader already has.
 
-Those two lines are Claude Code. In Claude Cowork, add the marketplace through **Customize > Plugins**. Not using plugins, or using ChatGPT? Download the repo as a ZIP, unzip once, and follow [READ-ME-FIRST.md](READ-ME-FIRST.md).
+Those two lines are Claude Code. In Claude Cowork, add the marketplace through **Customize > Plugins**. Not using plugins, or using ChatGPT? Download the repo as a ZIP, unzip once, and follow the guide for your platform in the table above.
 
 ---
 
@@ -59,10 +66,8 @@ Thirteen behaviours. Nine of them can run on a schedule.
 
 | Path | What it is |
 |------|-----------|
-| `READ-ME-FIRST.md` | The install guide |
-| `QUICK-START.md` | The page you hand the leader once it is installed |
-| `DEPLOY-FOR-A-CLIENT.md` | The runbook for installing it for somebody else |
-| `SCHEDULES.md` | Every recurring job as copy-paste prompt text, in the order to add them |
+| `docs/claude/`, `docs/chatgpt/` | The install guide, the schedule prompts, and the client runbook, one set per platform. Read the set for the platform the leader uses |
+| `QUICK-START.md` | The page you hand the leader once it is installed. The same on both platforms |
 | `src/` | **The only thing you edit.** Behaviours, workspace templates, the worked example, docs |
 | `build/build.py` | Generates every output below from `src/` |
 | `plugin/` | The Claude plugin. `skills/` inside it is generated |
@@ -70,7 +75,7 @@ Thirteen behaviours. Nine of them can run on a schedule.
 | `dist/chatgpt/` | Project instructions, thirteen prompt files, workspace files |
 | `.claude-plugin/marketplace.json` | Lets anyone install this with `/plugin marketplace add` |
 
-Everything under `dist/` and `plugin/skills/` is generated and committed, so a client can download and use the repo without running anything. Every markdown file in the repo root is generated too, this README included. Edit the copy in `src/docs/` and let the build write the root one.
+Everything under `dist/`, `docs/`, and `plugin/skills/` is generated and committed, so a client can download and use the repo without running anything. Every markdown file in the repo root is generated too, this README included. Edit the copy in `src/docs/` and let the build write the output. A doc named in `PLATFORM_DOCS` in `build/build.py` is written once per platform into `docs/`, and everything else is written once to the root.
 
 ### Inside `src/`
 

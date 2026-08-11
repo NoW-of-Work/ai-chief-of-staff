@@ -1,6 +1,6 @@
 # READ ME FIRST
 
-**AI Chief of Staff, v{{VERSION}}. Created by The NoW of Work.**
+**AI Chief of Staff, v1.2.0. Created by The NoW of Work.**
 
 This is the whole setup guide. If you read one file, read this one.
 
@@ -31,12 +31,9 @@ Three things, and only the first one is required.
 
 | | What | Why |
 |---|------|-----|
-{{#claude}}
-| 1 | A paid Claude account | The system runs inside it. Claude puts no cap on how many scheduled tasks can be active, so the full ten-task clock is available on any paid plan |
-{{/claude}}
-{{#chatgpt}}
+
 | 1 | A paid ChatGPT account (Go, Plus, Edu, Pro, Business, or Enterprise) | The system runs inside it, and a free account cannot hold the files or run the schedules. The plan is also a ceiling on the ramp, because each one caps how many scheduled tasks can be active at once: 3 on Go, 5 on Plus, 10 on Business and Edu, 15 on Pro and Enterprise. The finished clock is ten tasks, so Business, Edu, Pro, and Enterprise carry all of it, Plus carries five, and Go stalls in week two. Settle this before you plan the ramp rather than when a task refuses to save |
-{{/chatgpt}}
+
 | 2 | A calendar connected to it | Almost everything is built on the calendar |
 | 3 | Email connected to it | Open loops, follow-ups, and voice all come from mail |
 
@@ -48,65 +45,10 @@ Anything else (documents, transcripts, chat, tasks, CRM) is optional. The system
 
 ## Install: pick one path
 
-{{#claude}}
-This is the Claude copy of the guide, so it carries the two Claude paths. Pick the first one that describes you. If the leader is on ChatGPT, read `docs/chatgpt/READ-ME-FIRST.md` instead.
-
-- **Path A — Claude, one command.** Fastest. Use this if the leader works in Claude Code or Claude Cowork.
-- **Path B — Claude, one unzip.** Use this if you would rather not use plugins, or the leader lives in ordinary Claude chat, where plugins do not run.
-{{/claude}}
-{{#chatgpt}}
 This is the ChatGPT copy of the guide, so it carries one path and it is below. If the leader is on Claude, read `docs/claude/READ-ME-FIRST.md` instead, which has two.
-{{/chatgpt}}
 
 ---
 
-{{#claude}}
-## Path A: Claude, one command
-
-**Step 1.** Install the plugin. **In Claude Code**, run these two lines:
-
-```
-/plugin marketplace add NoW-of-Work/ai-chief-of-staff
-/plugin install ai-chief-of-staff@now-of-work
-```
-
-**In Claude Cowork**, do the same thing through the interface. Open **Customize** in the sidebar, then **Plugins**, then **Add marketplace**, and paste the repository URL. The plugin appears alongside the others, and **Install** puts it in. Plugins run in Claude Code and Claude Cowork. They do not run in ordinary Claude chat, so if the leader lives there, use Path B.
-
-That installs all thirteen behaviours at once. If the install summary says `Run /reload-plugins to activate.`, run it. If the reload warns that it will re-read the conversation, run it again as `/reload-plugins --force`. They arrive as skills, named after the plugin: `/ai-chief-of-staff:onboarding`, `/ai-chief-of-staff:morning-brief`, and so on. You can also just ask for them in plain language, which is what most people do.
-
-> The repository URL, for the Cowork interface and for Path B, is `https://github.com/NoW-of-Work/ai-chief-of-staff`.
-
-**Step 2.** Make a folder for the workspace. Where it goes decides whether scheduled runs can reach it, so settle this before you create it.
-
-A scheduled run in the cloud reaches connected apps. Your hard drive is out of reach, and a folder that syncs to the cloud from a laptop is still your hard drive. Three arrangements work:
-
-- **Cowork, cloud runs.** Keep the workspace in files saved to the Claude account, or in a source reached through a connector. Cowork's own documentation says scheduled tasks work with your connectors and the files saved to your Claude account, and cannot be tied to a folder on your computer.
-- **Cowork or Claude Code, local runs.** Keep the workspace in a local folder you have connected, and leave the machine on and the desktop app open at the scheduled time.
-- **ChatGPT.** Keep the workspace in a connected app such as Google Drive. A scheduled ChatGPT task cannot read the files attached to a project, even the project it was created in.
-
-One limitation worth stating rather than papering over. Claude's Google Drive connector documents uploading files, creating folders, reading, and saving files Claude generated. Editing an existing plain markdown file in place in Drive is not something the documentation commits to, and this system appends to files constantly. The safest homes are a folder connected in Cowork and files held in the Claude account.
-
-Call the folder `ai-chief-of-staff`. It can be empty. The next step fills it.
-
-**Step 3.** Go to **Run onboarding**, below.
-
----
-
-## Path B: Claude, one unzip
-
-**Step 1.** Download this repository as a ZIP (the green **Code** button at the top of the GitHub page, then **Download ZIP**) and unzip it once.
-
-**Step 2.** Inside, find `dist/claude/ai-chief-of-staff/`. That folder is the whole system. Copy it, as a folder, to wherever Path A step 2 says it should live. Keep the name exactly `ai-chief-of-staff`. Every behaviour refers to files by name.
-
-**Step 3.** Point Claude at it. Create a project, and in the project instructions paste the contents of `ai-chief-of-staff/CLAUDE.md`. That file is the operating manual, and every behaviour expects it to have been read first.
-
-**Step 4 (optional).** If you want the behaviours available as named skills rather than as files the AI reads, upload the thirteen ZIPs in `dist/claude/skill-uploads/`, one at a time.
-
-First switch on **Code execution and file creation**. That lives in **Settings > Capabilities** on Free, Pro, and Max, and in **Organization settings > Skills** on Team and Enterprise, where an owner also has to switch **Skills** on before anyone can see the section. Then open **Customize > Skills**, click **+**, choose **+ Create skill**, choose **Upload a skill**, and upload one ZIP. Repeat for the rest, and toggle each on. Uploaded skills stay private to that account unless an owner has turned sharing on. Skip all of this if you would rather keep it simple. The behaviours work either way, because they are also sitting in `ai-chief-of-staff/skills/` where the AI can read them.
-
-**Step 5.** Go to **Run onboarding**, below.
-{{/claude}}
-{{#chatgpt}}
 ## Path C: ChatGPT
 
 **Step 1.** Download this repository as a ZIP and unzip it once. Everything you need is in `dist/chatgpt/`.
@@ -149,7 +91,6 @@ The behaviours, the approval gates, the voice rules, and the nudge policy are id
 **Scheduled runs and project files.** A ChatGPT scheduled task cannot read the files attached to a project, including the project it was created in. The workspace has to live in a connected app for a scheduled run to reach it, which is what Path C step 5 sets up. That leaves two copies: the connected folder the schedule reads, and the project upload that serves the sessions the leader opens. Connected apps do survive into a scheduled run, so the run can still reach mail and calendar. Claude Cowork has the same shape of limit for a different reason: a cloud run reaches connectors, and the hard drive is out of reach.
 
 **Packaging.** Claude has a plugin that installs all thirteen behaviours in one step, in Claude Code and Claude Cowork. ChatGPT installs as a project: paste the instructions, upload the files. Two things that used to differ no longer do. ChatGPT can write files, and it can run recurring work on a schedule. Neither platform will send anything on the leader's behalf without approval, and this system never asks either of them to.
-{{/chatgpt}}
 
 ---
 
@@ -196,20 +137,12 @@ Add **the morning brief only**. Nothing else this week.
 
 `SCHEDULES.md` carries the exact prompt text for every recurring job, on both platforms, plus the week-by-week order to add them in and a worked clock. Copy from there rather than writing your own. Nine of the thirteen behaviours can run on a schedule, across ten tasks, because inbox triage runs twice a day.
 
-{{#claude}}
-**In Claude Cowork.** Type `/schedule` in any task, or open **Scheduled** in the left sidebar and choose **New task**. Set the cadence, the approval mode, and the folder Claude should work in. Cowork scheduled tasks run in the cloud, so they run whether or not the leader's computer is awake.
-
-**In Claude Code.** Use the **Routines** page in the desktop app for a local scheduled task, or `/schedule` for a cloud job. A local task only runs when the machine is on.
-{{/claude}}
-{{#chatgpt}}
-
 **In ChatGPT.** Open **Scheduled** in the sidebar and choose **New task**. Four limits shape the plan. A task cannot run more often than hourly. Each plan caps how many can be active at once: 3 on Go, 5 on Plus, 10 on Business and Edu, 15 on Pro and Enterprise, so the ten-task clock needs Business, Edu, Pro, or Enterprise, and Plus tops out at five jobs. A task pauses itself if it sits unused, or if the chat it belongs to is deleted. And it reads the connected folder from Path C step 5, never the project's files, so the prompt has to name that folder.
-{{/chatgpt}}
 
 Two things catch people out:
 
 - **Most scheduled runs start fresh.** They remember nothing from your conversations, so the prompt has to name the folder every time. ChatGPT monitoring tasks are the exception. They remember earlier runs so they can report only what changed.
-- **A scheduled run in the cloud reaches connected sources.** Your hard drive is out of reach. {{#claude}}See Path A step 2 on where the folder has to live.{{/claude}}{{#chatgpt}}See Path C step 5 on where the folder has to live.{{/chatgpt}}
+- **A scheduled run in the cloud reaches connected sources.** Your hard drive is out of reach. See Path C step 5 on where the folder has to live.
 
 **Do not add the whole ramp on day one.** Nine outputs nobody opens is worse than one that gets read. The transcript sweep exits silently every day until a transcription tool is connected, which is designed rather than broken.
 
@@ -243,16 +176,7 @@ ai-chief-of-staff/
 
 Five files the leader owns. One file the system owns. Thirteen behaviours. One worked example. Four folders that fill themselves.
 
-{{#claude}}
-That tree is the Path B folder, and Path B is the only path where all of it sits in one place. Three lines to save a consultant a debugging session at minute 58:
-
-- **Path A has no `skills/` folder.** The behaviours are installed in the plugin, not copied into the workspace. Nothing is missing.
-- **Path A has no `example/` folder either.** The worked example stays in the downloaded repository. The folder starts empty and `onboarding` writes the seven workspace files and the four output folders into it, which is what its step 0 is for.
-- **Path A has no `QUICK-START.md` either.** The plugin ships behaviours, and `onboarding` writes the workspace files. Neither of them writes the handover page. It is at the top of the downloaded repository, and it is also inside `dist/claude/ai-chief-of-staff/` if you took Path B. Hand the leader whichever copy you have.
-{{/claude}}
-{{#chatgpt}}
 That tree is what the workspace holds once `onboarding` has run. On ChatGPT it lives in the connected folder from Path C step 5, and the project carries a second copy of the same files for the sessions the leader opens. `skills/` has no equivalent, because the behaviours are the thirteen prompt files uploaded to the project rather than files in the workspace.
-{{/chatgpt}}
 
 ### Three things worth understanding
 
@@ -288,12 +212,9 @@ Say yes and the behaviour turns on. Say no and it does not come up again. The sy
 | Priorities are generic | `my-work.md` section 2 is still bracketed. Fill it in. |
 | It can read files but cannot save them | Write access is not enabled for the storage connector. |
 | "(not connected)" about the calendar | The connector dropped or the token expired. Reconnect it. |
-{{#claude}}
-| A scheduled task produces nothing useful | The prompt does not name the folder, or the folder sits somewhere a cloud run cannot reach. Path A step 2. |
-{{/claude}}
-{{#chatgpt}}
+
 | A scheduled task produces nothing useful, or the brief reads generic with none of the leader's context in it | The prompt points at the project rather than the connected folder, so the run reached no files at all. Path C step 5. |
-{{/chatgpt}}
+
 | A ChatGPT scheduled task stopped arriving | It paused itself, or the chat it belonged to was deleted. Open the **Scheduled** page. |
 | It invents a meeting detail | Serious. Note the exact line and open an issue. That is a defect, not a setting. |
 | It offers to connect something for you | Same. It is never allowed to authenticate anything. |

@@ -53,6 +53,16 @@ OUTPUT_FOLDERS = {"briefs", "meetings", "people", "archive"}
 # copy is a page nobody can hand over.
 WORKSPACE_DOCS = {"QUICK-START.md"}
 
+# Docs that render once per platform into docs/claude/ and docs/chatgpt/ rather
+# than once to the repo root. A consultant deploys to one platform and should
+# never have to read the other one's paths to find their own.
+PLATFORM_DOCS = {
+    "READ-ME-FIRST.md",
+    "SCHEDULES.md",
+    "DEPLOY-FOR-A-CLIENT.md",
+}
+DOCS = ROOT / "docs"
+
 # where the worked example lands in each pack, and the folders it must fill
 EXAMPLE_ROOTS = (
     DIST / "claude" / "ai-chief-of-staff" / "example",
@@ -76,8 +86,12 @@ def main() -> None:
 
     # 1. no unresolved template tokens anywhere in the shipped output
     token = re.compile(r"\{\{[#/]?[A-Za-z_]+\}\}")
-    root_docs = [ROOT / path.name for path in sorted((SRC / "docs").glob("*.md"))]
-    for base in (DIST, PLUGIN / "skills", *root_docs):
+    root_docs = [
+        ROOT / path.name
+        for path in sorted((SRC / "docs").glob("*.md"))
+        if path.name not in PLATFORM_DOCS
+    ]
+    for base in (DIST, PLUGIN / "skills", DOCS, *root_docs):
         paths = [base] if base.is_file() else sorted(base.rglob("*.md"))
         for path in paths:
             text = path.read_text(encoding="utf-8")
@@ -255,9 +269,35 @@ def main() -> None:
     docs = sorted((SRC / "docs").glob("*.md"))
     check(bool(docs), "src/docs/ holds no docs")
     for doc in docs:
-        check((ROOT / doc.name).is_file(), f"{doc.name}: never written to the repo root")
-        check(f"ai-chief-of-staff/{doc.name}" in entries,
-              f"{doc.name}: written to the repo root but dropped from the release zip")
+        if doc.name in PLATFORM_DOCS:
+            # one render per platform, under docs/, and both in the release zip.
+            # A doc that splits and then only ships one side is worse than one
+            # that never split, because the missing platform looks unsupported.
+            for platform in ("claude", "chatgpt"):
+                built = DOCS / platform / doc.name
+                check(built.is_file(), f"{doc.name}: no {platform} render at docs/{platform}/")
+                check(f"ai-chief-of-staff/docs/{platform}/{doc.name}" in entries,
+                      f"docs/{platform}/{doc.name}: built but dropped from the release zip")
+                if built.is_file():
+                    check(built.stat().st_size > 0, f"docs/{platform}/{doc.name} is empty")
+        else:
+            check((ROOT / doc.name).is_file(), f"{doc.name}: never written to the repo root")
+            check(f"ai-chief-of-staff/{doc.name}" in entries,
+                  f"{doc.name}: written to the repo root but dropped from the release zip")
+
+    # a split doc that renders identically on both platforms is not split, it is
+    # duplicated, and the reader pays for a choice that buys them nothing
+    for name in sorted(PLATFORM_DOCS):
+        left, right = DOCS / "claude" / name, DOCS / "chatgpt" / name
+        if left.is_file() and right.is_file():
+            check(left.read_bytes() != right.read_bytes(),
+                  f"{name}: the two renders are identical, so it should not be in PLATFORM_DOCS")
+
+    # nothing platform-specific may be left at the repo root, or a reader finds
+    # two copies of the same guide and cannot tell which one is current
+    for name in sorted(PLATFORM_DOCS):
+        check(not (ROOT / name).exists(),
+              f"{name}: a stale root copy survives beside docs/, delete it")
     for ex in EXAMPLE_ROOTS:
         prefix = f"ai-chief-of-staff/{ex.relative_to(ROOT).as_posix()}/"
         check(any(e.startswith(prefix) for e in entries),

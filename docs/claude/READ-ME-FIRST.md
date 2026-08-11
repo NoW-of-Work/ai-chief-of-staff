@@ -1,6 +1,6 @@
 # READ ME FIRST
 
-**AI Chief of Staff, v1.1.0. Created by The NoW of Work.**
+**AI Chief of Staff, v1.2.0. Created by The NoW of Work.**
 
 This is the whole setup guide. If you read one file, read this one.
 
@@ -31,7 +31,9 @@ Three things, and only the first one is required.
 
 | | What | Why |
 |---|------|-----|
-| 1 | A paid Claude account, or a paid ChatGPT account (Go, Plus, Edu, Pro, Business, or Enterprise) | The system runs inside one of them. A free ChatGPT account cannot hold the files or run the schedules. The ChatGPT plan is also a ceiling on the ramp, because each one caps how many scheduled tasks can be active at once: 3 on Go, 5 on Plus, 10 on Business and Edu, 15 on Pro and Enterprise. The finished clock is ten tasks, so Business, Edu, Pro, and Enterprise carry all of it, Plus carries five of the ten, and Go stalls in week two. Settle this before you plan the ramp rather than when a task refuses to save. Claude has no equivalent cap |
+
+| 1 | A paid Claude account | The system runs inside it. Claude puts no cap on how many scheduled tasks can be active, so the full ten-task clock is available on any paid plan |
+
 | 2 | A calendar connected to it | Almost everything is built on the calendar |
 | 3 | Email connected to it | Open loops, follow-ups, and voice all come from mail |
 
@@ -43,11 +45,10 @@ Anything else (documents, transcripts, chat, tasks, CRM) is optional. The system
 
 ## Install: pick one path
 
-Three paths. Pick the first one that describes you.
+This is the Claude copy of the guide, so it carries the two Claude paths. Pick the first one that describes you. If the leader is on ChatGPT, read `docs/chatgpt/READ-ME-FIRST.md` instead.
 
 - **Path A — Claude, one command.** Fastest. Use this if the leader works in Claude Code or Claude Cowork.
 - **Path B — Claude, one unzip.** Use this if you would rather not use plugins, or the leader lives in ordinary Claude chat, where plugins do not run.
-- **Path C — ChatGPT.** Use this if the leader lives in ChatGPT.
 
 ---
 
@@ -98,51 +99,6 @@ First switch on **Code execution and file creation**. That lives in **Settings >
 
 ---
 
-## Path C: ChatGPT
-
-**Step 1.** Download this repository as a ZIP and unzip it once. Everything you need is in `dist/chatgpt/`.
-
-**Step 2.** Create a new ChatGPT Project called **AI Chief of Staff**.
-
-**Step 3.** Open `dist/chatgpt/PROJECT-INSTRUCTIONS.md`, copy all of it, and paste it into the project's custom instructions.
-
-**Step 4.** Upload these to the project's files:
-
-- seven of the eight files sitting at the top of `dist/chatgpt/workspace/`: `PROJECT-INSTRUCTIONS.md`, `about-me.md`, `my-work.md`, `tomorrow.md`, `commitments.md`, `decisions.md`, `connections.md`
-- all thirteen files in `dist/chatgpt/prompts/`
-
-The eighth file at the top of `workspace/` is `QUICK-START.md`, and it stays on disk. It is the ten-minute page you hand the leader once the install is done. No prompt or instruction file reads it, so uploading it spends a project file slot on something the system never opens.
-
-`workspace/` also holds `archive/`, `briefs/`, `meetings/`, and `people/`, each with a `README.md` stub inside it. Leave all four alone. A ChatGPT project is a flat list of files with no folders to stub, so the stubs do no work there, and uploading them makes it twenty-four files instead of twenty.
-
-Do not upload `dist/chatgpt/example/`. It is reference for you, not input for the system, and no prompt or instruction file points at it. Leave it in the unzipped folder on disk and open it there when you want to see what a filled-in file looks like.
-
-That is twenty files before the system has written a single brief. Projects cap the file count per plan: 5 on Free, 25 on Go and Plus, 40 on Edu, Pro, Business, and Enterprise. Free cannot hold the twenty at all. Go and Plus leave five slots for everything the system produces afterwards, so archive briefs monthly on those two. The other plans leave twenty. Upload the four stubs by mistake and Plus is down to one free slot.
-
-**Step 5.** Put the workspace where a scheduled run can reach it. Copy those same seven files into a folder called `ai-chief-of-staff` in Google Drive, or in another app connected to ChatGPT.
-
-This is not a duplicate for its own sake. A scheduled task cannot read a project's files, including the files of the project it was created in, so the 07:00 run reads the connected folder or it reads nothing. The project upload still earns its keep for the sessions the leader opens themselves, where project files are readable and retrieval is better.
-
-Two copies means keeping two copies in step, which is ongoing friction worth naming at handover. A scheduled run prints its output for the leader to paste rather than writing it back, because a write needs an approval and nobody is there to give one, so paste into the connected folder first and bring the project copy along when you get to it. `SCHEDULES.md` carries every prompt that depends on this and names the folder in the first line of each one.
-
-If the leader will not connect an app, say so plainly rather than scheduling anyway: ChatGPT cannot run this unattended. The fallback is a trigger-only task that says "it is 07:00, run the morning brief," with the leader running the real prompt inside the project by hand.
-
-**Step 6.** Go to **Run onboarding**, below.
-
-### What is different in ChatGPT
-
-The behaviours, the approval gates, the voice rules, and the nudge policy are identical, because both versions are generated from the same source. Four differences remain.
-
-**Writing files.** Claude writes into a connected folder or workspace directly. ChatGPT writes through a connected app, most often Google Drive, and asks for approval before each write. Whether it can write at all depends on the plan and, in a managed workspace, on what an admin has enabled. Where nothing is connected, it prints the output in a code block and the leader saves it. A response can also be kept with **Save to project** from the message menu.
-
-**Knowing what it can reach.** ChatGPT cannot see which connectors it has, so setup asks the leader which tools are connected and then verifies by trying each one. What it can reach also varies by plan, workspace, and admin settings, and it can change between one session and the next. Treat the answer as a snapshot and let the weekly connection check refresh it.
-
-**Scheduled runs and project files.** A ChatGPT scheduled task cannot read the files attached to a project, including the project it was created in. The workspace has to live in a connected app for a scheduled run to reach it, which is what Path C step 5 sets up. That leaves two copies: the connected folder the schedule reads, and the project upload that serves the sessions the leader opens. Connected apps do survive into a scheduled run, so the run can still reach mail and calendar. Claude Cowork has the same shape of limit for a different reason: a cloud run reaches connectors, and the hard drive is out of reach.
-
-**Packaging.** Claude has a plugin that installs all thirteen behaviours in one step, in Claude Code and Claude Cowork. ChatGPT installs as a project: paste the instructions, upload the files. Two things that used to differ no longer do. ChatGPT can write files, and it can run recurring work on a schedule. Neither platform will send anything on the leader's behalf without approval, and this system never asks either of them to.
-
----
-
 ## Run onboarding
 
 This is the actual setup. Ten minutes, most of it the leader reading a list and saying "that one's wrong."
@@ -189,8 +145,6 @@ Add **the morning brief only**. Nothing else this week.
 **In Claude Cowork.** Type `/schedule` in any task, or open **Scheduled** in the left sidebar and choose **New task**. Set the cadence, the approval mode, and the folder Claude should work in. Cowork scheduled tasks run in the cloud, so they run whether or not the leader's computer is awake.
 
 **In Claude Code.** Use the **Routines** page in the desktop app for a local scheduled task, or `/schedule` for a cloud job. A local task only runs when the machine is on.
-
-**In ChatGPT.** Open **Scheduled** in the sidebar and choose **New task**. Four limits shape the plan. A task cannot run more often than hourly. Each plan caps how many can be active at once: 3 on Go, 5 on Plus, 10 on Business and Edu, 15 on Pro and Enterprise, so the ten-task clock needs Business, Edu, Pro, or Enterprise, and Plus tops out at five jobs. A task pauses itself if it sits unused, or if the chat it belongs to is deleted. And it reads the connected folder from Path C step 5, never the project's files, so the prompt has to name that folder.
 
 Two things catch people out:
 
@@ -269,8 +223,9 @@ Say yes and the behaviour turns on. Say no and it does not come up again. The sy
 | Priorities are generic | `my-work.md` section 2 is still bracketed. Fill it in. |
 | It can read files but cannot save them | Write access is not enabled for the storage connector. |
 | "(not connected)" about the calendar | The connector dropped or the token expired. Reconnect it. |
+
 | A scheduled task produces nothing useful | The prompt does not name the folder, or the folder sits somewhere a cloud run cannot reach. Path A step 2. |
-| A ChatGPT scheduled brief reads generic, with none of the leader's context in it | The prompt points at the project rather than the connected folder, so the run reached no files at all. Path C step 5. |
+
 | A ChatGPT scheduled task stopped arriving | It paused itself, or the chat it belonged to was deleted. Open the **Scheduled** page. |
 | It invents a meeting detail | Serious. Note the exact line and open an issue. That is a defect, not a setting. |
 | It offers to connect something for you | Same. It is never allowed to authenticate anything. |

@@ -1,42 +1,34 @@
 # SCHEDULES
 
-**AI Chief of Staff, v1.1.0. Created by The NoW of Work.**
+**AI Chief of Staff, v1.2.0. Created by The NoW of Work.**
 
 Every recurring job in the system, as text you can copy and paste. Nine of the thirteen behaviours can run on a schedule, and they take ten scheduled tasks, because inbox triage runs twice a day. The other four need a subject only a person can give, so they run when asked.
-
-**On ChatGPT the finished clock is a plan requirement before it is a schedule.** Ten active tasks needs Pro, Business, Edu, or Enterprise. Plus caps at five and Go at three, so those two plans run a shorter clock, and **Add them in this order** says which five to keep. A free account cannot schedule anything at all. Claude has no equivalent cap.
 
 ---
 
 ## Read this once, then every block below obeys it
 
-**A scheduled run starts with no memory of any conversation.** It has never met the leader. It does not know which folder you mean, which files exist, or what you agreed in the session last Tuesday. It gets the prompt text and nothing else.
+**A scheduled run starts with no memory of any conversation.** It has never met the leader, does not know which folder you mean, and gets the prompt text and nothing else. So every prompt below names the workspace folder and the manual in its first lines. A prompt that only says "run the morning brief" produces a generic summary with none of the leader's context in it, silently, every morning, for weeks.
 
-So every prompt below names the workspace folder in its first line. A prompt that only says "run the morning brief" produces a generic summary of the day with none of the leader's context in it. It does that silently, every morning, for weeks.
+**Replace `[WHERE THE WORKSPACE LIVES]` before you paste.** Write the folder's real home in the words the leader's own setup uses: files saved to the Claude account, a folder connected in Cowork, a connected app such as Google Drive. `READ-ME-FIRST.md` Path C step 5 decided it. A prompt naming the wrong home fails silently and reads exactly like one naming the right home. The folder also has to sit somewhere a scheduled run can reach, which a laptop is not.
 
-Five consequences worth stating plainly.
+**The manual is named in every block, not assumed.** `CLAUDE.md` in Claude, `PROJECT-INSTRUCTIONS.md` in ChatGPT, where the copy that counts is the one in the connected folder rather than the one pasted into custom instructions.
 
-**Every block below says `[WHERE THE WORKSPACE LIVES]`. Replace it before you paste.** Write the real home of the folder, in the words the leader's own setup uses: files saved to the Claude account, a folder connected in Cowork, a connected app such as Google Drive. `READ-ME-FIRST.md` Path A step 2 decided it for Claude, Path C step 5 for ChatGPT. A prompt that names the wrong home fails silently every morning, and it reads exactly like a prompt that names the right one.
+### What is different in ChatGPT, once, for all nine jobs
 
-**The folder has to sit somewhere a scheduled run can reach.** A scheduled task cannot reach a folder that only exists on a laptop, and the brief has to arrive before the leader opens one.
+Three constraints shape every ChatGPT block below. Per-job notes appear only where a job does something beyond these.
 
-**The manual has to be named too.** In Claude that is `CLAUDE.md`. In ChatGPT it is `PROJECT-INSTRUCTIONS.md`. The copy pasted into the project's custom instructions serves the chats the leader opens. A scheduled run needs the copy that sits in the connected folder, which is why every block below names the file rather than assuming it. Every behaviour assumes the manual has been read first, and a scheduled run has not read anything yet.
+**It cannot read the project's files on a schedule**, and creating the task inside the project does not change that. OpenAI's help article says it plainly: a task created in a project that has files cannot access those files. So every ChatGPT block names a connected app, and the workspace has to live there before anything runs unattended.
 
-**A ChatGPT scheduled run cannot write a file back into the workspace.** In a session the leader opens, ChatGPT writes through a connected app and asks for approval before each write. A scheduled run has nobody in the room to give that approval, so every block below prints instead, and the leader pastes it in. Paste it into the connected folder, because that is the copy tomorrow's scheduled run reads. The project upload is a second copy and it only serves the chats the leader opens themselves. Two copies that drift apart is real friction, and it belongs in the handover rather than in a surprise at week three. Most of those pastes are optional. The one that genuinely matters is `connections.md`, because the nudge dates are what stop the same missing tool being mentioned every second week.
+**It cannot write a file back on a schedule.** In a session the leader opens, ChatGPT writes through a connected app and asks approval each time. A scheduled run has nobody to ask, so every block prints and the leader pastes. Paste into the **connected folder**, because that is the copy tomorrow's run reads. The project upload is a second copy serving on-demand chats only, and two copies drifting apart belongs in the handover rather than in a surprise at week three. Most pastes are optional. `connections.md` is the one that matters, because the nudge dates are what stop the same missing tool being raised every second week.
 
-**A ChatGPT scheduled task cannot read the project's files, and creating the task inside the project does not change that.** OpenAI's help article on scheduled tasks says it plainly: a task created in a project that has files will not be able to access those files. Project files are for chats the leader opens themselves. So every ChatGPT block below names a connected app in its first line, exactly as the Claude blocks do, and the workspace has to live in that app before any of this runs unattended. `READ-ME-FIRST.md` Path C step 5 is where that home was decided. Whatever the run still cannot look up has to sit in the prompt text itself, because the prompt is the only thing that reaches it.
+**The plan caps active tasks:** 3 on Go, 5 on Plus, 10 on Business and Edu, 15 on Pro and Enterprise, none on free. The finished clock is ten, so Go runs out in week two and Plus in week three, and the leader finds out when a task refuses to save. Say the number at handover. On Plus, keep the daily loop and drop the rest: `morning-brief`, `connection-check`, both `inbox-triage` passes, and `end-of-day-close`. Trade the afternoon triage for the weekly review if that matters more. The five that come off still work when asked, which is the better mode for them anyway, since a chat the leader opens can read the project's files. Claude has no equivalent cap.
 
 ---
 
 ## Add them in this order
 
-Not all at once. **Week one is the morning brief and nothing else.**
-
-A leader who ignores four of five outputs stops trusting the fifth, and by then you cannot tell which one failed.
-
-**On ChatGPT, count the tasks against the plan before week one.** The finished clock is ten scheduled tasks, and ChatGPT caps how many can be active at once: 3 on Go, 5 on Plus, 10 on Business and Edu, 15 on Pro and Enterprise. Go runs out during week two. Plus runs out during week three, halfway through the ramp, and the leader finds out when a task refuses to save. Say the number at handover rather than in week four.
-
-A leader staying on Plus keeps the daily loop and drops the rest: `morning-brief`, `connection-check`, both `inbox-triage` passes, and `end-of-day-close`. If the weekly review matters more to them than a second mail pass, trade the afternoon triage for it. The five that come off the schedule still work when asked, and asked is the better mode for them anyway, because a chat the leader opens inside the project can read the project's files and a scheduled run cannot. Claude has no equivalent cap.
+Not all at once. **Week one is the morning brief and nothing else.** A leader who ignores four of five outputs stops trusting the fifth, and by then you cannot tell which one failed.
 
 | Week | Add | Why here |
 |------|-----|----------|
@@ -50,9 +42,7 @@ A leader staying on Plus keeps the daily loop and drops the rest: `morning-brief
 | Month 2 | `health-check` | It audits the setup, so it needs a month of setup to audit. Run it before the 30-day check-in and read the verdict before you open a file |
 | Month 3 | `decision-brief`, review pass | It reads `decisions.md`, and that file is empty until the leader has closed a call and logged it. Add it once two or three entries are sitting there with review dates on them |
 
-Two weeks carry a pair. Week 3 adds both input jobs, which each read `connections.md` first and produce nothing when their source is missing. Week 5 adds the review and the chase that runs off it.
-
-Otherwise the order is roughly least demanding to most demanding. The brief asks nothing of the leader. The close asks for a decision every evening. Put four weeks between those two.
+Two weeks carry a pair. Week 3 adds both input jobs, which each read `connections.md` first and produce nothing when their source is missing. Week 5 adds the review and the chase that runs off it. Otherwise the order runs least demanding to most demanding. The brief asks nothing of the leader. The close asks for a decision every evening. Put four weeks between those two.
 
 ---
 
@@ -61,25 +51,6 @@ Otherwise the order is roughly least demanding to most demanding. The brief asks
 **What it does.** Today's priorities, the meetings that need something, open loops, drafts waiting on a yes, and at most one line about a capability gap. Under 400 words.
 
 **When.** Weekdays, 30 to 45 minutes before the leader's first meeting, or before they open a laptop. Whichever is earlier. If the transcript sweep is running, the brief goes after it. In Claude that means its output lands in the brief. On ChatGPT see the clock section.
-
-**Claude**
-
-```
-Read the ai-chief-of-staff folder in [WHERE THE WORKSPACE LIVES]. Read
-CLAUDE.md first.
-
-Run the morning-brief behaviour for today.
-
-Label anything you guessed. Use (inferred), (uncertain), (no source), or
-(not connected). An unlabelled claim has to be traceable to a file or a
-source.
-
-Save the output to ai-chief-of-staff/briefs/ named with today's date,
-for example 2026-07-14-brief.md.
-
-If you write a capability nudge or an activation offer, update the
-matching dates in connections.md.
-```
 
 **ChatGPT**
 
@@ -100,8 +71,6 @@ If a capability nudge or an activation offer belongs in this brief, print
 the one line of connections.md that needs updating, so I can paste it back.
 ```
 
-**What is different in ChatGPT.** The brief lives in the chat and the leader keeps it or does not, which is fine for something read once. Paste the changed `connections.md` line back into the connected folder weekly and leave the rest. A line pasted only into the project copy is a line tomorrow's run will not see.
-
 ---
 
 ## 2. Connection check
@@ -109,20 +78,6 @@ the one line of connections.md that needs updating, so I can paste it back.
 **What it does.** Compares the live connectors against `connections.md`. Updates the registry, queues an activation offer for anything newly connected, and flags anything that has quietly stopped working. Decides, rarely, whether a missing tool is worth one line in tomorrow's brief.
 
 **When.** Weekly, Monday, one hour before the morning brief, so whatever it finds lands in that day's brief.
-
-**Claude**
-
-```
-Read the ai-chief-of-staff folder in [WHERE THE WORKSPACE LIVES]. Read
-CLAUDE.md first.
-
-Run the connection-check behaviour.
-
-Update connections.md in that folder: statuses, providers, last verified
-dates, the activation queue, and the change log.
-
-Report only what changed. If nothing changed, say nothing.
-```
 
 **ChatGPT**
 
@@ -142,7 +97,7 @@ the file in that folder. Print a one-line summary of what changed above it.
 If nothing changed, say so and print nothing else.
 ```
 
-**What is different in ChatGPT.** It cannot enumerate its own connectors, so it tests each one by trying to read from it, which is slower and slightly less certain. It prints the whole registry for the leader to replace in the connected folder, and a month of skipping that paste stops the nudge dates moving. Replace the project copy too when you get to it, so an on-demand chat and a scheduled run do not disagree about what is connected.
+**ChatGPT cannot enumerate its own connectors**, so it tests each one by trying to read from it, which is slower and slightly less certain. A month of skipping the paste stops the nudge dates moving.
 
 ---
 
@@ -151,23 +106,6 @@ If nothing changed, say so and print nothing else.
 **What it does.** Takes yesterday's recorded meetings, turns each one into decisions and action items, and appends new promises to the ledger. Nobody has to ask.
 
 **When.** Daily, 30 minutes before the morning brief, so its output can feed into the brief. On ChatGPT see the clock section.
-
-**Claude**
-
-```
-Read the ai-chief-of-staff folder in [WHERE THE WORKSPACE LIVES]. Read
-CLAUDE.md first.
-
-Check the Transcripts row in connections.md before anything else. If it is
-not connected, stop and produce no output at all.
-
-Otherwise run the daily-transcript-sweep behaviour for yesterday.
-
-Save each meeting to ai-chief-of-staff/meetings/ in a dated folder,
-for example 2026-07-14-ridley-review/actions.md.
-
-Append new commitments to commitments.md. Do not draft or send anything.
-```
 
 **ChatGPT**
 
@@ -188,9 +126,9 @@ commitments.md.
 Do not draft or send anything.
 ```
 
-**What is different in ChatGPT.** The meeting folders do not create themselves, so the leader saves each block into the connected folder by hand, which is real friction on a day with four recorded calls. Run it weekly instead, or paste only the commitment lines, since the ledger is the part the other behaviours read.
-
 **Silence is the correct output here.** Until a transcription tool is connected, this job produces nothing, every day. That is designed. Tell the leader before you schedule it, or the first week of nothing reads as a broken job.
+
+**On ChatGPT the meeting folders do not create themselves**, so the leader saves each block by hand, which is real friction on a day with four recorded calls. Run it weekly instead, or paste only the commitment lines, since the ledger is the part the other behaviours read.
 
 ---
 
@@ -200,47 +138,7 @@ Do not draft or send anything.
 
 **When.** Twice on a working day. Once about fifteen minutes before the morning brief, so the brief knows what arrived overnight, which on ChatGPT works differently and the clock section says how. Once an hour before the hard stop in `about-me.md` section 2, so the afternoon does not carry into tomorrow.
 
-This is the one job that runs twice, so it takes two scheduled tasks and two prompts. Paste the same text into both and the second run reaches for the first run's filename.
-
-**Claude, morning pass**
-
-```
-Read the ai-chief-of-staff folder in [WHERE THE WORKSPACE LIVES]. Read
-CLAUDE.md first.
-
-Check the Email row in connections.md before anything else. If it is not
-connected, stop and produce no output at all.
-
-Otherwise run the inbox-triage behaviour. Triage mail received since the
-last pass. Draft replies. Do not send any of them.
-
-Save the pass to ai-chief-of-staff/briefs/ named with today's date and the
-suffix -triage-am, for example 2026-07-14-triage-am.md.
-
-Append any new commitments to commitments.md.
-```
-
-**Claude, afternoon pass**
-
-```
-Read the ai-chief-of-staff folder in [WHERE THE WORKSPACE LIVES]. Read
-CLAUDE.md first.
-
-Check the Email row in connections.md before anything else. If it is not
-connected, stop and produce no output at all.
-
-Otherwise run the inbox-triage behaviour. Triage mail received since the
-last pass. Draft replies. Do not send any of them.
-
-Read this morning's brief and this morning's triage pass in
-ai-chief-of-staff/briefs/ first. Do not repeat any decision the morning
-pass already surfaced.
-
-Save the pass to ai-chief-of-staff/briefs/ named with today's date and the
-suffix -triage-pm, for example 2026-07-14-triage-pm.md.
-
-Append any new commitments to commitments.md.
-```
+This is the one job that runs twice, so it takes two scheduled tasks and two prompts. The two are not interchangeable: each names its own pass.
 
 **ChatGPT, morning pass**
 
@@ -284,9 +182,9 @@ commitments as lines to append to commitments.md.
 Do not tell me anything has been sent.
 ```
 
-**What is different in ChatGPT.** Neither pass leaves a file, so the afternoon run cannot see the morning one and the two blocks above are not interchangeable. The afternoon block starts its window at 06:00 rather than at midday on purpose. A window that starts after the morning pass leaves the hours between them triaged by nobody, so the two overlap and the overlap is marked. The cost is a decision listed twice on a busy day, marked rather than hidden. If that irritates the leader more than a missed decision would, drop the afternoon task and keep one pass.
-
 **The drafted replies are the thing to watch.** This is the only scheduled job that writes text addressed to another person twice a day. A leader who gets used to skimming them will eventually approve one they have not read. Say at handover that the system has no way to send, and that every draft waits in the file until they copy it out themselves.
+
+**On ChatGPT neither pass leaves a file**, so the afternoon run cannot see the morning one. Its window starts at 06:00 rather than midday on purpose: a window starting after the morning pass would leave the hours between them triaged by nobody. The two overlap, and the overlap is marked rather than hidden. If a decision listed twice irritates the leader more than a missed one would, drop the afternoon task and keep one pass.
 
 ---
 
@@ -295,21 +193,6 @@ Do not tell me anything has been sent.
 **What it does.** What moved against this morning's priorities, what came in, what changed in the ledger, and a drafted `tomorrow.md` for approval. Under 200 words, plus the draft.
 
 **When.** Daily, about 30 minutes before the hard stop recorded in `about-me.md` section 2. Early enough that the leader is still at a desk. Late enough that the day has happened.
-
-**Claude**
-
-```
-Read the ai-chief-of-staff folder in [WHERE THE WORKSPACE LIVES]. Read
-CLAUDE.md first.
-
-Run the end-of-day-close behaviour for today.
-
-Save the close to ai-chief-of-staff/briefs/ named with today's date,
-for example 2026-07-14-close.md.
-
-Draft tomorrow.md and show it to me in full. Do not save tomorrow.md
-until I say yes.
-```
 
 **ChatGPT**
 
@@ -326,9 +209,7 @@ block, so I can replace the file in that folder if I approve it.
 Do not tell me it has been saved.
 ```
 
-**What is different in ChatGPT.** Nothing about the approval gate. `tomorrow.md` is never written without a yes, and the leader copies the approved block over the file in the connected folder. Tomorrow's brief reads that copy, so that is the one that has to change. Same decision, one more step.
-
-**One warning worth giving in the session.** If the leader stops approving `tomorrow.md`, every morning brief afterwards starts from a stale premise. Better to turn this job off than to let it draft into a void.
+**One warning worth giving in the session.** If the leader stops approving `tomorrow.md`, every morning brief afterwards starts from a stale premise. Better to turn this job off than to let it draft into a void. The approval gate is identical on both platforms.
 
 ---
 
@@ -337,26 +218,6 @@ Do not tell me it has been saved.
 **What it does.** What moved, what slipped, where the time actually went, drift against what the leader said they are not doing, next week's focus, and workspace maintenance. Around 500 words.
 
 **When.** Weekly, Monday morning, right after the morning brief, which is what the behaviour's own trigger says. It reads the week that just ended, so anything earlier than Monday reviews a week that is not finished.
-
-**Claude**
-
-```
-Read the ai-chief-of-staff folder in [WHERE THE WORKSPACE LIVES]. Read
-CLAUDE.md first.
-
-If connection-check has not run this week, run it first.
-
-Run the weekly-review behaviour for the week that just ended.
-
-Label anything you guessed. Use (inferred), (uncertain), (no source), or
-(not connected). An unlabelled claim has to be traceable to a file or a
-source.
-
-Save the output to ai-chief-of-staff/briefs/ named with today's date,
-for example 2026-07-13-weekly.md.
-
-Propose ledger closes and archive moves. Do not make them without a yes.
-```
 
 **ChatGPT**
 
@@ -379,7 +240,7 @@ numbered, so I can answer with the numbers I approve.
 Do not print an edited commitments.md until I have answered.
 ```
 
-**What is different in ChatGPT.** The review reads across four weeks of history, and on a schedule it reads that history out of the connected folder rather than the project. Once the folder holds a few dozen files ChatGPT retrieves rather than reads everything, so quality falls as the workspace grows. Archive anything older than a quarter, and name the window in the prompt when it drifts, for example "the week of July 6 to July 10."
+**This job degrades as the folder grows on ChatGPT.** The review reads across four weeks of history, and once the connected folder holds a few dozen files ChatGPT retrieves rather than reads everything. Archive anything older than a quarter, and name the window in the prompt when it drifts, for example "the week of July 6 to July 10."
 
 ---
 
@@ -388,21 +249,6 @@ Do not print an edited commitments.md until I have answered.
 **What it does.** What the leader is owed and has not been given. A shortlist of stale items, a release call on the ones that died, drafts sized to the relationship, and escalation notes for anything blocking a priority. Under 350 words.
 
 **When.** Weekly, Thursday morning. Monday's review names what slipped, and three days is long enough for the person to answer without being asked. The behaviour's own trigger says the same thing, and it reads Monday's review first so a release it already proposed does not get proposed twice.
-
-**Claude**
-
-```
-Read the ai-chief-of-staff folder in [WHERE THE WORKSPACE LIVES]. Read
-CLAUDE.md first.
-
-Run the chase behaviour against commitments.md, filtered to what I am
-still owed.
-
-Draft the chases and show them to me. Do not send anything.
-
-Save the drafts to ai-chief-of-staff/briefs/ named with today's date,
-for example 2026-07-16-chases.md.
-```
 
 **ChatGPT**
 
@@ -429,25 +275,6 @@ Print each draft as its own code block, headed with the person's name.
 
 **When.** Monthly, first Monday, after the connection check and before the weekly review. It reads the registry to decide what a stale date means, so a registry nobody refreshed makes the audit wrong.
 
-**Claude**
-
-```
-Read the ai-chief-of-staff folder in [WHERE THE WORKSPACE LIVES]. Read
-CLAUDE.md first.
-
-Run the health-check behaviour.
-
-Report blocking gaps, stale files, contradictions between files, and output
-folders that are not filling.
-
-Do not edit any of the files you are auditing. Every finding is a proposal.
-
-Save the audit to ai-chief-of-staff/briefs/ named with today's date and the
-suffix -health-check, for example 2026-07-06-health-check.md.
-
-Print the verdict line first.
-```
-
 **ChatGPT**
 
 ```
@@ -467,7 +294,7 @@ headed with the filename it should be saved as, for example
 2026-07-06-health-check.md.
 ```
 
-**This is the one audit that leaves a file behind.** It edits nothing it reads, and it writes its own output every run, to `briefs/YYYY-MM-DD-health-check.md`. Next month's audit reads that file back, which is how it tells a finding the leader already declined from one nobody has seen. In Claude it saves it. On ChatGPT it prints it and the leader saves it into the connected folder, and a month of skipping that paste means the next audit re-raises what this one already settled.
+**This is the one audit that leaves a file behind.** It edits nothing it reads, and it writes its own output every run to `briefs/YYYY-MM-DD-health-check.md`. Next month's audit reads that file back, which is how it tells a finding the leader already declined from one nobody has seen. On ChatGPT, a month of skipping that paste means the next audit re-raises what this one already settled.
 
 **Read the verdict line first.** It is the one line the behaviour will not cut, and it is allowed to say no. If it reports that no source file has been touched since setup, the deployment is failing quietly and scheduling more jobs makes it worse.
 
@@ -478,28 +305,6 @@ headed with the filename it should be saved as, for example
 **What it does.** Reads `decisions.md` against today's date. Surfaces entries whose review date has passed, entries where a condition under **Would change my mind** has come true, `Open` entries about to be forced, and `To verify` entries still waiting on the leader. Nothing else from the file renders.
 
 **When.** Weekly, Monday, after the morning brief and before the weekly review. `weekly-review` renders what this pass finds, in its decisions slot, so it has to run first. `decision-brief` carries this as its own second trigger, and nothing else in the system checks a review date.
-
-**Claude**
-
-```
-Read the ai-chief-of-staff folder in [WHERE THE WORKSPACE LIVES]. Read
-CLAUDE.md first.
-
-Run the decision-brief behaviour in review mode against decisions.md.
-
-Surface only: entries whose Review on date has passed, entries where a
-condition under Would change my mind has come true, Open entries whose
-Forced by date lands in the next 14 days, and To verify entries still
-waiting on me.
-
-Do not promote any entry to Made. Do not edit the fields of an existing
-Made entry.
-
-Save to ai-chief-of-staff/briefs/ named with today's date, for example
-2026-07-13-decisions.md.
-
-If nothing has come due, say nothing.
-```
 
 **ChatGPT**
 
@@ -527,7 +332,7 @@ If nothing has come due, say nothing.
 
 **Most Mondays this produces nothing, and that is the file holding.** It speaks when a decision made in July stops matching the facts in September. Without it, `decisions.md` is an archive nobody reopens, and the **Would change my mind** field is the only reason to keep the file at all.
 
-**It reads. It does not close.** Promoting an entry to `Made` needs the leader saying what they decided, in their own words, in that session. That is gate 11 in `CLAUDE.md`, and a scheduled run has nobody in the room.
+**It reads. It does not close.** Promoting an entry to `Made` needs the leader saying what they decided, in their own words, in that session. That is gate 11 in `PROJECT-INSTRUCTIONS.md`, and a scheduled run has nobody in the room.
 
 ---
 
@@ -550,19 +355,17 @@ Nine behaviours, ten rows. `inbox-triage` appears twice and takes two tasks, so 
 | 15:30 | `inbox-triage`, afternoon pass | Weekdays |
 | 16:00 | `end-of-day-close` | Weekdays |
 
-The order matters more than the clock times. The sweep and the morning triage pass run before the brief so their output can appear in it. The connection check runs before both so the registry is current when they read it, and the health check runs after it for the same reason. The weekly review runs after the brief so it is not the first thing the leader sees on a Monday, and the decision review runs between the two, because the weekly review is the surface that renders what it finds.
+The order matters more than the clock times. The sweep and the morning triage run before the brief so their output can appear in it. The connection check runs before both so the registry is current when they read it, and the health check after it for the same reason. The weekly review runs after the brief so it is not the first thing the leader sees on a Monday, and the decision review between the two, because the review is the surface that renders what it finds.
 
-On ChatGPT the order buys less than it looks. The sweep and the morning triage pass print into a chat instead of writing into the folder, so the 07:00 brief reads neither of them and builds the day from the calendar, the ledger, and mail alone. Two honest options. Move both jobs to a time the leader is awake and have them paste the commitment lines before the brief runs, which costs the leader ten minutes every morning. Or leave the clock as it is, accept a thinner brief, and say so at handover rather than letting it read as a bug. Pick one in the session and write down which.
+**On ChatGPT the order buys less than it looks.** The sweep and the morning triage print into a chat instead of writing into the folder, so the 07:00 brief reads neither and builds the day from the calendar, the ledger, and mail alone. Two honest options: move both to a time the leader is awake and have them paste the commitment lines before the brief runs, costing ten minutes every morning, or leave the clock and accept a thinner brief. Pick one in the session, say which at handover, and do not let it read as a bug.
 
-If a brief arrives and the leader has already heard everything in it from other people, the schedule is too late. Move it earlier before you change anything else in the system.
+If a brief arrives and the leader has already heard everything in it from other people, the schedule is too late. Move it earlier before changing anything else.
 
 ---
 
 ## The four that do not get scheduled
 
-`onboarding`, `meeting-prep`, `transcript-to-actions`, and `recall` are not on this list, and adding them is a mistake worth naming.
-
-Each of them needs a subject that only a person can supply. Meeting prep needs to know which meeting. Transcript to actions needs to know which call. Onboarding needs a leader in the room answering six questions. Recall needs the question.
+`onboarding`, `meeting-prep`, `transcript-to-actions`, and `recall` are not on this list, and adding them is a mistake worth naming. Each needs a subject only a person can supply. Meeting prep needs to know which meeting. Transcript to actions needs to know which call. Onboarding needs a leader in the room answering six questions. Recall needs the question.
 
 The scheduled jobs cover the first three anyway. The sweep runs transcript-to-actions across yesterday's meetings without being asked, and the morning brief offers meeting prep when a high-stakes meeting has none. Nothing covers recall, and nothing should. It exists for the moment the leader asks.
 

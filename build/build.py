@@ -52,6 +52,22 @@ OUTPUT_FOLDERS = ["briefs", "meetings", "people", "archive"]
 # so they are rendered like the context files rather than copied like example/.
 WORKSPACE_DOCS = ["QUICK-START.md"]
 
+# Docs that get one render per platform, into docs/claude/ and docs/chatgpt/.
+# A consultant deploys to one platform and should never read the other's paths.
+# The filenames are identical in both directories on purpose: every cross-link
+# between docs is a bare filename, so it resolves inside whichever directory the
+# reader is already in and no link has to know which platform it is on.
+PLATFORM_DOCS = [
+    "READ-ME-FIRST.md",
+    "SCHEDULES.md",
+    "DEPLOY-FOR-A-CLIENT.md",
+]
+
+# Everything else in src/docs/ renders once, to the repo root. README.md is the
+# GitHub landing page and routes to the two sets. QUICK-START.md is handed to the
+# leader and already ships per-platform inside each workspace, per WORKSPACE_DOCS.
+DOCS = ROOT / "docs"
+
 # the worked reference workspace, copied rather than rendered
 EXAMPLE_SRC = SRC / "example"
 
@@ -294,12 +310,29 @@ def build_chatgpt(behaviours: list[dict], version: str) -> None:
 
 
 def build_docs(version: str) -> None:
-    count = 0
+    """Write the docs, splitting the ones whose reader only needs one platform."""
+    if DOCS.exists():
+        shutil.rmtree(DOCS)
+
+    shared = split = 0
     for path in sorted((SRC / "docs").glob("*.md")):
-        # docs are Claude-flavoured by default; ChatGPT specifics are inline
-        write(ROOT / path.name, render(path.read_text(encoding="utf-8"), "claude", version))
-        count += 1
-    print(f"  docs: {count} files written to repo root")
+        text = path.read_text(encoding="utf-8")
+        if path.name in PLATFORM_DOCS:
+            for platform in PLATFORMS:
+                write(DOCS / platform / path.name, render(text, platform, version))
+            split += 1
+        else:
+            # Shared docs are Claude-flavoured, so any ChatGPT specifics in them
+            # have to be written as plain prose rather than in a platform block.
+            write(ROOT / path.name, render(text, "claude", version))
+            shared += 1
+
+    missing = [name for name in PLATFORM_DOCS if not (SRC / "docs" / name).is_file()]
+    if missing:
+        fail(f"PLATFORM_DOCS names files that are not in src/docs/: {missing}")
+
+    print(f"  docs: {shared} shared at the root, {split} split across "
+          f"{len(PLATFORMS)} platforms in docs/")
 
 
 def build_release_zip(version: str) -> None:
@@ -317,9 +350,15 @@ def build_release_zip(version: str) -> None:
     # The docs are whatever build_docs() just wrote, so ask src/docs/ rather
     # than listing filenames here. A new doc used to need a second edit in this
     # function, and forgetting it dropped the doc from the release silently.
-    include = [ROOT / path.name for path in sorted((SRC / "docs").glob("*.md"))]
+    # The split ones live under docs/ and are picked up by that directory below.
+    include = [
+        ROOT / path.name
+        for path in sorted((SRC / "docs").glob("*.md"))
+        if path.name not in PLATFORM_DOCS
+    ]
     include += [
         ROOT / "LICENSE",
+        DOCS,              # per-platform READ-ME-FIRST, SCHEDULES, DEPLOY
         DIST / "claude",   # workspace, skills, upload zips, example
         DIST / "chatgpt",  # workspace, prompts, example
     ]

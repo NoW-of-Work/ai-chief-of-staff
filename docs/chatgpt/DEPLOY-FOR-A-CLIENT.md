@@ -1,6 +1,6 @@
 # DEPLOY FOR A CLIENT
 
-**AI Chief of Staff, v{{VERSION}}. Created by The NoW of Work.**
+**AI Chief of Staff, v1.2.0. Created by The NoW of Work.**
 
 This is the runbook for installing the system for somebody else. It assumes you have read `READ-ME-FIRST.md` and can already do the install on your own machine.
 
@@ -15,9 +15,9 @@ Do all of this by email, days ahead. A session that stalls at minute twelve wait
 | What to confirm | Why it matters | If the answer is no |
 |-----------------|----------------|---------------------|
 | Which AI tool the leader pays for, personally or through the company | The system runs inside Claude or ChatGPT. There is no third option and no standalone app | Stop. Get the subscription first. Do not book the session |
-{{#chatgpt}}
+
 | On ChatGPT, which plan | The plan caps active scheduled tasks: 3 on Go, 5 on Plus, 10 on Business and Edu, 15 on Pro and Enterprise. The finished clock is ten. Find this out now, not in week three when a task refuses to save | Plus is a five-job deployment and that is a legitimate one. Decide which five before the session and say so at handover. Go stalls in week two |
-{{/chatgpt}}
+
 | Whether the account is a personal one or an enterprise seat | Enterprise seats often have connectors switched off at the tenant level | Find the admin now, see the row below |
 | Calendar connected, and email connected | Almost everything is built on those two | You can still run the session, but say up front that the first brief will be thin |
 | Where the workspace folder will live | You will not be there at 06:30 on a Tuesday to open the laptop for it | Cloud storage the leader owns. Insist on this one |
@@ -33,14 +33,9 @@ Two reasons. A scheduled morning brief has to run at 06:30 whether or not a lapt
 
 If the organization blocks personal cloud storage, use the corporate one. What matters is that a scheduled task can reach it and the leader can open it on a phone.
 
-{{#claude}}
-On Claude, name the home rather than saying cloud storage. `READ-ME-FIRST.md` Path A step 2 gives the three that work: files saved to the Claude account, a folder connected in Cowork, or a source reached through a connector. Google Drive is the weakest of them. Claude's Drive connector documents uploading, creating folders, reading, and saving files Claude generated, and appending to an existing markdown file in place is not something it commits to. This system appends constantly. Prefer a folder connected in Cowork or files held in the Claude account, and if Drive is the only option, test an append to `commitments.md` in the session before you rely on it.
-{{/claude}}
-{{#chatgpt}}
 **On ChatGPT this is stricter than it looks.** A scheduled task cannot read the files attached to a project, including the project it was created in, so uploading the workspace to the project does not make it reachable at 06:30. The folder has to sit in a connected app, and the prompt has to name that app. `READ-ME-FIRST.md` Path C step 5 is the step, and it leaves two copies to keep in step, which is worth saying at handover rather than discovering in week three.
 
 If the leader will not connect an app, say the honest thing in the session: ChatGPT cannot run this unattended. What you can leave behind is a trigger-only task that says "it is 07:00, run the morning brief," with the leader running the real prompt inside the project by hand. Do not install a full schedule that quietly produces context-free output every weekday.
-{{/chatgpt}}
 
 ---
 
@@ -90,7 +85,7 @@ Sixty minutes, in eight blocks. The agenda is tight because the middle of it is 
 |---------|-------|--------------------|
 | 0 to 5 | Access and folder | Confirm the subscription, create the folder in cloud storage, confirm calendar and mail respond |
 | 5 to 10 | Consent | Section 2, out loud. Wait for the answer |
-| 10 to 15 | Install | {{#claude}}Path A or B from `READ-ME-FIRST.md`{{/claude}}{{#chatgpt}}Path C from `READ-ME-FIRST.md`{{/chatgpt}}. Silent work, so talk through what happens next while it runs |
+| 10 to 15 | Install | Path C from `READ-ME-FIRST.md`. Silent work, so talk through what happens next while it runs |
 | 15 to 30 | Onboarding, steps 0 to 5 | Steps 0 to 2 are silent. At step 3 the leader reads the confirmation block and you take corrections. Step 4 asks its six clusters, step 5 saves behind an approval gate and hands off to `health-check`. Read that verdict before you move on |
 | 30 to 45 | The four questions, in depth | Section 4. Onboarding already asked four of these once. This is where you get the real answer |
 | 45 to 52 | First brief | Run it, read it together, ask what is wrong with it |
@@ -201,9 +196,9 @@ The leader sees a symptom. You can see the cause, because you know where the fil
 | It reads files but cannot save them | Write access was never granted on the storage connector. Read and write are separate scopes on most of them | Re-grant with write enabled. Test by asking it to append one line to `commitments.md` |
 | `(not connected)` about the calendar | Either the token expired, or an admin revoked the grant across the tenant. Those look identical from inside the chat | Have the leader reconnect. If it fails again within a week, it is the admin, and you need the person from section 1 |
 | A scheduled task produces nothing useful | Almost always one of two things. The folder is on a laptop, or the prompt does not name the folder | Check the prompt text against `SCHEDULES.md`. Every block there names the folder for exactly this reason, and every block leaves `[WHERE THE WORKSPACE LIVES]` for you to replace with the real home before you paste |
-{{#chatgpt}}
+
 | A ChatGPT scheduled brief arrives on time and reads like it has never met the leader | The prompt points at the project. A scheduled task cannot read project files, so the run had no workspace at all and wrote a generic day from nothing. It looks like a working job, which is why it survives for weeks | Move the workspace into a connected app, `READ-ME-FIRST.md` Path C step 5, and re-paste the ChatGPT block from `SCHEDULES.md` with that app named in the first line |
-{{/chatgpt}}
+
 | The transcript sweep produces nothing, every day, and the `Transcripts` row says `missing` | Designed behaviour. The capability is not there and every job that needs it exits silently | Nothing. Say so at handover before the first silent week reads as a broken job |
 | The transcript sweep produces nothing, and the `Transcripts` row says `connected` | The capability is `failing`. The row is stale, and every behaviour reading it is treating an empty result as a quiet week | Run `connection-check`. It probes by use and rewrites the row. If it comes back `connected` again and the sweep stays silent, that is a defect, not a setting |
 | A brief mentions the same missing tool twice in two weeks | The nudge dates in `connections.md` are not being written back, usually because write access is read-only | Same fix as the write-access row. Then say "not now" twice to silence it while you sort it out |
@@ -226,9 +221,7 @@ Two rows deserve a sentence of their own. `missing` and `failing` look the same 
 - The name of the person who grants connector access, and what they granted.
 - A booked 30-day check-in. Book it in the session. It does not happen otherwise.
 
-{{#chatgpt}}
 On ChatGPT, two more things go in that handover. The workspace exists twice, once in the connected app for the scheduled runs and once in the project for the sessions the leader opens, and a scheduled run prints its output for pasting rather than writing it back, so the leader is the thing keeping the two in step. Tell them to paste into the connected folder first, because that is the copy tomorrow morning reads. And say the plan's task cap out loud, with the number of jobs you actually installed against it.
-{{/chatgpt}}
 
 ### What the leader owns
 

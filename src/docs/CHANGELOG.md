@@ -2,6 +2,17 @@
 
 ## v{{VERSION}}
 
+- The install guide, the schedule prompts, and the client runbook now render once per platform, into `docs/claude/` and `docs/chatgpt/`. A consultant deploys to one platform and reads only the paths that apply to it. A Claude deployment reads 836 lines where the combined set was 1,099, and a ChatGPT deployment 864. `SCHEDULES.md` alone goes from 557 lines to 345 and 376.
+- Filenames are identical in both directories, so every cross-link between docs resolves inside whichever set the reader opened and no link has to know its own platform.
+- `README.md` is the router. It names the two sets and says to read only one.
+- Every cross-platform path reference removed. A Claude reader is no longer sent to a Path C their guide does not contain, and a ChatGPT reader no longer reads three bullets about what Path A leaves out.
+- `QUICK-START.md`, `CHANGELOG.md`, and `CREDITS.md` stay single at the repo root. The leader's page reads the same on both platforms, and splitting it would double a file to vary one sentence.
+- `build.py` gains `PLATFORM_DOCS`. Anything named there renders once per platform into `docs/`; everything else renders once to the root.
+- `check.py` gains three rules, 465 checks to 486: both renders of a split doc exist and reach the release zip, the two renders differ (a doc that splits identically is duplicated rather than split), and no stale root copy survives beside `docs/`.
+
+## v1.1.0
+
+
 - Five new behaviours: `inbox-triage`, `chase`, `decision-brief`, `recall`, `health-check`. Thirteen in total.
 - New workspace file `decisions.md`: closed calls, the reasoning, the conditions that would reopen each one, and a Monday review pass over the ones that have come due.
 - Three new approval gates, thirteen in total. No outcome written to `decisions.md` that the leader has not stated in the same session, no state changed in a connected source, and `tomorrow.md` never saved without approval.
