@@ -41,6 +41,7 @@ Check for each of these. Create anything that is missing. Never overwrite anythi
 | `my-work.md` | Copy from `templates/my-work.md` |
 | `tomorrow.md` | Copy from `templates/tomorrow.md` |
 | `commitments.md` | Copy from `templates/commitments.md` |
+| `decisions.md` | Copy from `templates/decisions.md` |
 | `connections.md` | Copy from `templates/connections.md` |
 | `briefs/README.md` | Create the folder and the stub |
 | `meetings/README.md` | Create the folder and the stub |
@@ -54,7 +55,8 @@ If a file exists but is empty, treat it as missing and write the template into i
 Report what you created in one line, then move on:
 
 ```
-Workspace ready. Created: connections.md, tomorrow.md, briefs/, meetings/, people/, archive/.
+Workspace ready. Created: connections.md, tomorrow.md, decisions.md, briefs/, meetings/,
+people/, archive/.
 Already there: CLAUDE.md, about-me.md, my-work.md, commitments.md.
 ```
 
@@ -163,6 +165,8 @@ Write the confirmed and inferred values into `about-me.md`, `my-work.md`, and `c
 Write today's date into `Last nudged` for every capability recorded as `missing`. This starts each nudge clock at setup, so the first possible mention of a gap is one full cadence away. Without this the gate reads an empty `Last nudged` as "never nudged, go ahead" and the leader gets a nudge the morning after setup, which is the exact behaviour this system is built to avoid.
 
 Every write is approval-gated. Show what you are about to save, get a yes, then save.
+
+Then hand off to `health-check` and run it, on this run and on every re-run. It reads the workspace as a whole and reports what setup left behind, including any of the four fields still bracketed. This behaviour does not audit its own output, and the leader is in the room now, which is the only time a bracketed field can be filled.
 
 Finish with two lines:
 

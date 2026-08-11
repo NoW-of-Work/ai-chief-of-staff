@@ -37,10 +37,23 @@ WORKSPACE_FILES = [
     ("my-work", "my-work.md"),
     ("tomorrow", "tomorrow.md"),
     ("commitments", "commitments.md"),
+    # the decision ledger sits next to the commitment ledger, on purpose
+    ("decisions", "decisions.md"),
     ("connections", "connections.md"),
 ]
 
 OUTPUT_FOLDERS = ["briefs", "meetings", "people", "archive"]
+
+# Docs from src/docs/ that ride inside the workspace itself.
+# The leader is handed the workspace folder, not the repo, so a page they are
+# told to read has to sit in the folder they can actually open. These are
+# reading material, so they stay out of WORKSPACE_FILES and out of the reading
+# order: nothing should load them on every run. They still hold {{VERSION}},
+# so they are rendered like the context files rather than copied like example/.
+WORKSPACE_DOCS = ["QUICK-START.md"]
+
+# the worked reference workspace, copied rather than rendered
+EXAMPLE_SRC = SRC / "example"
 
 MAX_DESCRIPTION = 200
 
@@ -111,7 +124,8 @@ def escape_yaml(value: str) -> str:
 
 
 def build_workspace(dest: Path, platform: str, version: str) -> None:
-    """Write the six context files and the four output folders into dest."""
+    """Write the seven context files, the four output folders, and the
+    workspace docs into dest."""
     for stem, filename in WORKSPACE_FILES:
         src_path = SRC / "workspace" / f"{stem}.md"
         target = filename or MANUAL_NAME[platform]
@@ -123,6 +137,27 @@ def build_workspace(dest: Path, platform: str, version: str) -> None:
             dest / folder / "README.md",
             render(src_path.read_text(encoding="utf-8"), platform, version),
         )
+
+    for name in WORKSPACE_DOCS:
+        src_path = SRC / "docs" / name
+        if not src_path.is_file():
+            fail(f"src/docs/{name} is missing, so the workspace cannot carry it")
+        write(dest / name, render(src_path.read_text(encoding="utf-8"), platform, version))
+
+
+def copy_example(dest: Path) -> None:
+    """Copy the worked reference workspace into dest, byte for byte.
+
+    This one does not go through render(). The example is finished text written
+    for a leader to read, so a token in it would be a mistake rather than a slot,
+    and both packs are meant to carry the identical files. Dotfiles are skipped
+    because macOS leaves them lying around and they are not part of the example.
+    """
+    if not EXAMPLE_SRC.is_dir():
+        fail("src/example/ is missing, so there is no worked example to ship")
+    if dest.exists():
+        shutil.rmtree(dest)
+    shutil.copytree(EXAMPLE_SRC, dest, ignore=shutil.ignore_patterns(".*"))
 
 
 # ----------------------------------------------------------------------------
@@ -168,6 +203,7 @@ def build_claude(behaviours: list[dict], version: str) -> None:
         shutil.rmtree(DIST / "claude")
 
     build_workspace(workspace, platform, version)
+    copy_example(workspace / "example")
 
     uploads = DIST / "claude" / "skill-uploads"
     uploads.mkdir(parents=True, exist_ok=True)
@@ -201,7 +237,7 @@ def build_claude(behaviours: list[dict], version: str) -> None:
                 if path.is_file():
                     zf.write(path, Path(b["name"]) / path.relative_to(base))
 
-    print(f"  claude: {len(behaviours)} skills, workspace, "
+    print(f"  claude: {len(behaviours)} skills, workspace, example, "
           f"{len(behaviours)} upload zips")
 
 
@@ -233,6 +269,7 @@ def build_chatgpt(behaviours: list[dict], version: str) -> None:
         shutil.rmtree(out)
 
     build_workspace(out / "workspace", platform, version)
+    copy_example(out / "example")
 
     # the operating manual is pasted into the project's custom instructions,
     # so put a copy where a human will trip over it first
@@ -248,7 +285,7 @@ def build_chatgpt(behaviours: list[dict], version: str) -> None:
         body = render(b["body"], platform, version)
         write(out / "prompts" / f"{b['order']}-{b['name']}.md", header + body)
 
-    print(f"  chatgpt: {len(behaviours)} prompts, workspace")
+    print(f"  chatgpt: {len(behaviours)} prompts, workspace, example")
 
 
 # ----------------------------------------------------------------------------
@@ -267,19 +304,29 @@ def build_docs(version: str) -> None:
 
 def build_release_zip(version: str) -> None:
     zip_path = DIST / f"ai-chief-of-staff-v{version}.zip"
+    # A zip from an older VERSION sitting beside this one is a trap. There is
+    # nothing on the file listing that says which is current, so whoever picks
+    # the wrong one deploys a release without any of this in it. Only the zip
+    # matching VERSION survives.
+    for stale in sorted(DIST.glob("ai-chief-of-staff-v*.zip")):
+        if stale != zip_path:
+            stale.unlink()
+            print(f"  release: removed stale {stale.name}")
     if zip_path.exists():
         zip_path.unlink()
-    include = [
-        ROOT / "READ-ME-FIRST.md",
-        ROOT / "README.md",
+    # The docs are whatever build_docs() just wrote, so ask src/docs/ rather
+    # than listing filenames here. A new doc used to need a second edit in this
+    # function, and forgetting it dropped the doc from the release silently.
+    include = [ROOT / path.name for path in sorted((SRC / "docs").glob("*.md"))]
+    include += [
         ROOT / "LICENSE",
-        ROOT / "CREDITS.md",
-        ROOT / "CHANGELOG.md",
-        DIST / "claude",
-        DIST / "chatgpt",
+        DIST / "claude",   # workspace, skills, upload zips, example
+        DIST / "chatgpt",  # workspace, prompts, example
     ]
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
         for item in include:
+            if not item.exists():
+                fail(f"release zip: {item.relative_to(ROOT)} was never built")
             if item.is_file():
                 zf.write(item, Path("ai-chief-of-staff") / item.name)
             else:

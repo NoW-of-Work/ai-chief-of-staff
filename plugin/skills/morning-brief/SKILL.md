@@ -27,9 +27,9 @@ description: "Start-of-day brief: today's priorities, meetings needing something
 4. `about-me.md`, sections 6 and 7 especially (always flag, always protect).
 5. `my-work.md`, sections 2 and 5 (active priorities, and what they are not doing).
 6. `commitments.md`.
-7. Today's calendar. Yesterday's mail since the last brief.
+7. Today's calendar. Today's `briefs/` triage pass if one exists, otherwise yesterday's mail since the last brief.
 
-If `tomorrow.md` is written for a date that is not today, say so in one clause and use it anyway if it is recent. Do not silently ignore it.
+If `tomorrow.md` is written for a date that is not today, say so in one clause and use it anyway if it is recent. Do not silently ignore it. If it still holds only its template, with `[Item]` in the Must respect list, treat it as absent and take the opening line from the top of the `my-work.md` priorities. Say nothing about it. That file is empty for the first few weeks by design, because `end-of-day-close` is what fills it and it goes in later.
 
 ---
 
@@ -59,9 +59,11 @@ If a high-stakes meeting has no prep, say so and offer to run `meeting-prep`.
 
 From `commitments.md`. Only what is due in the next 48 hours, stale past the thresholds, or attached to someone in the always-flag list. Not the whole ledger. The leader reads the whole ledger in the weekly review.
 
+Anything `inbox-triage` appended this morning renders here regardless of age. It is new to the leader.
+
 ### 5. Drafts waiting
 
-Anything you drafted that needs a yes or a no. One line each. Link or filename.
+Anything you drafted that needs a yes or a no. One line each. Link or filename. Includes every draft `inbox-triage` saved this morning.
 
 ### 6. Capability check
 
@@ -94,6 +96,10 @@ One line, only when it matters. Distinguish the two cases using the labels from 
 
 ---
 
+## Rules
+
+- Do not re-raise a decision this morning's triage pass already surfaced. `inbox-triage` runs first and it hands over what it appended and what it drafted. Slots 4 and 5 render those. The leader meets each one once.
+
 ## Voice
 
 Follow `about-me.md`. Defaults: short sentences, active voice, no hype words, no em dashes, no "not X but Y" contrasts.
@@ -104,7 +110,7 @@ Do not open with a greeting or the date. The leader knows what day it is. Start 
 
 ## Approval rules
 
-- May save the brief to `briefs/YYYY-MM-DD.md`.
+- May save the brief to `briefs/YYYY-MM-DD-brief.md`.
 - May update nudge dates and offer statuses in `connections.md`.
 - May not send anything, book anything, or reply to anything.
 - May not act on an activation offer. Rendering the offer and recording the answer is the whole job. Turning the behaviour on happens in a session where the leader is present, per `CLAUDE.md` gate 9.

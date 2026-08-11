@@ -17,6 +17,7 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+SRC = ROOT / "src"
 DIST = ROOT / "dist"
 PLUGIN = ROOT / "plugin"
 
@@ -30,9 +31,34 @@ EXPECTED_BEHAVIOURS = {
     "end-of-day-close",
     "weekly-review",
     "connection-check",
+    "inbox-triage",
+    "chase",
+    "decision-brief",
+    "recall",
+    "health-check",
 }
-WORKSPACE_FILES = {"about-me.md", "my-work.md", "tomorrow.md", "commitments.md", "connections.md"}
+WORKSPACE_FILES = {
+    "about-me.md",
+    "my-work.md",
+    "tomorrow.md",
+    "commitments.md",
+    "decisions.md",
+    "connections.md",
+}
 OUTPUT_FOLDERS = {"briefs", "meetings", "people", "archive"}
+
+# Docs that must sit inside the workspace, not only at the repo root.
+# READ-ME-FIRST tells the consultant to hand the leader this page, and a
+# consultant who installs from a zip never downloads the repo, so a root-only
+# copy is a page nobody can hand over.
+WORKSPACE_DOCS = {"QUICK-START.md"}
+
+# where the worked example lands in each pack, and the folders it must fill
+EXAMPLE_ROOTS = (
+    DIST / "claude" / "ai-chief-of-staff" / "example",
+    DIST / "chatgpt" / "example",
+)
+EXAMPLE_FOLDERS = {"briefs", "meetings", "people"}
 
 failures: list[str] = []
 checks = 0
@@ -50,8 +76,8 @@ def main() -> None:
 
     # 1. no unresolved template tokens anywhere in the shipped output
     token = re.compile(r"\{\{[#/]?[A-Za-z_]+\}\}")
-    for base in (DIST, PLUGIN / "skills", ROOT / "READ-ME-FIRST.md", ROOT / "README.md",
-                 ROOT / "CREDITS.md", ROOT / "CHANGELOG.md"):
+    root_docs = [ROOT / path.name for path in sorted((SRC / "docs").glob("*.md"))]
+    for base in (DIST, PLUGIN / "skills", *root_docs):
         paths = [base] if base.is_file() else sorted(base.rglob("*.md"))
         for path in paths:
             text = path.read_text(encoding="utf-8")
@@ -87,15 +113,21 @@ def main() -> None:
             check(length <= MAX_DESCRIPTION,
                   f"{name}: description is {length} chars, limit {MAX_DESCRIPTION}")
 
-    # 3. onboarding carries the templates it needs to scaffold a workspace
-    templates = skills_dir / "onboarding" / "templates"
-    check(templates.is_dir(), "onboarding: templates/ missing")
-    if templates.is_dir():
+    # 3. onboarding carries the templates it needs to scaffold a workspace,
+    # in the plugin and in the drop-in workspace copy alike
+    for templates in (
+        skills_dir / "onboarding" / "templates",
+        DIST / "claude" / "ai-chief-of-staff" / "skills" / "onboarding" / "templates",
+    ):
+        check(templates.is_dir(), f"onboarding: {templates.relative_to(ROOT)} missing")
+        if not templates.is_dir():
+            continue
         names = {p.name for p in templates.iterdir()}
-        check(WORKSPACE_FILES | {"CLAUDE.md"} <= names,
-              f"onboarding templates missing: {(WORKSPACE_FILES | {'CLAUDE.md'}) - names}")
+        wanted = WORKSPACE_FILES | WORKSPACE_DOCS | {"CLAUDE.md"}
+        check(wanted <= names,
+              f"{templates.relative_to(ROOT)} missing: {wanted - names}")
         check(OUTPUT_FOLDERS <= names,
-              f"onboarding templates missing folders: {OUTPUT_FOLDERS - names}")
+              f"{templates.relative_to(ROOT)} missing folders: {OUTPUT_FOLDERS - names}")
 
     # 4. upload zips contain the skill DIRECTORY, not loose files
     uploads = DIST / "claude" / "skill-uploads"
@@ -111,7 +143,7 @@ def main() -> None:
 
     # 5. the drop-in Claude workspace is complete
     ws = DIST / "claude" / "ai-chief-of-staff"
-    for f in WORKSPACE_FILES | {"CLAUDE.md"}:
+    for f in WORKSPACE_FILES | WORKSPACE_DOCS | {"CLAUDE.md"}:
         check((ws / f).is_file(), f"claude workspace missing {f}")
     for d in OUTPUT_FOLDERS:
         check((ws / d / "README.md").is_file(), f"claude workspace missing {d}/README.md")
@@ -122,7 +154,7 @@ def main() -> None:
     cg = DIST / "chatgpt"
     check((cg / "PROJECT-INSTRUCTIONS.md").is_file(),
           "chatgpt: PROJECT-INSTRUCTIONS.md missing from the top level")
-    for f in WORKSPACE_FILES | {"PROJECT-INSTRUCTIONS.md"}:
+    for f in WORKSPACE_FILES | WORKSPACE_DOCS | {"PROJECT-INSTRUCTIONS.md"}:
         check((cg / "workspace" / f).is_file(), f"chatgpt workspace missing {f}")
     prompts = {p.stem.split("-", 1)[1] for p in (cg / "prompts").glob("*.md")}
     check(prompts == EXPECTED_BEHAVIOURS,
@@ -162,14 +194,95 @@ def main() -> None:
         hits = banned.findall(path.read_text(encoding="utf-8"))
         check(not hits, f"{path.relative_to(ROOT)}: client-specific or historical reference {hits}")
 
-    # 10. the release zip exists and unzips to one folder
+    # 10. the release zip exists, stands alone, and unzips to one folder.
+    # Two zips in dist/ and nothing marking the current one is how a consultant
+    # ends up deploying a release that is a version behind.
     release = DIST / f"ai-chief-of-staff-v{version}.zip"
     check(release.is_file(), f"release zip {release.name} missing")
+    found_zips = sorted(p.name for p in DIST.glob("ai-chief-of-staff-v*.zip"))
+    check(found_zips == [release.name],
+          f"dist/ must hold exactly one release zip, the one matching VERSION "
+          f"({version}); found {found_zips}")
     if release.is_file():
         with zipfile.ZipFile(release) as zf:
             roots = {e.split("/")[0] for e in zf.namelist()}
         check(roots == {"ai-chief-of-staff"},
               f"release zip should unzip to one folder, got {roots}")
+
+    # 11. the worked example ships in both packs, finished and identical
+    fence = re.compile(r"^```.*?^```", re.S | re.M)
+    inline = re.compile(r"`[^`\n]*`")
+    # a slot starts with a letter, so a real bracketed date reads as a value.
+    # the negative lookahead lets a markdown link through.
+    slot = re.compile(r"\[[A-Za-z][^\]\n]*\](?!\()")
+    for ex in EXAMPLE_ROOTS:
+        check(ex.is_dir(), f"example tree missing: {ex.relative_to(ROOT)}")
+        if not ex.is_dir():
+            continue
+        for f in WORKSPACE_FILES | {"README.md"}:
+            check((ex / f).is_file(), f"{ex.relative_to(ROOT)}: example missing {f}")
+        for d in sorted(EXAMPLE_FOLDERS):
+            check((ex / d).is_dir() and any((ex / d).rglob("*.md")),
+                  f"{ex.relative_to(ROOT)}: example {d}/ has no worked file in it")
+        for path in sorted(ex.rglob("*.md")):
+            # fenced and inline code are format specs, not blanks left unfilled
+            body = inline.sub("", fence.sub("", path.read_text(encoding="utf-8")))
+            slots = slot.findall(body)
+            check(not slots,
+                  f"{path.relative_to(ROOT)}: unfilled placeholder(s) {sorted(set(slots))[:5]}")
+            hits = token.findall(body)
+            check(not hits, f"{path.relative_to(ROOT)}: unresolved token(s) {sorted(set(hits))}")
+
+    # the example is copied, never rendered, so the two packs must agree byte
+    # for byte. A stray render() pass would show up here as a {{MANUAL}} that
+    # resolved two different ways.
+    left, right = EXAMPLE_ROOTS
+    if left.is_dir() and right.is_dir():
+        left_files = {p.relative_to(left) for p in left.rglob("*") if p.is_file()}
+        right_files = {p.relative_to(right) for p in right.rglob("*") if p.is_file()}
+        check(left_files == right_files,
+              f"the two example trees hold different files: {left_files ^ right_files}")
+        for rel in sorted(left_files & right_files):
+            check((left / rel).read_bytes() == (right / rel).read_bytes(),
+                  f"example/{rel}: the packs disagree, it must be copied verbatim")
+
+    # 12. every doc in src/docs/ reached the repo root and the release zip,
+    # and the example reached the release zip with them
+    entries: set[str] = set()
+    if release.is_file():
+        with zipfile.ZipFile(release) as zf:
+            entries = set(zf.namelist())
+    docs = sorted((SRC / "docs").glob("*.md"))
+    check(bool(docs), "src/docs/ holds no docs")
+    for doc in docs:
+        check((ROOT / doc.name).is_file(), f"{doc.name}: never written to the repo root")
+        check(f"ai-chief-of-staff/{doc.name}" in entries,
+              f"{doc.name}: written to the repo root but dropped from the release zip")
+    for ex in EXAMPLE_ROOTS:
+        prefix = f"ai-chief-of-staff/{ex.relative_to(ROOT).as_posix()}/"
+        check(any(e.startswith(prefix) for e in entries),
+              f"release zip: nothing under {prefix}")
+
+    # 13. onboarding's step 0 table names every file in src/workspace/.
+    # A template can ship in the pack, in onboarding's own templates/ folder,
+    # and in the plugin, and still never get created, because the only thing
+    # that copies it is a row in that table. decisions.md shipped that way once.
+    onboarding = (SRC / "behaviours" / "0-onboarding.md").read_text(encoding="utf-8")
+    step_zero = re.search(r"^## Step 0\b.*?(?=^## )", onboarding, re.S | re.M)
+    check(bool(step_zero), "0-onboarding.md: no Step 0 section to read the scaffold table from")
+    if step_zero:
+        # only the table rows count. Prose in the section that happens to name a
+        # file is not an instruction to create one.
+        table = "\n".join(
+            line for line in step_zero.group(0).splitlines() if line.startswith("|")
+        )
+        check(bool(table), "0-onboarding.md step 0: no scaffold table")
+        for path in sorted((SRC / "workspace").glob("*.md")):
+            # the manual is named per platform, so it appears as its token
+            wanted = "{{MANUAL}}" if path.stem == "_manual" else path.name
+            check(wanted in table,
+                  f"0-onboarding.md step 0 does not name {wanted}, "
+                  "so onboarding will never create it")
 
     if failures:
         print(f"FAILED {len(failures)} of {checks} checks:\n")

@@ -1,7 +1,7 @@
 {
   "name": "ai-chief-of-staff",
   "displayName": "AI Chief of Staff",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An AI chief of staff for a leader: morning briefs, meeting prep, meeting-to-actions, a commitment ledger, and a weekly review, grounded in files the leader controls.",
   "author": {
     "name": "The NoW of Work",

@@ -27,6 +27,8 @@ Spend the effort here. The leader spends thirty seconds approving it and gets a 
 7. Today's calendar as it actually ran. Today's mail. Any transcripts from today.
 8. Tomorrow's calendar.
 
+If no `inbox-triage` pass has run since this morning, run one before step 7. Today's new commitments come from that pass, and slot 2 is counting what it appended. Skip it when the afternoon pass has already run, because the ledger is current and reading the mail twice produces the same entries twice.
+
 ---
 
 ## Structure

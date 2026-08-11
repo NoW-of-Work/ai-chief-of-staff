@@ -2,6 +2,20 @@
 
 ## v{{VERSION}}
 
+- Five new behaviours: `inbox-triage`, `chase`, `decision-brief`, `recall`, `health-check`. Thirteen in total.
+- New workspace file `decisions.md`: closed calls, the reasoning, the conditions that would reopen each one, and a Monday review pass over the ones that have come due.
+- Three new approval gates, thirteen in total. No outcome written to `decisions.md` that the leader has not stated in the same session, no state changed in a connected source, and `tomorrow.md` never saved without approval.
+- New `example/` folder: a filled-in workspace for an invented leader, plus one brief, one person file, and one meeting note. Reference only. No behaviour reads it.
+- New `QUICK-START.md` for the leader, `DEPLOY-FOR-A-CLIENT.md` for whoever installs it, and `SCHEDULES.md` with every recurring prompt in full.
+- `READ-ME-FIRST.md` corrected against current platform documentation: plugin install differs between Claude Code and Claude Cowork and does not run in ordinary Claude chat, skill uploads need **Code execution and file creation** on first and live under **Customize > Skills**, ChatGPT can write files through a connected app, ChatGPT caps active scheduled tasks per plan and cannot run one more often than hourly, and a cloud scheduled run reaches connected sources rather than a hard drive.
+- `READ-ME-FIRST.md` now points at `SCHEDULES.md` for prompt text rather than restating it.
+- The eight original behaviours updated to carry their half of the new contracts. `onboarding` creates `decisions.md` and hands off to `health-check`. `weekly-review` renders the Monday decisions pass and leaves the chase drafts to `chase`. `morning-brief` renders what the morning triage pass appended and drafted, and reads it once. `end-of-day-close` runs a triage pass when none has run since morning.
+- Every file in `briefs/` now carries a suffix, including the morning brief (`YYYY-MM-DD-brief.md`), so two jobs on one day never collide and a behaviour reading another's output can find it by name.
+- `chase` runs two or three days after `weekly-review` rather than the same morning, and reads that week's review so a release is proposed once.
+- Build copies `src/example/` into the workspace and `decisions.md` into the workspace templates. `check.py` now fails when `onboarding` step 0 does not name every file in `src/workspace/`.
+
+## v1.0.0
+
 First public release.
 
 - Eight behaviours: `onboarding`, `morning-brief`, `meeting-prep`, `transcript-to-actions`, `daily-transcript-sweep`, `end-of-day-close`, `weekly-review`, `connection-check`.

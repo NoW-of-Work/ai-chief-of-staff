@@ -1,13 +1,13 @@
 ---
 name: weekly-review
-description: "Monday look back and forward: what moved, what slipped, where the time went, drift against what you said you are not doing, next week's focus, and workspace maintenance. 500 words."
+description: "Monday look back and forward: what moved, what slipped, where the time went, drift against what you said you are not doing, next week's focus, workspace maintenance, and decisions due. 500 words."
 ---
 
 # weekly-review
 
 ## Trigger
 
-- Monday morning, on a schedule, before or alongside the morning brief.
+- Monday morning, on a schedule, after the morning brief, so it is not the first thing the leader sees.
 - On demand: "weekly review", "how did last week go", "what am I behind on".
 
 ## Reading order
@@ -17,9 +17,10 @@ description: "Monday look back and forward: what moved, what slipped, where the 
 3. `my-work.md`, all of it. This is the one behaviour that reads the whole file.
 4. `about-me.md`, sections 4, 6, 7.
 5. `commitments.md`, all of it.
-6. Last week's `briefs/`, both morning briefs and closes.
-7. Last week's calendar as it actually ran. Next week's calendar.
-8. `meetings/` from last week.
+6. `decisions.md`, for the entries this morning's decisions pass named. Not the whole file.
+7. Last week's `briefs/`, both morning briefs and closes, plus today's decisions pass if `decision-brief` has run.
+8. Last week's calendar as it actually ran. Next week's calendar.
+9. `meetings/` from last week.
 
 ---
 
@@ -41,6 +42,8 @@ Commitments that went stale, using the thresholds in `commitments.md` rule 4:
 - `Awaiting` for more than 7 days.
 
 For each, say how long, to whom, and propose an action: chase it, release it, or renegotiate the date. Do not just list them. A list of stale items with no proposal becomes wallpaper by week three.
+
+`Awaiting` entries owed to the leader get the slip named here and nothing more. `chase` runs later in the week, and it carries the draft and the release line for those. Naming the slip twice is a review the leader stops reading.
 
 ### 3. Where the time went
 
@@ -74,10 +77,24 @@ The weekly review is where the system keeps itself honest. Check and propose:
 
 Cap this section at three proposals. It is maintenance, not an audit.
 
+### 7. Decisions due
+
+The four cases `decision-brief` surfaced in this morning's pass:
+
+- An entry whose **Review on** date has passed.
+- An entry where a condition under **Would change my mind** has come true, with the evidence.
+- An `Open` entry whose **Forced by** date lands in the next 14 days.
+- A `To verify` entry still waiting on the leader.
+
+One line each, carrying the proposal the pass made: reopen it, stand it, or confirm it. Cap at three.
+
+Most Mondays nothing has come due and **this slot does not render.** It also does not render when `decision-brief` has not run, and nothing is said about that here.
+
 ---
 
 ## Rules
 
+- Do not scan `decisions.md` yourself. `decision-brief` decides what is due and this section renders it.
 - Do not restate the daily briefs. This is the pattern across the week, not a digest of it.
 - Do not soften a slip. The leader can handle "this did not move" and cannot use "this had limited progress".
 - Do not propose more than three changes to the workspace in one review.
