@@ -1,6 +1,6 @@
 # AI Chief of Staff
 
-**v1.2.0 · Created by [The NoW of Work](https://www.nowofwork.com) · MIT licensed**
+**v1.2.1 · Created by [The NoW of Work](https://www.nowofwork.com) · MIT licensed**
 
 An AI chief of staff for one leader. Morning briefs, prep before the meetings that matter, action items out of recorded calls, inbox triage, a ledger of open promises, a record of closed decisions, and a Monday review. Built out of plain text files the leader owns.
 
@@ -10,7 +10,7 @@ Runs on Claude and on ChatGPT. Both versions are generated from one source, so t
 
 | The leader works in | Read |
 |---|---|
-| **Claude** (Code, Cowork, or ordinary chat) | **[docs/claude/READ-ME-FIRST.md](docs/claude/READ-ME-FIRST.md)** |
+| **Claude** (Cowork for most leaders; Code if the leader is technical; ordinary chat via Path B) | **[docs/claude/READ-ME-FIRST.md](docs/claude/READ-ME-FIRST.md)** |
 | **ChatGPT** | **[docs/chatgpt/READ-ME-FIRST.md](docs/chatgpt/READ-ME-FIRST.md)** |
 
 Each set carries its own install guide, schedule prompts, and deployment runbook. Nothing in one applies to the other, so read only your own and ignore the rest.

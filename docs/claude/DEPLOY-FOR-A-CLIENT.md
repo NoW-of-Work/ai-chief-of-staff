@@ -1,6 +1,6 @@
 # DEPLOY FOR A CLIENT
 
-**AI Chief of Staff, v1.2.0. Created by The NoW of Work.**
+**AI Chief of Staff, v1.2.1. Created by The NoW of Work.**
 
 This is the runbook for installing the system for somebody else. It assumes you have read `READ-ME-FIRST.md` and can already do the install on your own machine.
 
@@ -18,20 +18,26 @@ Do all of this by email, days ahead. A session that stalls at minute twelve wait
 
 | Whether the account is a personal one or an enterprise seat | Enterprise seats often have connectors switched off at the tenant level | Find the admin now, see the row below |
 | Calendar connected, and email connected | Almost everything is built on those two | You can still run the session, but say up front that the first brief will be thin |
-| Where the workspace folder will live | You will not be there at 06:30 on a Tuesday to open the laptop for it | Cloud storage the leader owns. Insist on this one |
+| Where the workspace folder will live | You will not be there at 06:30 on a Tuesday to open the laptop for it | See **On the folder location** below. Settle it before the session, not in it |
 | Who can grant connector access | In most organizations of any size, it is not the leader | Get that person's name and a slot in their week, before your session |
 | Whether an assistant manages the calendar | The system will start commenting on how the calendar is built. That is somebody's work you are grading | Bring the assistant into the session, or brief them separately first |
 | Sixty minutes with the leader, not with a delegate | The four answers in section 4 cannot be given by anybody else | Move the session. A delegate produces a workspace nobody reads |
 
 ### On the folder location
 
-Say this plainly and do not let it slide. The workspace has to sit in cloud storage the leader controls, at the top level, named `ai-chief-of-staff`.
+Say this plainly and do not let it slide. The workspace sits at the top level of wherever it lives, named `ai-chief-of-staff`, and the home is settled before the session rather than in it.
 
-Two reasons. A scheduled morning brief has to run at 06:30 whether or not a laptop is open. And a laptop dies, gets replaced, or goes in for repair, and the leader's working memory should not go with it.
+Two reasons it matters. A scheduled morning brief has to run at 06:30 whether or not a laptop is open. And a laptop dies, gets replaced, or goes in for repair, and the leader's working memory should not go with it.
 
-If the organization blocks personal cloud storage, use the corporate one. What matters is that a scheduled task can reach it and the leader can open it on a phone.
+On Claude, name the home. Do not say "cloud storage": on this platform that phrase points at the weakest of the three options. `READ-ME-FIRST.md` Path A step 2 ranks them and gives the reason for the order. In order:
 
-On Claude, name the home rather than saying cloud storage. `READ-ME-FIRST.md` Path A step 2 gives the three that work: files saved to the Claude account, a folder connected in Cowork, or a source reached through a connector. Google Drive is the weakest of them. Claude's Drive connector documents uploading, creating folders, reading, and saving files Claude generated, and appending to an existing markdown file in place is not something it commits to. This system appends constantly. Prefer a folder connected in Cowork or files held in the Claude account, and if Drive is the only option, test an append to `commitments.md` in the session before you rely on it.
+1. **Files saved to the Claude account.** The default. Cloud runs reach it, appends are documented.
+2. **A source reached through a connector**, such as Google Drive. Cloud runs reach it, appends in place are not documented.
+3. **A local folder connected in Cowork.** Appends are certain, unattended runs are not possible. The machine has to be awake and Cowork open.
+
+Option 3 is a real choice for a leader who will not put working files in Claude's storage, and it is the only one that fails the 06:30 test. If you take it, say so at handover in those words, and describe the daily brief as something the leader triggers rather than something that arrives.
+
+**Test an append in the session, whichever home you chose.** Ask for one line to be appended to `commitments.md`, then reopen the file and confirm it is there. A home that reads fine and silently writes nothing looks identical to a working one until the ledger has been empty for a month.
 
 ---
 
@@ -79,7 +85,7 @@ Sixty minutes, in eight blocks. The agenda is tight because the middle of it is 
 
 | Minutes | Block | What you are doing |
 |---------|-------|--------------------|
-| 0 to 5 | Access and folder | Confirm the subscription, create the folder in cloud storage, confirm calendar and mail respond |
+| 0 to 5 | Access and folder | Confirm the subscription, create the folder in the home you settled before the session, append one test line to `commitments.md`, confirm calendar and mail respond |
 | 5 to 10 | Consent | Section 2, out loud. Wait for the answer |
 | 10 to 15 | Install | Path A or B from `READ-ME-FIRST.md`. Silent work, so talk through what happens next while it runs |
 | 15 to 30 | Onboarding, steps 0 to 5 | Steps 0 to 2 are silent. At step 3 the leader reads the confirmation block and you take corrections. Step 4 asks its six clusters, step 5 saves behind an approval gate and hands off to `health-check`. Read that verdict before you move on |
@@ -191,7 +197,7 @@ The leader sees a symptom. You can see the cause, because you know where the fil
 | The drift check never says anything | `my-work.md` section 5 is empty. The system has nothing to check against | Section 4, question four. Use the calendar framing |
 | It reads files but cannot save them | Write access was never granted on the storage connector. Read and write are separate scopes on most of them | Re-grant with write enabled. Test by asking it to append one line to `commitments.md` |
 | `(not connected)` about the calendar | Either the token expired, or an admin revoked the grant across the tenant. Those look identical from inside the chat | Have the leader reconnect. If it fails again within a week, it is the admin, and you need the person from section 1 |
-| A scheduled task produces nothing useful | Almost always one of two things. The folder is on a laptop, or the prompt does not name the folder | Check the prompt text against `SCHEDULES.md`. Every block there names the folder for exactly this reason, and every block leaves `[WHERE THE WORKSPACE LIVES]` for you to replace with the real home before you paste |
+| A scheduled task produces nothing useful | Almost always one of two things. The workspace is a local folder and the machine was asleep, which is the known cost of option 3 in **On the folder location**, or the prompt does not name the folder | Check the prompt text against `SCHEDULES.md`. Every block there names the folder for exactly this reason, and every block leaves `[WHERE THE WORKSPACE LIVES]` for you to replace with the real home before you paste |
 
 | The transcript sweep produces nothing, every day, and the `Transcripts` row says `missing` | Designed behaviour. The capability is not there and every job that needs it exits silently | Nothing. Say so at handover before the first silent week reads as a broken job |
 | The transcript sweep produces nothing, and the `Transcripts` row says `connected` | The capability is `failing`. The row is stale, and every behaviour reading it is treating an empty result as a quiet week | Run `connection-check`. It probes by use and rewrites the row. If it comes back `connected` again and the sweep stays silent, that is a defect, not a setting |
@@ -209,7 +215,7 @@ Two rows deserve a sentence of their own. `missing` and `failing` look the same 
 
 ### What you leave behind
 
-- The workspace folder, in cloud storage the leader owns, with the leader-owned files filled in.
+- The workspace folder, in the home you settled and tested, with the leader-owned files filled in. If it is a local folder connected in Cowork, say in writing that the scheduled jobs need the machine awake.
 - The exact prompt text for every scheduled job, in writing, from `SCHEDULES.md`. Not a description of the prompt. The text.
 - One page with the four questions and the answers the leader actually gave, in their words. This is what you re-read at the 30-day check-in.
 - The name of the person who grants connector access, and what they granted.

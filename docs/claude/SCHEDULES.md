@@ -1,6 +1,6 @@
 # SCHEDULES
 
-**AI Chief of Staff, v1.2.0. Created by The NoW of Work.**
+**AI Chief of Staff, v1.2.1. Created by The NoW of Work.**
 
 Every recurring job in the system, as text you can copy and paste. Nine of the thirteen behaviours can run on a schedule, and they take ten scheduled tasks, because inbox triage runs twice a day. The other four need a subject only a person can give, so they run when asked.
 
@@ -10,9 +10,9 @@ Every recurring job in the system, as text you can copy and paste. Nine of the t
 
 **A scheduled run starts with no memory of any conversation.** It has never met the leader, does not know which folder you mean, and gets the prompt text and nothing else. So every prompt below names the workspace folder and the manual in its first lines. A prompt that only says "run the morning brief" produces a generic summary with none of the leader's context in it, silently, every morning, for weeks.
 
-**Replace `[WHERE THE WORKSPACE LIVES]` before you paste.** Write the folder's real home in the words the leader's own setup uses: files saved to the Claude account, a folder connected in Cowork, a connected app such as Google Drive. `READ-ME-FIRST.md` Path A step 2 decided it. A prompt naming the wrong home fails silently and reads exactly like one naming the right home. The folder also has to sit somewhere a scheduled run can reach, which a laptop is not.
+**Replace `[WHERE THE WORKSPACE LIVES]` before you paste.** Write the folder's real home in the words the leader's own setup uses: files saved to the Claude account, a folder connected in Cowork, a connected app such as Google Drive. `READ-ME-FIRST.md` Path A step 2 decided it. A prompt naming the wrong home fails silently and reads exactly like one naming the right home. If the home is a local folder connected in Cowork, which is option 3 in that step, a cloud run cannot reach it: the machine has to be awake and Cowork open at the time in the clock below.
 
-**The manual is named in every block, not assumed.** `CLAUDE.md` in Claude, `PROJECT-INSTRUCTIONS.md` in ChatGPT, where the copy that counts is the one in the connected folder rather than the one pasted into custom instructions.
+**The manual is named in every block, not assumed.** That is `CLAUDE.md`, and the copy that counts is the one in the connected folder rather than the one pasted into custom instructions.
 
 ---
 

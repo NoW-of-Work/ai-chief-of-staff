@@ -1,6 +1,6 @@
 # READ ME FIRST
 
-**AI Chief of Staff, v1.2.0. Created by The NoW of Work.**
+**AI Chief of Staff, v1.2.1. Created by The NoW of Work.**
 
 This is the whole setup guide. If you read one file, read this one.
 
@@ -158,23 +158,23 @@ The first week's corrections are the real setup. When it gets a name wrong, mish
 
 ```
 ai-chief-of-staff/
-├── CLAUDE.md          The operating manual. Read first on every run.
-├── QUICK-START.md     The page you hand the leader. Nothing reads it.
-├── connections.md     What the system can reach. It maintains this itself.
-├── about-me.md        Who the leader is, how they work, their voice.
-├── my-work.md         What is active right now, and what is not.
-├── tomorrow.md        The leader's intent for the next working day.
-├── commitments.md     Open promises, both directions.
-├── decisions.md       Calls the leader closed, and what would reopen each one.
-├── skills/            The thirteen behaviours.
-├── example/           A filled-in workspace for a leader who does not exist.
-├── briefs/            Output. Briefs, closes, reviews, drafts.
-├── meetings/          Output. One folder per meeting.
-├── people/            Output. One file per person who matters.
-└── archive/           Output. Closed commitments, resolved loops.
+├── PROJECT-INSTRUCTIONS.md  The operating manual. Read first on every run.
+├── QUICK-START.md           The page you hand the leader. Nothing reads it.
+├── connections.md           What the system can reach. It maintains this itself.
+├── about-me.md              Who the leader is, how they work, their voice.
+├── my-work.md               What is active right now, and what is not.
+├── tomorrow.md              The leader's intent for the next working day.
+├── commitments.md           Open promises, both directions.
+├── decisions.md             Calls the leader closed, and what would reopen each one.
+├── briefs/                  Output. Briefs, closes, reviews, drafts.
+├── meetings/                Output. One folder per meeting.
+├── people/                  Output. One file per person who matters.
+└── archive/                 Output. Closed commitments, resolved loops.
 ```
 
-Five files the leader owns. One file the system owns. Thirteen behaviours. One worked example. Four folders that fill themselves.
+Five files the leader owns. One file the system owns. Four folders that fill themselves.
+
+The behaviours are not in this folder on ChatGPT. They are the prompts in `prompts/`, which you paste. The worked example sits beside the workspace in `example/`, not inside it, so nothing reads it by accident.
 
 That tree is what the workspace holds once `onboarding` has run. On ChatGPT it lives in the connected folder from Path C step 5, and the project carries a second copy of the same files for the sessions the leader opens. `skills/` has no equivalent, because the behaviours are the thirteen prompt files uploaded to the project rather than files in the workspace.
 
@@ -225,7 +225,7 @@ Say yes and the behaviour turns on. Say no and it does not come up again. The sy
 
 You are meant to edit this. See `CREDITS.md` for the terms, which are short and permissive.
 
-If you only change one thing, change `CLAUDE.md` section 6 so the voice rules match the house style of whoever is using it.
+If you only change one thing, change `PROJECT-INSTRUCTIONS.md` section 6 so the voice rules match the house style of whoever is using it.
 
 If you are going to maintain your own version, edit the files in `src/` and run `python3 build/build.py`. That regenerates the Claude and ChatGPT versions together, so they never drift apart. See `README.md` for how the build works.
 

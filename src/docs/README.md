@@ -10,7 +10,7 @@ Runs on Claude and on ChatGPT. Both versions are generated from one source, so t
 
 | The leader works in | Read |
 |---|---|
-| **Claude** (Code, Cowork, or ordinary chat) | **[docs/claude/READ-ME-FIRST.md](docs/claude/READ-ME-FIRST.md)** |
+| **Claude** (Cowork for most leaders; Code if the leader is technical; ordinary chat via Path B) | **[docs/claude/READ-ME-FIRST.md](docs/claude/READ-ME-FIRST.md)** |
 | **ChatGPT** | **[docs/chatgpt/READ-ME-FIRST.md](docs/chatgpt/READ-ME-FIRST.md)** |
 
 Each set carries its own install guide, schedule prompts, and deployment runbook. Nothing in one applies to the other, so read only your own and ignore the rest.

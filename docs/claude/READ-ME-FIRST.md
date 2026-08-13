@@ -1,6 +1,6 @@
 # READ ME FIRST
 
-**AI Chief of Staff, v1.2.0. Created by The NoW of Work.**
+**AI Chief of Staff, v1.2.1. Created by The NoW of Work.**
 
 This is the whole setup guide. If you read one file, read this one.
 
@@ -47,7 +47,7 @@ Anything else (documents, transcripts, chat, tasks, CRM) is optional. The system
 
 This is the Claude copy of the guide, so it carries the two Claude paths. Pick the first one that describes you. If the leader is on ChatGPT, read `docs/chatgpt/READ-ME-FIRST.md` instead.
 
-- **Path A — Claude, one command.** Fastest. Use this if the leader works in Claude Code or Claude Cowork.
+- **Path A — Claude, one command.** Fastest. Use this if the leader works in Claude Cowork, which is where almost every leader should be: it carries the connector toggles and the scheduled-tasks panel this system runs on. The same two commands work in Claude Code, but Claude Code is a terminal. Use it only when the leader is technical and asks for it.
 - **Path B — Claude, one unzip.** Use this if you would rather not use plugins, or the leader lives in ordinary Claude chat, where plugins do not run.
 
 ---
@@ -67,15 +67,19 @@ That installs all thirteen behaviours at once. If the install summary says `Run 
 
 > The repository URL, for the Cowork interface and for Path B, is `https://github.com/NoW-of-Work/ai-chief-of-staff`.
 
-**Step 2.** Make a folder for the workspace. Where it goes decides whether scheduled runs can reach it, so settle this before you create it.
+**Step 2.** Decide where the workspace lives. This decides whether the system runs unattended, and it is far easier to settle now than to move later.
 
-A scheduled run in the cloud reaches connected apps. Your hard drive is out of reach, and a folder that syncs to the cloud from a laptop is still your hard drive. Three arrangements work:
+A scheduled run in the cloud reaches connected apps and the files saved to your Claude account. It does not reach your hard drive, and a folder that syncs to the cloud from a laptop is still your hard drive.
 
-- **Cowork, cloud runs.** Keep the workspace in files saved to the Claude account, or in a source reached through a connector. Cowork's own documentation says scheduled tasks work with your connectors and the files saved to your Claude account, and cannot be tied to a folder on your computer.
-- **Cowork or Claude Code, local runs.** Keep the workspace in a local folder you have connected, and leave the machine on and the desktop app open at the scheduled time.
-- **ChatGPT.** Keep the workspace in a connected app such as Google Drive. A scheduled ChatGPT task cannot read the files attached to a project, even the project it was created in.
+Three homes work, and every one of them gives something up. Pick by which loss you can live with. They are in order.
 
-One limitation worth stating rather than papering over. Claude's Google Drive connector documents uploading files, creating folders, reading, and saving files Claude generated. Editing an existing plain markdown file in place in Drive is not something the documentation commits to, and this system appends to files constantly. The safest homes are a folder connected in Cowork and files held in the Claude account.
+1. **Files saved to the Claude account.** A cloud run reaches it and appending to a file is documented. What you give up: the working files live in Claude's storage rather than somewhere the leader opens in Finder. This is the default. Choose it unless the leader objects to that.
+
+2. **A source reached through a connector**, such as Google Drive or SharePoint. A cloud run reaches it. What you give up: certainty about appends. Claude's Drive connector documents uploading files, creating folders, reading, and saving files Claude generated. Editing an existing plain markdown file in place is not something it commits to, and this system appends constantly.
+
+3. **A local folder connected in Cowork.** Appends are ordinary file writes, so they are certain, and the leader keeps the files. What you give up: unattended runs. The machine has to be awake and Cowork open at 06:30, and a laptop that dies takes the workspace with it unless it is backed up or in version control. Choose this only when the leader will not put working files in Claude's storage.
+
+**Then test it, whichever one you chose.** Ask the system to append one line to `commitments.md`, then reopen the file and confirm the line is there. Sixty seconds, and it is the only way to catch a home that reads fine and writes nothing. Do this before you schedule anything.
 
 Call the folder `ai-chief-of-staff`. It can be empty. The next step fills it.
 

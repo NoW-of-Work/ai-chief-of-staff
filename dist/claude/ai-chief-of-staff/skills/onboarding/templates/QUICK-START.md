@@ -1,6 +1,6 @@
 # QUICK START — Day One
 
-**AI Chief of Staff, v1.2.0. Created by The NoW of Work.**
+**AI Chief of Staff, v1.2.1. Created by The NoW of Work.**
 
 Someone has already installed this for you. They followed `READ-ME-FIRST.md`. Ten minutes here and you can use it.
 
