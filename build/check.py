@@ -63,6 +63,13 @@ PLATFORM_DOCS = {
 }
 DOCS = ROOT / "docs"
 
+# what the leader's folder actually is on each platform. The "What is in the
+# folder" tree in READ-ME-FIRST describes this directory and nothing else.
+WORKSPACE_ROOTS = {
+    "claude": DIST / "claude" / "ai-chief-of-staff",
+    "chatgpt": DIST / "chatgpt" / "workspace",
+}
+
 # where the worked example lands in each pack, and the folders it must fill
 EXAMPLE_ROOTS = (
     DIST / "claude" / "ai-chief-of-staff" / "example",
@@ -323,6 +330,50 @@ def main() -> None:
             check(wanted in table,
                   f"0-onboarding.md step 0 does not name {wanted}, "
                   "so onboarding will never create it")
+
+    # 14. the "What is in the folder" tree matches the folder that ships.
+    # v1.2.0 shipped a ChatGPT tree listing CLAUDE.md, skills/, and example/.
+    # A ChatGPT workspace has none of those: the manual is PROJECT-INSTRUCTIONS.md,
+    # the behaviours are the prompts you paste, and the example sits beside the
+    # workspace. Every one of those files was internally consistent, so nothing
+    # structural caught it. Only a client comparing the guide to their own folder
+    # would have, which is the worst possible place to find it.
+    entry_re = re.compile(r"^(?:\u251c\u2500\u2500|\u2514\u2500\u2500)\s+(\S+)")
+    for platform, workspace in WORKSPACE_ROOTS.items():
+        guide = DOCS / platform / "READ-ME-FIRST.md"
+        if not guide.is_file() or not workspace.is_dir():
+            continue
+        section = re.search(
+            r"^## What is in the folder\b.*?^```\n(.*?)^```",
+            guide.read_text(encoding="utf-8"),
+            re.S | re.M,
+        )
+        check(bool(section),
+              f"docs/{platform}/READ-ME-FIRST.md: no 'What is in the folder' tree to verify")
+        if not section:
+            continue
+        documented: set[str] = set()
+        for line in section.group(1).splitlines():
+            found = entry_re.match(line.strip("\n"))
+            if found:
+                documented.add(found.group(1).rstrip("/"))
+        check(bool(documented),
+              f"docs/{platform}/READ-ME-FIRST.md: the folder tree parsed to nothing")
+
+        # every documented path has to exist in that platform's shipped workspace
+        for name in sorted(documented):
+            check((workspace / name).exists(),
+                  f"docs/{platform}/READ-ME-FIRST.md names {name}, "
+                  f"which is not in {workspace.relative_to(ROOT)}")
+
+        # and the reverse, or a file ships that the leader is never told about.
+        # decisions.md shipped undocumented once already, in v1.1.
+        shipped = {child.name for child in workspace.iterdir()
+                   if not child.name.startswith(".")}
+        for name in sorted(shipped - documented):
+            check(False,
+                  f"{workspace.relative_to(ROOT)} ships {name}, "
+                  f"which docs/{platform}/READ-ME-FIRST.md never names")
 
     if failures:
         print(f"FAILED {len(failures)} of {checks} checks:\n")
