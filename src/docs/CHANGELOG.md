@@ -10,7 +10,7 @@ Documentation only. No behaviour, workspace file, or approval gate changed.
 - **The append test is mandatory, whichever home you chose.** It was asked for only when Drive was the fallback, which is the case a consultant already distrusts. The home nobody thinks to doubt is the one that reads fine and silently writes nothing.
 - **Path A distinguishes Cowork from Claude Code.** It read "Claude Code or Claude Cowork" as if a terminal and a desktop app were interchangeable for a non-technical leader. Cowork is the default and carries the connector toggles and the scheduled-tasks panel; Claude Code is for a leader who is technical and asks for it. `README.md` routes the same way.
 - **The ChatGPT folder map matched no ChatGPT deployment.** "What is in the folder" listed `CLAUDE.md`, `skills/`, and `example/`. A ChatGPT workspace ships `PROJECT-INSTRUCTIONS.md`, has no `skills/` because the behaviours are the prompts you paste, and keeps `example/` beside the workspace rather than inside it. The tree is now split per platform and each one lists what that platform actually ships.
-- **Two more hardcoded manual names became `{{MANUAL}}`.** The "if you only change one thing" line and the `SCHEDULES.md` note on naming the manual both said `CLAUDE.md` in the ChatGPT render. Split docs exist so a reader never meets the other platform's paths, and these were the last two that leaked.
+- **Two more hardcoded manual names now resolve per platform.** The "if you only change one thing" line and the `SCHEDULES.md` note on naming the manual both said `CLAUDE.md` in the ChatGPT render, where the manual is `PROJECT-INSTRUCTIONS.md`. Split docs exist so a reader never meets the other platform's paths, and these were the last two that leaked.
 
 ## v1.2.0
 
