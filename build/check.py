@@ -375,6 +375,61 @@ def main() -> None:
                   f"{workspace.relative_to(ROOT)} ships {name}, "
                   f"which docs/{platform}/READ-ME-FIRST.md never names")
 
+    # 15. every filename SCHEDULES tells a consultant to paste is one a
+    # behaviour actually writes. The prompt text is the whole deployment: a
+    # consultant pastes it once and nobody reads it again for a month. If a
+    # behaviour renames its output and SCHEDULES keeps the old suffix, the job
+    # still runs and still writes a file, and the behaviour downstream that
+    # reads it by name finds nothing. Every file in briefs/ carries a suffix so
+    # that two jobs on one day never collide and one job can find another's
+    # output, and that convention only holds if both sides agree on it.
+    declared_briefs: dict[str, set[str]] = {}
+    declared_meetings: set[str] = set()
+    for path in sorted((SRC / "behaviours").glob("*.md")):
+        name = re.sub(r"^\d+-", "", path.stem)
+        text = path.read_text(encoding="utf-8")
+        declared_briefs[name] = set(re.findall(r"briefs/YYYY-MM-DD-([a-z-]+)\.md", text))
+        declared_meetings |= set(
+            re.findall(r"meetings/YYYY-MM-DD-\[slug\]/([a-z-]+)\.md", text)
+        )
+    every_brief_suffix = {s for suffixes in declared_briefs.values() for s in suffixes}
+    check(bool(every_brief_suffix), "no behaviour declares a briefs/ output to check against")
+
+    example_re = re.compile(
+        r"for example\s+\d{4}-\d{2}-\d{2}-?([A-Za-z0-9/._-]*)\.md", re.S
+    )
+    for platform in ("claude", "chatgpt"):
+        schedules = DOCS / platform / "SCHEDULES.md"
+        if not schedules.is_file():
+            continue
+        for example in sorted(set(example_re.findall(schedules.read_text(encoding="utf-8")))):
+            if "/" in example:
+                # a meetings folder, so only the filename inside it is the contract
+                check(example.rsplit("/", 1)[1] in declared_meetings,
+                      f"docs/{platform}/SCHEDULES.md names {example}.md, "
+                      "which no behaviour writes into meetings/")
+            else:
+                check(example in every_brief_suffix,
+                      f"docs/{platform}/SCHEDULES.md names a -{example}.md brief, "
+                      "which no behaviour writes")
+
+    # and the reverse, on the platform whose prompts save files. A scheduled job
+    # whose prompt never names its filename lets two jobs collide on one day,
+    # which is the collision the suffixes exist to prevent.
+    claude_schedules = DOCS / "claude" / "SCHEDULES.md"
+    if claude_schedules.is_file():
+        text = claude_schedules.read_text(encoding="utf-8")
+        clock = re.search(r"## One clock.*?(?=\n## |\Z)", text, re.S)
+        check(bool(clock), "docs/claude/SCHEDULES.md: no clock section to read the scheduled jobs from")
+        if clock:
+            scheduled = set(re.findall(r"`([a-z-]+)`", clock.group(0))) & set(declared_briefs)
+            check(bool(scheduled), "docs/claude/SCHEDULES.md: the clock names no known behaviour")
+            for job in sorted(scheduled):
+                for suffix in sorted(declared_briefs[job]):
+                    check(f"-{suffix}.md" in text,
+                          f"{job} writes briefs/YYYY-MM-DD-{suffix}.md and "
+                          "docs/claude/SCHEDULES.md never names that filename")
+
     if failures:
         print(f"FAILED {len(failures)} of {checks} checks:\n")
         for f in failures:
