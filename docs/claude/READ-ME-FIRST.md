@@ -1,6 +1,6 @@
 # READ ME FIRST
 
-**AI Chief of Staff, v1.2.1. Created by The NoW of Work.**
+**AI Chief of Staff, v1.3.0. Created by The NoW of Work.**
 
 This is the whole setup guide. If you read one file, read this one.
 
@@ -8,18 +8,17 @@ This is the whole setup guide. If you read one file, read this one.
 
 ## What you are installing
 
-An AI chief of staff for one leader. It reads the leader's calendar, mail, documents, and meeting notes, and it produces a short morning brief, prep before meetings that matter, action items out of recorded calls, a ledger of open promises, a record of closed decisions, and a Monday review.
+An AI chief of staff for one leader. It reads your calendar, mail, documents, and meeting notes, and it produces a short morning brief, prep before meetings that matter, action items out of recorded calls, a ledger of open promises, a record of closed decisions, and a Monday review.
 
-It works from plain text files. Five belong to the leader, one belongs to the system, and every one of them opens in any editor. There is no database, no account to create, and nothing that runs outside the AI tool you already pay for.
+It works from plain text files. Five belong to you, one belongs to the system, and every one of them opens in any editor. There is no database, no account to create, and nothing that runs outside the AI tool you already pay for.
 
-**It drafts. It does not send.** No email, no calendar changes, no replies. Everything that touches another person goes through the leader first.
+**It drafts. It does not send.** No email, no calendar changes, no replies. Everything that touches another person goes through you first.
 
 ### The other files you will want
 
 | File | Open it when |
 |------|--------------|
-| `QUICK-START.md` | You are handing the system over. Hand the leader that page and keep this one. Ten minutes, written for them |
-| `DEPLOY-FOR-A-CLIENT.md` | You are installing for somebody else. The consent script, a sixty-minute agenda, the four questions, and what to check at day 1, 7, and 30 |
+| `QUICK-START.md` | You want the ten-minute version, or you are handing this to someone else to use. It is the same system said shorter |
 | `SCHEDULES.md` | You are setting up recurring jobs. Every prompt in full, the order to add them in, and a worked weekly clock |
 | `example/` | You want to know what this is supposed to look like. An invented leader at an invented company, every file answered the way a real one would answer it, plus one brief, one person file, and one meeting note. It ships with the download. In the Claude pack it sits inside the workspace folder. In the ChatGPT pack it sits beside `workspace/`, on disk, and it is never uploaded to the project. Nothing reads it either way. It is there to compare against |
 
@@ -39,16 +38,18 @@ Three things, and only the first one is required.
 
 Anything else (documents, transcripts, chat, tasks, CRM) is optional. The system notices what is missing, works around it, and offers to use new tools when they appear. You do not have to connect everything on day one, and you probably should not.
 
-**One thing worth saying out loud before you start.** Setup reads about twenty of the leader's own sent emails to learn how they write, and four weeks of their calendar to learn their working rhythm. That is somebody's real mailbox. Tell them what it reads before it reads it. If they would rather it did not, setup still works, and they write three bullets about their own voice instead.
+**One thing worth knowing before you start.** Setup reads about twenty of your own sent emails to learn how you write, and four weeks of your calendar to learn your working rhythm. It reads them; it does not store them. If you would rather it did not read your mail at all, setup still works: you write three bullets about your own voice instead, and the drafts are slightly less like you until you correct a few.
+
+If somebody else manages your calendar or your inbox, tell them before you run this. The system will start commenting on how your week is built, and that is their work you are grading.
 
 ---
 
 ## Install: pick one path
 
-This is the Claude copy of the guide, so it carries the two Claude paths. Pick the first one that describes you. If the leader is on ChatGPT, read `docs/chatgpt/READ-ME-FIRST.md` instead.
+This is the Claude copy of the guide, so it carries the two Claude paths. Pick the first one that describes you. If you are on ChatGPT, read `docs/chatgpt/READ-ME-FIRST.md` instead.
 
-- **Path A — Claude, one command.** Fastest. Use this if the leader works in Claude Cowork, which is where almost every leader should be: it carries the connector toggles and the scheduled-tasks panel this system runs on. The same two commands work in Claude Code, but Claude Code is a terminal. Use it only when the leader is technical and asks for it.
-- **Path B — Claude, one unzip.** Use this if you would rather not use plugins, or the leader lives in ordinary Claude chat, where plugins do not run.
+- **Path A — Claude, one command.** Fastest. Use this if you work in Claude Cowork, which is where almost everyone should be: it carries the connector toggles and the scheduled-tasks panel this system runs on. The same two commands work in Claude Code, but Claude Code is a terminal. Use it only if you are technical and want it.
+- **Path B — Claude, one unzip.** Use this if you would rather not use plugins, or you live in ordinary Claude chat, where plugins do not run.
 
 ---
 
@@ -61,7 +62,7 @@ This is the Claude copy of the guide, so it carries the two Claude paths. Pick t
 /plugin install ai-chief-of-staff@now-of-work
 ```
 
-**In Claude Cowork**, do the same thing through the interface. Open **Customize** in the sidebar, then **Plugins**, then **Add marketplace**, and paste the repository URL. The plugin appears alongside the others, and **Install** puts it in. Plugins run in Claude Code and Claude Cowork. They do not run in ordinary Claude chat, so if the leader lives there, use Path B.
+**In Claude Cowork**, do the same thing through the interface. Open **Customize** in the sidebar, then **Plugins**, then **Add marketplace**, and paste the repository URL. The plugin appears alongside the others, and **Install** puts it in. Plugins run in Claude Code and Claude Cowork. They do not run in ordinary Claude chat, so if you live there, use Path B.
 
 That installs all fourteen behaviours at once. If the install summary says `Run /reload-plugins to activate.`, run it. If the reload warns that it will re-read the conversation, run it again as `/reload-plugins --force`. They arrive as skills, named after the plugin: `/ai-chief-of-staff:onboarding`, `/ai-chief-of-staff:morning-brief`, and so on. You can also just ask for them in plain language, which is what most people do.
 
@@ -73,11 +74,11 @@ A scheduled run in the cloud reaches connected apps and the files saved to your 
 
 Three homes work, and every one of them gives something up. Pick by which loss you can live with. They are in order.
 
-1. **Files saved to the Claude account.** A cloud run reaches it and appending to a file is documented. What you give up: the working files live in Claude's storage rather than somewhere the leader opens in Finder. This is the default. Choose it unless the leader objects to that.
+1. **Files saved to the Claude account.** A cloud run reaches it and appending to a file is documented. What you give up: the working files live in Claude's storage rather than somewhere you can open in Finder. This is the default. Choose it unless you want the files on your own machine.
 
 2. **A source reached through a connector**, such as Google Drive or SharePoint. A cloud run reaches it. What you give up: certainty about appends. Claude's Drive connector documents uploading files, creating folders, reading, and saving files Claude generated. Editing an existing plain markdown file in place is not something it commits to, and this system appends constantly.
 
-3. **A local folder connected in Cowork.** Appends are ordinary file writes, so they are certain, and the leader keeps the files. What you give up: unattended runs. The machine has to be awake and Cowork open at 06:30, and a laptop that dies takes the workspace with it unless it is backed up or in version control. Choose this only when the leader will not put working files in Claude's storage.
+3. **A local folder connected in Cowork.** Appends are ordinary file writes, so they are certain, and you keep the files. What you give up: unattended runs. The machine has to be awake and Cowork open at 06:30, and a laptop that dies takes the workspace with it unless it is backed up or in version control. Choose this only if you will not put working files in Claude's storage.
 
 **Then test it, whichever one you chose.** Ask the system to append one line to `commitments.md`, then reopen the file and confirm the line is there. Sixty seconds, and it is the only way to catch a home that reads fine and writes nothing. Do this before you schedule anything.
 
@@ -105,7 +106,7 @@ First switch on **Code execution and file creation**. That lives in **Settings >
 
 ## Run onboarding
 
-This is the actual setup. Ten minutes, most of it the leader reading a list and saying "that one's wrong."
+This is the actual setup. Ten minutes, most of it you reading a list and saying "that one's wrong."
 
 Start a session and say:
 
@@ -115,7 +116,7 @@ Point it at the folder if it asks. It will:
 
 1. **Create any missing files.** You never have to make one by hand.
 2. **Check what it can reach** and write that down.
-3. **Draft the leader's profile** from the calendar, sent mail, and documents. Everything it guessed is labelled `(inferred)`.
+3. **Draft your profile** from the calendar, sent mail, and documents. Everything it guessed is labelled `(inferred)`.
 4. **Show you what it worked out** in one scannable block and ask what to fix.
 5. **Ask six questions**, and only six. They are the things no tool can ever reveal.
 6. **Save**, once you approve.
@@ -124,9 +125,11 @@ Point it at the folder if it asks. It will:
 
 ### Then spend twenty more minutes on four answers
 
-Anything still in `[BRACKETS]` after onboarding is a decision nobody has made yet. That is allowed. Four of them do more work than everything else combined: `about-me.md` section 6 (who the leader can never miss), `about-me.md` section 8 (hard stops), `my-work.md` section 1 (what this quarter is actually for), and `my-work.md` section 5 (what they are not doing).
+Anything still in `[BRACKETS]` after onboarding is a decision nobody has made yet. That is allowed. Four of them do more work than everything else combined: `about-me.md` section 6 (who you can never miss), `about-me.md` section 8 (hard stops), `my-work.md` section 1 (what this quarter is actually for), and `my-work.md` section 5 (what they are not doing).
 
-Spend longest on the last one. A system that knows what the leader is avoiding is more useful than one that only knows what they want. `DEPLOY-FOR-A-CLIENT.md` section 4 has the wording that gets a real answer rather than a polite one.
+Spend longest on the last one. A system that knows what you are avoiding is more useful than one that only knows what you want.
+
+The honest answer is harder to write than it looks, because the polite version arrives first. "We are not prioritising international expansion" is a press release. "Rocky keeps pulling me into partner calls I add nothing to" is the thing a Monday review can actually catch you drifting back into. Write the second kind.
 
 ---
 
@@ -146,7 +149,7 @@ Add **the morning brief only**. Nothing else this week.
 
 `SCHEDULES.md` carries the exact prompt text for every recurring job, on both platforms, plus the week-by-week order to add them in and a worked clock. Copy from there rather than writing your own. Nine of the fourteen behaviours can run on a schedule, across ten tasks, because inbox triage runs twice a day.
 
-**In Claude Cowork.** Type `/schedule` in any task, or open **Scheduled** in the left sidebar and choose **New task**. Set the cadence, the approval mode, and the folder Claude should work in. Cowork scheduled tasks run in the cloud, so they run whether or not the leader's computer is awake.
+**In Claude Cowork.** Type `/schedule` in any task, or open **Scheduled** in the left sidebar and choose **New task**. Set the cadence, the approval mode, and the folder Claude should work in. Cowork scheduled tasks run in the cloud, so they run whether or not your computer is awake.
 
 **In Claude Code.** Use the **Routines** page in the desktop app for a local scheduled task, or `/schedule` for a cloud job. A local task only runs when the machine is on.
 
@@ -170,13 +173,13 @@ The first week's corrections are the real setup. When it gets a name wrong, mish
 ```
 ai-chief-of-staff/
 ├── CLAUDE.md          The operating manual. Read first on every run.
-├── QUICK-START.md     The page you hand the leader. Nothing reads it.
+├── QUICK-START.md     The ten-minute version. Nothing reads it.
 ├── connections.md     What the system can reach. It maintains this itself.
-├── about-me.md        Who the leader is, how they work, their voice.
+├── about-me.md        Who you are, how you work, your voice.
 ├── my-work.md         What is active right now, and what is not.
 ├── tomorrow.md        The leader's intent for the next working day.
 ├── commitments.md     Open promises, both directions.
-├── decisions.md       Calls the leader closed, and what would reopen each one.
+├── decisions.md       Calls you closed, and what would reopen each one.
 ├── skills/            The fourteen behaviours.
 ├── example/           A filled-in workspace for a leader who does not exist.
 ├── briefs/            Output. Briefs, closes, reviews, drafts.
@@ -185,23 +188,23 @@ ai-chief-of-staff/
 └── archive/           Output. Closed commitments, resolved loops.
 ```
 
-Five files the leader owns. One file the system owns. Thirteen behaviours. One worked example. Four folders that fill themselves.
+Five files you own. One file the system owns. Fourteen behaviours. One worked example. Four folders that fill themselves.
 
-That tree is the Path B folder, and Path B is the only path where all of it sits in one place. Three lines to save a consultant a debugging session at minute 58:
+That tree is the Path B folder, and Path B is the only path where all of it sits in one place. Three lines to save you a debugging session later:
 
 - **Path A has no `skills/` folder.** The behaviours are installed in the plugin, not copied into the workspace. Nothing is missing.
 - **Path A has no `example/` folder either.** The worked example stays in the downloaded repository. The folder starts empty and `onboarding` writes the seven workspace files and the four output folders into it, which is what its step 0 is for.
-- **Path A has no `QUICK-START.md` either.** The plugin ships behaviours, and `onboarding` writes the workspace files. Neither of them writes the handover page. It is at the top of the downloaded repository, and it is also inside `dist/claude/ai-chief-of-staff/` if you took Path B. Hand the leader whichever copy you have.
+- **Path A has no `QUICK-START.md` either.** The plugin ships behaviours, and `onboarding` writes the workspace files. Neither of them writes the handover page. It is at the top of the downloaded repository, and it is also inside `dist/claude/ai-chief-of-staff/` if you took Path B. Keep whichever copy you have.
 
 ### Three things worth understanding
 
-**`connections.md` is not yours to fill.** Every other file is written by the leader and read by the system. This one is the reverse. It exists so the system can tell the difference between "no meetings had transcripts yesterday" and "there is no transcription tool connected." Those look identical in the output and they are completely different problems. It tracks capabilities rather than vendors. "Transcripts" is a row, and Otter, Fathom, Fireflies, Granola, and Grain are things that can fill it. Swap the tool, change one cell, and nothing else needs editing.
+**`connections.md` is not yours to fill.** Every other file is written by you and read by the system. This one is the reverse. It exists so the system can tell the difference between "no meetings had transcripts yesterday" and "there is no transcription tool connected." Those look identical in the output and they are completely different problems. It tracks capabilities rather than vendors. "Transcripts" is a row, and Otter, Fathom, Fireflies, Granola, and Grain are things that can fill it. Swap the tool, change one cell, and nothing else needs editing.
 
-**`decisions.md` is a record, not a plan.** The system drafts an entry after the leader closes a call, and it never writes an outcome the leader has not said out loud in that session. Once an entry reads `Made`, the reasoning in it is never edited, including where it turned out to be wrong. The field that earns the file its keep is **Would change my mind**, because the Monday review pass is the only thing in the system that checks whether a July decision still matches September's facts.
+**`decisions.md` is a record, not a plan.** The system drafts an entry after you close a call, and it never writes an outcome you have not said out loud in that session. Once an entry reads `Made`, the reasoning in it is never edited, including where it turned out to be wrong. The field that earns the file its keep is **Would change my mind**, because the Monday review pass is the only thing in the system that checks whether a July decision still matches September's facts.
 
-**Nudges are rare on purpose.** When a tool is missing, the system can mention it. Three gates have to pass first: enough time since the last mention, the leader has not said stop, and something happened that day where the missing tool would actually have helped. That third gate is the one that matters. Being overdue is not a reason to speak. Most mornings there is nothing, and the section does not appear at all.
+**Nudges are rare on purpose.** When a tool is missing, the system can mention it. Three gates have to pass first: enough time since the last mention, you have not said stop, and something happened that day where the missing tool would actually have helped. That third gate is the one that matters. Being overdue is not a reason to speak. Most mornings there is nothing, and the section does not appear at all.
 
-The exception is a fault. If a connected tool quietly stops working, that gets flagged immediately, every time. A missing tool is a gap the leader knows about. A broken one is a gap they do not.
+The exception is a fault. If a connected tool quietly stops working, that gets flagged immediately, every time. A missing tool is a gap you know about. A broken one is a gap they do not.
 
 ---
 
@@ -213,7 +216,7 @@ The next connection check notices, and the next morning brief says one line:
 
 > You connected Fathom. Want me to start the daily sweep, so tomorrow's meetings come back as action items?
 
-Say yes and the behaviour turns on. Say no and it does not come up again. The system will not switch anything on by itself, because a tool appearing in an account is not the same as the leader asking for a behaviour.
+Say yes and the behaviour turns on. Say no and it does not come up again. The system will not switch anything on by itself, because a tool appearing in an account is not the same as you asking for a behaviour.
 
 ---
 

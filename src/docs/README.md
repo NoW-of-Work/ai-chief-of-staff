@@ -2,15 +2,15 @@
 
 **v{{VERSION}} · Created by [The NoW of Work](https://www.nowofwork.com) · MIT licensed**
 
-An AI chief of staff for one leader. Morning briefs, prep before the meetings that matter, action items out of recorded calls, inbox triage, a ledger of open promises, a record of closed decisions, and a Monday review. Built out of plain text files the leader owns.
+An AI chief of staff for one leader. Morning briefs, prep before the meetings that matter, action items out of recorded calls, inbox triage, a ledger of open promises, a record of closed decisions, and a Monday review. Built out of plain text files you own.
 
 Runs on Claude and on ChatGPT. Both versions are generated from one source, so they cannot drift apart.
 
-### Start here, on the platform the leader actually uses
+### Start here, on the platform you actually use
 
 | The leader works in | Read |
 |---|---|
-| **Claude** (Cowork for most leaders; Code if the leader is technical; ordinary chat via Path B) | **[docs/claude/READ-ME-FIRST.md](docs/claude/READ-ME-FIRST.md)** |
+| **Claude** (Cowork for most people; Code if you are technical; ordinary chat via Path B) | **[docs/claude/READ-ME-FIRST.md](docs/claude/READ-ME-FIRST.md)** |
 | **ChatGPT** | **[docs/chatgpt/READ-ME-FIRST.md](docs/chatgpt/READ-ME-FIRST.md)** |
 
 Each set carries its own install guide, schedule prompts, and deployment runbook. Nothing in one applies to the other, so read only your own and ignore the rest.
@@ -24,7 +24,7 @@ Each set carries its own install guide, schedule prompts, and deployment runbook
 /plugin install ai-chief-of-staff@now-of-work
 ```
 
-Then say **"run onboarding"** and answer six questions. Everything else is inferred from the calendar and mail the leader already has.
+Then say **"run onboarding"** and answer six questions. Everything else is inferred from the calendar and mail you already have.
 
 Those two lines are Claude Code. In Claude Cowork, add the marketplace through **Customize > Plugins**. Not using plugins, or using ChatGPT? Download the repo as a ZIP, unzip once, and follow the guide for your platform in the table above.
 
@@ -41,13 +41,13 @@ Thirteen behaviours. Nine of them can run on a schedule.
 | `meeting-prep` | Before a meeting that matters | Who, why, what happened last time, what is open between you both ways, three questions, the risks |
 | `transcript-to-actions` | After a recorded call | Decisions, action items with owners, commitments for the ledger, what was too ambiguous to call |
 | `daily-transcript-sweep` | Daily | Yesterday's meetings turned into actions without being asked |
-| `end-of-day-close` | End of day | What moved, what came in, and a draft of tomorrow for the leader to approve |
+| `end-of-day-close` | End of day | What moved, what came in, and a draft of tomorrow for you to approve |
 | `weekly-review` | Monday | What slipped, where the time actually went, drift against what they said they are not doing |
 | `connection-check` | Weekly | Notices tools that appeared, tools that quietly broke, and decides (rarely) whether a gap is worth one line |
 | `inbox-triage` | Twice a working day | Mail cut to what needs a person: decisions waiting, drafted replies, promises both ways, a count of what it left alone |
-| `chase` | Weekly | What the leader is owed and has not been given, a release call on what died, and at most three drafts sized to the relationship |
-| `decision-brief` | When a decision is due, plus a Monday pass | The choice, the options and their costs, the leader's own filters, a recommendation with two falsifiers |
-| `recall` | On demand | An answer out of the leader's own record, the file it came from, conflicts between sources, and what was searched and not found |
+| `chase` | Weekly | What you are owed and have not been given, a release call on what died, and at most three drafts sized to the relationship |
+| `decision-brief` | When a decision is due, plus a Monday pass | The choice, the options and their costs, your own filters, a recommendation with two falsifiers |
+| `recall` | On demand | An answer out of your own record, the file it came from, conflicts between sources, and what was searched and not found |
 | `health-check` | Monthly | Whether the workspace is actually configured: blocking gaps, stale files, contradictions, folders that are not filling, one verdict |
 
 ---
@@ -66,8 +66,8 @@ Thirteen behaviours. Nine of them can run on a schedule.
 
 | Path | What it is |
 |------|-----------|
-| `docs/claude/`, `docs/chatgpt/` | The install guide, the schedule prompts, and the client runbook, one set per platform. Read the set for the platform the leader uses |
-| `QUICK-START.md` | The page you hand the leader once it is installed. The same on both platforms |
+| `docs/claude/`, `docs/chatgpt/` | The install guide, the schedule prompts, and the client runbook, one set per platform. Read the set for the platform you use |
+| `QUICK-START.md` | The ten-minute version, and the page to hand anyone else who will use it. The same on both platforms |
 | `src/` | **The only thing you edit.** Behaviours, workspace templates, the worked example, docs |
 | `build/build.py` | Generates every output below from `src/` |
 | `plugin/` | The Claude plugin. `skills/` inside it is generated |
@@ -83,10 +83,10 @@ Everything under `dist/`, `docs/`, and `plugin/skills/` is generated and committ
 |------|-----------|
 | `src/behaviours/` | Thirteen behaviour files, one per skill. YAML frontmatter carries `name`, `order`, and a description under 200 characters |
 | `src/workspace/` | The seven files that make up a workspace: `_manual.md`, `about-me.md`, `my-work.md`, `tomorrow.md`, `commitments.md`, `decisions.md`, and `connections.md`, plus a README per output folder |
-| `src/example/` | A filled-in workspace for a leader who does not exist. Copied into every build so the leader has something to compare against |
+| `src/example/` | A filled-in workspace for a leader who does not exist. Copied into every build so you have something to compare against |
 | `src/docs/` | Every markdown file that lands in the repo root. Rendered with `platform=claude`, so ChatGPT specifics go in as plain prose |
 
-`decisions.md` is the leader's record of calls they closed, and the system may open and re-status an entry without writing an outcome the leader has not stated. `src/example/` is reference only. No behaviour reads it, and the build copies it in whole.
+`decisions.md` is your record of the calls you closed, and the system may open and re-status an entry without writing an outcome you have not stated. `src/example/` is reference only. No behaviour reads it, and the build copies it in whole.
 
 ---
 

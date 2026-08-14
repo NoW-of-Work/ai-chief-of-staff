@@ -60,7 +60,6 @@ WORKSPACE_DOCS = {"QUICK-START.md"}
 PLATFORM_DOCS = {
     "READ-ME-FIRST.md",
     "SCHEDULES.md",
-    "DEPLOY-FOR-A-CLIENT.md",
 }
 DOCS = ROOT / "docs"
 

@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.3.0
+
+The product now speaks to the leader who runs it, not to a consultant installing it for somebody else.
+
+- **Every guide is written in second person.** `READ-ME-FIRST.md`, `SCHEDULES.md`, and `README.md` said "the leader" 82 times between them and addressed whoever was doing the install. They now address the person the system is for. The consent passage changed most: it used to tell an installer to warn somebody before reading their mailbox, which makes no sense when the mailbox is your own. It now says what setup reads, that it does not store it, and what to do if you would rather it did not.
+- **`DEPLOY-FOR-A-CLIENT.md` is no longer part of the product.** The consent script, the sixty-minute agenda, and the day 1/7/30 criteria were written for somebody deploying this on someone else's behalf. That is a delivery method, not a feature, and shipping it invited a reader to install a system for a person who never met it. It is out of the repo and out of the build.
+- **New behaviour `welcome`, fourteenth.** The install card is a component inventory: skill names and a token cost. Nothing in a plugin can run at install time, so the guided introduction only ever happened when a human was in the room to start it. `welcome` says what the system does, what it needs, and what it will never do, then asks whether to set up and hands to `onboarding`. Under 300 words, writes nothing, never runs on a schedule.
+- **The plugin and marketplace descriptions were rewritten.** They predated inbox triage and the decision log and spent every word on features. The card is the only prose a leader is guaranteed to read, so it now carries the trust line and says what to do next.
+- **`check.py` gained two rules and lost one doc.** New: the folder tree in each platform's guide must match that platform's shipped workspace, both directions; and every filename `SCHEDULES.md` names must be one a behaviour writes, both directions. 486 checks to 541.
+
 ## v1.2.1
 
 Documentation only. No behaviour, workspace file, or approval gate changed.
