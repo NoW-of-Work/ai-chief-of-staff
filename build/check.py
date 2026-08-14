@@ -23,6 +23,7 @@ PLUGIN = ROOT / "plugin"
 
 MAX_DESCRIPTION = 200
 EXPECTED_BEHAVIOURS = {
+    "welcome",
     "onboarding",
     "morning-brief",
     "meeting-prep",

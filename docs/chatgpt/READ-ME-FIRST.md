@@ -60,7 +60,7 @@ This is the ChatGPT copy of the guide, so it carries one path and it is below. I
 **Step 4.** Upload these to the project's files:
 
 - seven of the eight files sitting at the top of `dist/chatgpt/workspace/`: `PROJECT-INSTRUCTIONS.md`, `about-me.md`, `my-work.md`, `tomorrow.md`, `commitments.md`, `decisions.md`, `connections.md`
-- all thirteen files in `dist/chatgpt/prompts/`
+- all fourteen files in `dist/chatgpt/prompts/`
 
 The eighth file at the top of `workspace/` is `QUICK-START.md`, and it stays on disk. It is the ten-minute page you hand the leader once the install is done. No prompt or instruction file reads it, so uploading it spends a project file slot on something the system never opens.
 
@@ -90,7 +90,7 @@ The behaviours, the approval gates, the voice rules, and the nudge policy are id
 
 **Scheduled runs and project files.** A ChatGPT scheduled task cannot read the files attached to a project, including the project it was created in. The workspace has to live in a connected app for a scheduled run to reach it, which is what Path C step 5 sets up. That leaves two copies: the connected folder the schedule reads, and the project upload that serves the sessions the leader opens. Connected apps do survive into a scheduled run, so the run can still reach mail and calendar. Claude Cowork has the same shape of limit for a different reason: a cloud run reaches connectors, and the hard drive is out of reach.
 
-**Packaging.** Claude has a plugin that installs all thirteen behaviours in one step, in Claude Code and Claude Cowork. ChatGPT installs as a project: paste the instructions, upload the files. Two things that used to differ no longer do. ChatGPT can write files, and it can run recurring work on a schedule. Neither platform will send anything on the leader's behalf without approval, and this system never asks either of them to.
+**Packaging.** Claude has a plugin that installs all fourteen behaviours in one step, in Claude Code and Claude Cowork. ChatGPT installs as a project: paste the instructions, upload the files. Two things that used to differ no longer do. ChatGPT can write files, and it can run recurring work on a schedule. Neither platform will send anything on the leader's behalf without approval, and this system never asks either of them to.
 
 ---
 
@@ -135,7 +135,7 @@ What good looks like: under 400 words. Starts with the work, not a greeting. Two
 
 Add **the morning brief only**. Nothing else this week.
 
-`SCHEDULES.md` carries the exact prompt text for every recurring job, on both platforms, plus the week-by-week order to add them in and a worked clock. Copy from there rather than writing your own. Nine of the thirteen behaviours can run on a schedule, across ten tasks, because inbox triage runs twice a day.
+`SCHEDULES.md` carries the exact prompt text for every recurring job, on both platforms, plus the week-by-week order to add them in and a worked clock. Copy from there rather than writing your own. Nine of the fourteen behaviours can run on a schedule, across ten tasks, because inbox triage runs twice a day.
 
 **In ChatGPT.** Open **Scheduled** in the sidebar and choose **New task**. Four limits shape the plan. A task cannot run more often than hourly. Each plan caps how many can be active at once: 3 on Go, 5 on Plus, 10 on Business and Edu, 15 on Pro and Enterprise, so the ten-task clock needs Business, Edu, Pro, or Enterprise, and Plus tops out at five jobs. A task pauses itself if it sits unused, or if the chat it belongs to is deleted. And it reads the connected folder from Path C step 5, never the project's files, so the prompt has to name that folder.
 

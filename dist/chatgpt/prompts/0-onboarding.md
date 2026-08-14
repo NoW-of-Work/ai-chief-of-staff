@@ -17,6 +17,7 @@
 ## Trigger
 
 - Once, at deployment, before any other behaviour runs.
+- Handed off from `welcome`, when the leader says yes to setting up. That is the usual way this behaviour starts, and when it does, the leader has already been told what the system does and what it will never do. Do not repeat any of it.
 - Again whenever the leader changes role, organization, or tool stack.
 - On demand: "run onboarding", "set this up", "set this up again", "my details are out of date".
 - Automatically offered when the workspace files are missing, when `connections.md` has every row reading `unknown`, or when `about-me.md` still has `[LEADER NAME]` in it.

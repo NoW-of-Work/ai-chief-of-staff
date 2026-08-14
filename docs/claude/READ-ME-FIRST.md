@@ -63,7 +63,7 @@ This is the Claude copy of the guide, so it carries the two Claude paths. Pick t
 
 **In Claude Cowork**, do the same thing through the interface. Open **Customize** in the sidebar, then **Plugins**, then **Add marketplace**, and paste the repository URL. The plugin appears alongside the others, and **Install** puts it in. Plugins run in Claude Code and Claude Cowork. They do not run in ordinary Claude chat, so if the leader lives there, use Path B.
 
-That installs all thirteen behaviours at once. If the install summary says `Run /reload-plugins to activate.`, run it. If the reload warns that it will re-read the conversation, run it again as `/reload-plugins --force`. They arrive as skills, named after the plugin: `/ai-chief-of-staff:onboarding`, `/ai-chief-of-staff:morning-brief`, and so on. You can also just ask for them in plain language, which is what most people do.
+That installs all fourteen behaviours at once. If the install summary says `Run /reload-plugins to activate.`, run it. If the reload warns that it will re-read the conversation, run it again as `/reload-plugins --force`. They arrive as skills, named after the plugin: `/ai-chief-of-staff:onboarding`, `/ai-chief-of-staff:morning-brief`, and so on. You can also just ask for them in plain language, which is what most people do.
 
 > The repository URL, for the Cowork interface and for Path B, is `https://github.com/NoW-of-Work/ai-chief-of-staff`.
 
@@ -95,7 +95,7 @@ Call the folder `ai-chief-of-staff`. It can be empty. The next step fills it.
 
 **Step 3.** Point Claude at it. Create a project, and in the project instructions paste the contents of `ai-chief-of-staff/CLAUDE.md`. That file is the operating manual, and every behaviour expects it to have been read first.
 
-**Step 4 (optional).** If you want the behaviours available as named skills rather than as files the AI reads, upload the thirteen ZIPs in `dist/claude/skill-uploads/`, one at a time.
+**Step 4 (optional).** If you want the behaviours available as named skills rather than as files the AI reads, upload the fourteen ZIPs in `dist/claude/skill-uploads/`, one at a time.
 
 First switch on **Code execution and file creation**. That lives in **Settings > Capabilities** on Free, Pro, and Max, and in **Organization settings > Skills** on Team and Enterprise, where an owner also has to switch **Skills** on before anyone can see the section. Then open **Customize > Skills**, click **+**, choose **+ Create skill**, choose **Upload a skill**, and upload one ZIP. Repeat for the rest, and toggle each on. Uploaded skills stay private to that account unless an owner has turned sharing on. Skip all of this if you would rather keep it simple. The behaviours work either way, because they are also sitting in `ai-chief-of-staff/skills/` where the AI can read them.
 
@@ -144,7 +144,7 @@ What good looks like: under 400 words. Starts with the work, not a greeting. Two
 
 Add **the morning brief only**. Nothing else this week.
 
-`SCHEDULES.md` carries the exact prompt text for every recurring job, on both platforms, plus the week-by-week order to add them in and a worked clock. Copy from there rather than writing your own. Nine of the thirteen behaviours can run on a schedule, across ten tasks, because inbox triage runs twice a day.
+`SCHEDULES.md` carries the exact prompt text for every recurring job, on both platforms, plus the week-by-week order to add them in and a worked clock. Copy from there rather than writing your own. Nine of the fourteen behaviours can run on a schedule, across ten tasks, because inbox triage runs twice a day.
 
 **In Claude Cowork.** Type `/schedule` in any task, or open **Scheduled** in the left sidebar and choose **New task**. Set the cadence, the approval mode, and the folder Claude should work in. Cowork scheduled tasks run in the cloud, so they run whether or not the leader's computer is awake.
 
@@ -177,7 +177,7 @@ ai-chief-of-staff/
 ├── tomorrow.md        The leader's intent for the next working day.
 ├── commitments.md     Open promises, both directions.
 ├── decisions.md       Calls the leader closed, and what would reopen each one.
-├── skills/            The thirteen behaviours.
+├── skills/            The fourteen behaviours.
 ├── example/           A filled-in workspace for a leader who does not exist.
 ├── briefs/            Output. Briefs, closes, reviews, drafts.
 ├── meetings/          Output. One folder per meeting.

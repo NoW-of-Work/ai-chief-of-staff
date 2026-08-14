@@ -169,6 +169,7 @@ Behaviours are the numbered prompt files in `prompts/`. Paste the one you want a
 
 | Behaviour | Trigger | Output |
 |-------|---------|--------|
+| `welcome` | The first thing said after installing, or "what is this" | What the system does, what it needs, what it never does, and an offer to set up |
 | `onboarding` | Once at deployment, re-runnable any time | Scaffolded workspace, populated `connections.md`, drafted `about-me.md` and `my-work.md`, confirmed with the leader |
 | `morning-brief` | Start of working day | Today's priorities, meetings, open loops, drafts to review, one capability line if there is one |
 | `meeting-prep` | Before an important meeting | Who, why, last interaction, open loops, three questions, risks |

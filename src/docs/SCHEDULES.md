@@ -2,7 +2,7 @@
 
 **AI Chief of Staff, v{{VERSION}}. Created by The NoW of Work.**
 
-Every recurring job in the system, as text you can copy and paste. Nine of the thirteen behaviours can run on a schedule, and they take ten scheduled tasks, because inbox triage runs twice a day. The other four need a subject only a person can give, so they run when asked.
+Every recurring job in the system, as text you can copy and paste. Nine of the fourteen behaviours can run on a schedule, and they take ten scheduled tasks, because inbox triage runs twice a day. The other five need a subject only a person can give, so they run when asked.
 
 ---
 
@@ -596,9 +596,9 @@ If a brief arrives and the leader has already heard everything in it from other 
 
 ---
 
-## The four that do not get scheduled
+## The five that do not get scheduled
 
-`onboarding`, `meeting-prep`, `transcript-to-actions`, and `recall` are not on this list, and adding them is a mistake worth naming. Each needs a subject only a person can supply. Meeting prep needs to know which meeting. Transcript to actions needs to know which call. Onboarding needs a leader in the room answering six questions. Recall needs the question.
+`welcome`, `onboarding`, `meeting-prep`, `transcript-to-actions`, and `recall` are not on this list, and adding them is a mistake worth naming. Each needs a person. Welcome ends with a question and there is nobody there at 06:30 to answer it. Meeting prep needs to know which meeting. Transcript to actions needs to know which call. Onboarding needs a leader in the room answering six questions. Recall needs the question.
 
 The scheduled jobs cover the first three anyway. The sweep runs transcript-to-actions across yesterday's meetings without being asked, and the morning brief offers meeting prep when a high-stakes meeting has none. Nothing covers recall, and nothing should. It exists for the moment the leader asks.
 

@@ -10,7 +10,7 @@ Someone has already installed this for you. They followed `READ-ME-FIRST.md`. Te
 
 ## What you can say
 
-Say it in your own words. There are thirteen behaviours. Six of them carry the week.
+Say it in your own words. There are fourteen behaviours. Six of them carry the week.
 
 | When you want | Say |
 |---|---|
