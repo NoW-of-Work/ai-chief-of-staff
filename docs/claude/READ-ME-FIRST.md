@@ -129,7 +129,7 @@ Anything still in `[BRACKETS]` after onboarding is a decision nobody has made ye
 
 Spend longest on the last one. A system that knows what you are avoiding is more useful than one that only knows what you want.
 
-The honest answer is harder to write than it looks, because the polite version arrives first. "We are not prioritising international expansion" is a press release. "Rocky keeps pulling me into partner calls I add nothing to" is the thing a Monday review can actually catch you drifting back into. Write the second kind.
+The honest answer is harder to write than it looks, because the polite version arrives first. "We are not prioritising international expansion" is a press release. "Gord keeps pulling me into investor calls I add nothing to" is the thing a Monday review can actually catch you drifting back into. Write the second kind.
 
 ---
 
