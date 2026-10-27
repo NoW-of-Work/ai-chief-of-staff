@@ -33,6 +33,24 @@ Cap the first run at **six question clusters**. If you are about to ask a sevent
 
 **Do this before anything else, every run.** Onboarding is responsible for making sure the workspace exists. The leader should never have to create a file by hand.
 
+### Find the workspace folder
+
+Every scheduled prompt in `SCHEDULES.md` reads from and saves to a folder named `ai-chief-of-staff`. A workspace under any other name works while the leader is in the room and fails silently on every scheduled run.
+
+- If the folder this session works in is named `ai-chief-of-staff`, that is the workspace.
+- Otherwise, if it holds an `ai-chief-of-staff/` folder, that is the workspace.
+- Otherwise, create `ai-chief-of-staff/` inside it and scaffold there. Say so in the report line.
+
+Every path in the table below is relative to that folder, and so is every path in every other behaviour.
+
+### Never adopt a manual somebody else wrote
+
+A `CLAUDE.md` already in the workspace folder counts as the manual only if its first heading contains `AI Chief of Staff Operating Manual`. Anything else is a file that was already there for another reason, and if the system reads it as its rulebook, every approval gate is missing and nothing says so.
+
+When that happens, stop. Do not overwrite it, do not append to it, and do not scaffold the rest. Tell the leader in two lines what you found, and ask whether to move that file out of the folder or set the workspace up in a fresh `ai-chief-of-staff/` folder inside this one.
+
+### Scaffold
+
 Check for each of these. Create anything that is missing. Never overwrite anything that is already there.
 
 | Path | If missing |
@@ -44,6 +62,7 @@ Check for each of these. Create anything that is missing. Never overwrite anythi
 | `commitments.md` | Copy from `templates/commitments.md` |
 | `decisions.md` | Copy from `templates/decisions.md` |
 | `connections.md` | Copy from `templates/connections.md` |
+| `QUICK-START.md` | Copy from `templates/QUICK-START.md`. Nothing reads it. It is the page the leader hands to anyone else |
 | `briefs/README.md` | Create the folder and the stub |
 | `meetings/README.md` | Create the folder and the stub |
 | `people/README.md` | Create the folder and the stub |
@@ -120,8 +139,8 @@ Group by file. One line per field. Mark each line so the leader can act on it in
 ```
 ABOUT-ME
 
-  Name          Dana Okonkwo                                    [ok / fix]
-  Title         VP Operations                       (inferred)  [ok / fix]
+  Name          Leila Haddad                                    [ok / fix]
+  Title         COO                                 (inferred)  [ok / fix]
   Time zone     America/Vancouver                               [ok / fix]
   Deep work     08:00-10:00, Tue Wed Thu            (inferred)  [ok / fix]
   Hard stop     Nothing booked after 16:30          (inferred)  [ok / fix]
@@ -136,7 +155,7 @@ MY-WORK
 
 KEY RELATIONSHIPS                                               [ok / fix / cut]
 
-  Marcus Reyes      weekly 1:1        (inferred: direct report)
+  Marcus Oyelaran   weekly 1:1        (inferred: direct report)
   Priya Anand       biweekly          (inferred: client)
 ```
 
@@ -184,6 +203,8 @@ Want me to run tomorrow's morning brief so you can see what this produces?
 - Nudge about a missing capability. Not once, not gently. That is `connection-check`'s job and its clock has not started.
 - Overwrite a value the leader confirmed on a previous run with a fresh inference.
 - Overwrite a workspace file that already has content in it.
+- Treat a `CLAUDE.md` that is not the operating manual as if it were.
+- Scaffold into a folder that is not named `ai-chief-of-staff`.
 - Ask more than six question clusters on the first run.
 - Write a personal or sensitive detail about anyone into `people/`.
 

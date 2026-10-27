@@ -60,6 +60,11 @@ Count nothing. The templates are built to survive half-empty, and a bracketed fi
 
 Check `PROJECT-INSTRUCTIONS.md` as well. `[LEADER NAME]`, `[TITLE]`, or `[ORGANIZATION]` still sitting in section 1 means the mandate was never written for anyone in particular.
 
+Two things outrank every field, and both rank with "Nothing is running":
+
+- **The manual is someone else's file.** If the first heading of `PROJECT-INSTRUCTIONS.md` does not contain `AI Chief of Staff Operating Manual`, the workspace is reading another project's instructions as its rulebook and none of the approval gates apply. A missing bracketed field would never show it, because that file has no brackets to find. Fix: move that file out, then re-run `onboarding`.
+- **The folder has the wrong name.** If the workspace folder is not named `ai-chief-of-staff`, every prompt in `SCHEDULES.md` points at a folder that does not exist. Fix: rename the folder, or change the folder name in every scheduled task.
+
 ### 2. What the registry is claiming
 
 Two failure shapes in `connections.md`, and they look nothing alike. A row still reading `unknown` after `onboarding` has run means the probe never happened or never got saved. Until that is fixed, every absence downstream of it is unexplained rather than informative.
@@ -141,7 +146,8 @@ The sentence opens with `Yes` or with `No`, then one clause of evidence. Never w
 
 ## Approval rules
 
-- Saves the audit to `briefs/YYYY-MM-DD-health-check.md`, every run, and that is the only file it writes on a run nobody is watching. Below the verdict, outside the 350 words, the file carries a `DECLINED` block: one line per finding the leader declined this run, with the date. That block is written for next month's run and never renders in the output.
+- Saves the audit to `briefs/YYYY-MM-DD-health-check.md`, every run, and that is the only file it writes on a run nobody is watching. Below the verdict, outside the 350 words, the file carries a `DECLINED` block: one line per finding the leader declined, with the date. That block is written for next month's run and never renders in the output.
+- The audit usually runs on a schedule, so the leader usually answers it later, in some other session. Whatever behaviour is running when the leader declines a finding appends that line to the `DECLINED` block of the newest `-health-check.md`. A finding nobody answered is not declined, and next month raises it again.
 - May create a stub `people/[name].md` for a name that carries a commitment and has no file, holding the name and the commitment reference only.
 - May propose an exact edit to `about-me.md`, `my-work.md`, or `PROJECT-INSTRUCTIONS.md`, and write it if the leader says yes in the same session.
 - May **not** write that edit on a scheduled run, or on any run where the leader is not there to answer. Filling a bracketed field is a decision nobody has made yet. Priorities are `PROJECT-INSTRUCTIONS.md` gate 7.
@@ -157,15 +163,15 @@ FIX FIRST
   Fix: open the scheduled task and read the folder name it points at.
 
 BLOCKING
-  my-work.md section 1, strategic priority, still bracketed. Every brief this
-  month opened off a document title. See briefs/2026-07-28-brief.md, line 1.
+  my-work.md section 1, strategic priority, still bracketed. Every brief that
+  did run opened off a document title. See briefs/2026-07-14-brief.md, line 1.
   Fix: one sentence, section 1.
 
 DEGRADING
   connections.md: Email reads connected, Last verified 2026-06-02, 62 days.
   Fix: say "check my connections" and let connection-check probe the row.
   commitments.md: two Awaiting items owed to you since Jul 2, 32 days, raised in
-  three reviews, neither moved. (source: briefs/2026-07-27-weekly.md)
+  the last review that ran, neither moved. (source: briefs/2026-07-13-weekly.md)
   Fix: chase both, or release them. chase carries the drafts.
 
 WORTH KNOWING

@@ -160,11 +160,10 @@ of any kind Jul 18, email on pilot timing.
   it, so VP Supply Chain is the live answer.
 
 Q: where did the hiring plan land
-Not recorded (no source). I searched commitments.md, decisions.md,
+It has not landed. Marcus Oyelaran (VP Operations) owes it, due Jul 14,
+still Awaiting. (source: commitments.md) I searched decisions.md,
 meetings/ back to April, people/marcus-oyelaran.md, and briefs/ for June
-and July.
-  Marcus Oyelaran (VP Operations) raised it twice and no decision was
-  written down. (source: commitments.md, awaiting since Jul 14)
+and July, and nothing records it arriving.
   Chat is (not connected). If it landed in a channel, I cannot see it.
   Want me to search mail for July?
 ```

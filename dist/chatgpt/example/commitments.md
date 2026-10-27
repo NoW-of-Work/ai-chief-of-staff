@@ -92,11 +92,9 @@ Archive entries older than 90 days to `archive/commitments-[YYYY]-Q[N].md` quart
 
 ## Weekly review
 
-Every Monday the AI Chief of Staff scans this file and produces:
+Every Monday `weekly-review` reads this file and uses it in two places:
 
-- Count of `Active` (split by `By me` / `To me`).
-- Anything stale (see rule 4).
-- Anything due in the next 7 days.
-- Anything that has changed status in the last 7 days, with the source for the change.
+- **What slipped.** Anything past the rule 4 thresholds, with how long, to whom, and a proposed action: chase it, release it, or renegotiate the date. A `To me` entry gets the slip named and nothing more, because `chase` carries the draft later in the week.
+- **Next week.** Anything due in the next 7 days, where it competes with a priority for the time.
 
-As of 2026-03-17 that scan returns five `Active` by me, three `Awaiting` to me, and three stale: Alan Whitcombe at 25 days, Renée at 19 days, Devin at 13 days.
+As of 2026-03-17 that scan names three slips: Alan Whitcombe at 25 days, Renée at 19 days, Devin at 13 days.

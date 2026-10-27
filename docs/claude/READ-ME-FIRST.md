@@ -1,6 +1,6 @@
 # READ ME FIRST
 
-**AI Chief of Staff, v1.3.0. Created by The NoW of Work.**
+**AI Chief of Staff, v1.4.0. Created by The NoW of Work.**
 
 This is the whole setup guide. If you read one file, read this one.
 
@@ -188,13 +188,12 @@ ai-chief-of-staff/
 └── archive/           Output. Closed commitments, resolved loops.
 ```
 
-Five files you own. One file the system owns. Fourteen behaviours. One worked example. Four folders that fill themselves.
+Six files you own. One file the system owns. Fourteen behaviours. One worked example. Four folders that fill themselves.
 
-That tree is the Path B folder, and Path B is the only path where all of it sits in one place. Three lines to save you a debugging session later:
+That tree is the Path B folder, and Path B is the only path where all of it sits in one place. Two lines to save you a debugging session later:
 
 - **Path A has no `skills/` folder.** The behaviours are installed in the plugin, not copied into the workspace. Nothing is missing.
-- **Path A has no `example/` folder either.** The worked example stays in the downloaded repository. The folder starts empty and `onboarding` writes the seven workspace files and the four output folders into it, which is what its step 0 is for.
-- **Path A has no `QUICK-START.md` either.** The plugin ships behaviours, and `onboarding` writes the workspace files. Neither of them writes the handover page. It is at the top of the downloaded repository, and it is also inside `dist/claude/ai-chief-of-staff/` if you took Path B. Keep whichever copy you have.
+- **Path A has no `example/` folder either.** The worked example stays in the downloaded repository. The folder starts empty and `onboarding` writes the seven workspace files, `QUICK-START.md`, and the four output folders into it, which is what its step 0 is for. The folder has to be named `ai-chief-of-staff`, because every scheduled prompt names it. Step 0 creates one inside the folder you are working in if it is called anything else.
 
 ### Three things worth understanding
 
@@ -202,7 +201,7 @@ That tree is the Path B folder, and Path B is the only path where all of it sits
 
 **`decisions.md` is a record, not a plan.** The system drafts an entry after you close a call, and it never writes an outcome you have not said out loud in that session. Once an entry reads `Made`, the reasoning in it is never edited, including where it turned out to be wrong. The field that earns the file its keep is **Would change my mind**, because the Monday review pass is the only thing in the system that checks whether a July decision still matches September's facts.
 
-**Nudges are rare on purpose.** When a tool is missing, the system can mention it. Three gates have to pass first: enough time since the last mention, you have not said stop, and something happened that day where the missing tool would actually have helped. That third gate is the one that matters. Being overdue is not a reason to speak. Most mornings there is nothing, and the section does not appear at all.
+**Nudges are rare on purpose.** When a tool is missing, the system can mention it. Three gates have to pass first: enough time since the last mention, you have not said stop, and something happened in the past week where the missing tool would actually have helped. That third gate is the one that matters. Being overdue is not a reason to speak. Most mornings there is nothing, and the section does not appear at all.
 
 The exception is a fault. If a connected tool quietly stops working, that gets flagged immediately, every time. A missing tool is a gap you know about. A broken one is a gap they do not.
 

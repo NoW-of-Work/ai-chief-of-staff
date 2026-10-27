@@ -135,6 +135,8 @@ The matching `[To verify]` line sits in `commitments.md` for the same date. One 
 - **Review on:** 2026-06-01
 - **Source:** meetings/2026-01-22-pricing-review/notes.md
 
+> Stood 2026-03-02: no deal lost on pricing structure, raise still open. Review moved from 2026-03-02.
+
 ### [2026-01-19] Whether to stop selling to customers under 60 trucks
 
 - **Status:** Superseded
@@ -167,13 +169,13 @@ Then, in order:
 3. Write the new decision as a new entry, carrying `**Supersedes:** [YYYY-MM-DD] [original title]`.
 4. Change the original entry's status to `Superseded` once the new one is `Made`.
 
-If the review date arrives and nothing has moved, mark the entry `Stood`, set a new **Review on** date, and say nothing about it in the brief. A decision that is still correct is not news. The pricing entry was reviewed on Mar 2, held, and went to Jun 1 without appearing in a single brief.
+If the review date arrives and nothing has moved, mark the entry `Stood`, set a new **Review on** date, append `> Stood YYYY-MM-DD: [what was checked]. Review moved from YYYY-MM-DD.` below the fields, and say nothing about it in the brief. A decision that is still correct is not news. The pricing entry was reviewed on Mar 2, held, and went to Jun 1 without appearing in a single brief.
 
 ---
 
 ## Superseded and archived
 
-Superseded entries stay in this file for 180 days so the trail is readable in one place. After that, move them to `archive/decisions-[YYYY]-Q[N].md`, keeping every field and the reopening line intact.
+Superseded entries stay in this file for 180 days so the trail is readable in one place. After that, move them to `archive/decisions-[YYYY]-Q[N].md`, keeping every field and every appended line intact.
 
 Never delete an entry. The reasoning is the asset, including the reasoning that turned out to be wrong. The Jan 19 entry above is the clearest thing in this file, and it is the one that was wrong.
 
@@ -184,7 +186,7 @@ Never delete an entry. The reasoning is the asset, including the reasoning that 
 1. **No outcome without the leader saying it.** If the leader has not decided, write `Open`. If you believe they decided and cannot find them saying so, write `To verify` and quote what made you think it. Leaning towards an option is neither.
 2. **No entry without two conditions in Would change my mind.** Each one needs a date or a checkable signal. "If things change" is not a condition and does not count as one.
 3. **Record the leader's reasoning, not the recommendation.** If the leader decided against the brief, the brief is already filed and says why. This field holds their words. If they gave none, write `(no source)`.
-4. **Never edit the fields of a `Made` entry.** Two things may change on it and nothing else: the **Status** line, and one appended reopening line below the fields. **Chose**, **Because**, and **Passed on** stay exactly as written, including where they turned out to be wrong.
+4. **Never edit the fields of a `Made` entry.** Three things may change on it and nothing else: the **Status** line, the **Review on** date when a review marks it `Stood`, and one appended line below the fields for each status change. **Chose**, **Because**, and **Passed on** stay exactly as written, including where they turned out to be wrong.
 5. **Name the cost of every option passed on.** An entry that lists the roads not taken without their prices is unusable at review time.
 6. **Never delete an entry.** Statuses move. Rows stay.
 7. **A decision reached in a room is not a decision until it is confirmed here.** A meeting file may record an outcome on a question this file carries as `Open`. Draft the entry, show it, ask. Do not promote it yourself.

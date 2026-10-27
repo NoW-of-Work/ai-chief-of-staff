@@ -72,6 +72,12 @@ EXAMPLE_SRC = SRC / "example"
 
 MAX_DESCRIPTION = 200
 
+# Every zip entry gets this timestamp and these permissions, so a rebuild with
+# no source change writes byte-identical zips. Stamping entries with the file's
+# mtime made every rebuild dirty fifteen zips in git with nothing in them changed.
+ZIP_DATE_TIME = (2026, 1, 1, 0, 0, 0)
+ZIP_FILE_MODE = 0o644 << 16
+
 
 # ----------------------------------------------------------------------------
 # rendering
@@ -126,6 +132,14 @@ def fail(message: str) -> None:
 def write(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8")
+
+
+def zip_add(zf: zipfile.ZipFile, path: Path, arcname: Path) -> None:
+    """Add one file to a zip with a fixed timestamp and mode."""
+    info = zipfile.ZipInfo(arcname.as_posix(), date_time=ZIP_DATE_TIME)
+    info.compress_type = zipfile.ZIP_DEFLATED
+    info.external_attr = ZIP_FILE_MODE
+    zf.writestr(info, path.read_bytes())
 
 
 def escape_yaml(value: str) -> str:
@@ -250,7 +264,7 @@ def build_claude(behaviours: list[dict], version: str) -> None:
         with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
             for path in sorted(base.rglob("*")):
                 if path.is_file():
-                    zf.write(path, Path(b["name"]) / path.relative_to(base))
+                    zip_add(zf, path, Path(b["name"]) / path.relative_to(base))
 
     print(f"  claude: {len(behaviours)} skills, workspace, example, "
           f"{len(behaviours)} upload zips")
@@ -366,11 +380,11 @@ def build_release_zip(version: str) -> None:
             if not item.exists():
                 fail(f"release zip: {item.relative_to(ROOT)} was never built")
             if item.is_file():
-                zf.write(item, Path("ai-chief-of-staff") / item.name)
+                zip_add(zf, item, Path("ai-chief-of-staff") / item.name)
             else:
                 for path in sorted(item.rglob("*")):
                     if path.is_file():
-                        zf.write(path, Path("ai-chief-of-staff") / path.relative_to(ROOT))
+                        zip_add(zf, path, Path("ai-chief-of-staff") / path.relative_to(ROOT))
     size = zip_path.stat().st_size / 1024
     print(f"  release: {zip_path.name} ({size:.0f} KB)")
 

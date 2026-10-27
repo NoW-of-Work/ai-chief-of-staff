@@ -84,7 +84,9 @@ NOT CAPTURED
 
 ### 4. Hand off
 
-The roll-up is available to the morning brief. Anything urgent (a commitment due today, anything matching the always-flag list) gets surfaced there. Everything else waits for the weekly review.
+Save the roll-up to `briefs/YYYY-MM-DD-sweep.md`, dated the day the sweep runs. That file is the hand-off. The morning brief reads it and renders actions due in the next 48 hours, anything matching the always-flag list, and every `TO VERIFY` line. Everything else waits for the weekly review, which reads last week's sweep files.
+
+On a scheduled run nobody reads this behaviour's output directly. A roll-up that is not saved is a roll-up the leader never sees.
 
 ---
 
@@ -97,6 +99,7 @@ The roll-up is available to the morning brief. Anything urgent (a commitment due
 
 ## Approval rules
 
+- May save the roll-up to `briefs/YYYY-MM-DD-sweep.md`.
 - May append clear commitments to `commitments.md`.
 - May create meeting folders and stub person files.
 - May not save person-file content without approval.
