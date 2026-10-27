@@ -141,7 +141,7 @@ If the cap did not bite, this slot does not render.
 
 ```
 SHORTLIST
-  Marcus Oyelaran (VP Operations), hiring plan answer, due Jul 14,
+  Marcus Oyelaran (VP Operations), hiring plan, due Jul 14,
     5 days past. Holds priority 3.
   Priya Anand (Ridley), budget approval, awaiting 10 days. Holds
     priority 1.
@@ -156,7 +156,7 @@ RECOMMENDED RELEASE
     Tomas Berge | Warehouse extract | reason: scope cut to two DCs
 
 CHASE 1  Marcus Oyelaran, mail, asks for a new date
-  The hiring plan answer was due Jul 14. What date is realistic?
+  The hiring plan was due Jul 14. What date is realistic?
 
 CHASE 2  Priya Anand, mail, asks if finance cleared it
   attempt 2, escalated from chat

@@ -29,8 +29,12 @@ description: Start-of-day brief: today's priorities, meetings needing something,
 5. `my-work.md`, sections 2 and 5 (active priorities, and what they are not doing).
 6. `commitments.md`.
 7. Today's calendar. Today's `briefs/` triage pass if one exists, otherwise yesterday's mail since the last brief.
+8. Today's `briefs/YYYY-MM-DD-sweep.md`, if `daily-transcript-sweep` wrote one.
+9. The last working day's `briefs/YYYY-MM-DD-close.md`, for its proposed `tomorrow.md` and the status line beneath it.
 
-If `tomorrow.md` is written for a date that is not today, say so in one clause and use it anyway if it is recent. Do not silently ignore it. If it still holds only its template, with `[Item]` in the Must respect list, treat it as absent and take the opening line from the top of the `my-work.md` priorities. Say nothing about it. That file is empty for the first few weeks by design, because `end-of-day-close` is what fills it and it goes in later.
+If `tomorrow.md` is written for a date that is not today, check that close first. A proposed `tomorrow.md` still marked `status: awaiting approval` is a draft nobody said yes to. Do not set the day from it, because section 5 of `{{MANUAL}}` ranks `tomorrow.md` first only because the leader wrote it. List it in slot 5 so the leader can approve it now, and build the day as if `tomorrow.md` were absent.
+
+If there is no unapproved draft and `tomorrow.md` is simply old, say so in one clause and use it anyway if it is recent. Do not silently ignore it. If it still holds only its template, with `[Item]` in the Must respect list, treat it as absent and take the opening line from the top of the `my-work.md` priorities. Say nothing about it. That file is empty for the first few weeks by design, because `end-of-day-close` is what fills it and it goes in later.
 
 ---
 
@@ -62,9 +66,13 @@ From `commitments.md`. Only what is due in the next 48 hours, stale past the thr
 
 Anything `inbox-triage` appended this morning renders here regardless of age. It is new to the leader.
 
+From today's sweep roll-up: actions for the leader due in the next 48 hours, anything touching the always-flag list, and every `TO VERIFY` line. Only the leader can settle a `To verify`, and on a scheduled run this slot is the only place they will see it. Everything else in the roll-up waits for the weekly review.
+
 ### 5. Drafts waiting
 
-Anything you drafted that needs a yes or a no. One line each. Link or filename. Includes every draft `inbox-triage` saved this morning.
+Anything you drafted that needs a yes or a no. One line each. Link or filename. Includes every draft `inbox-triage` saved this morning, and a proposed `tomorrow.md` from the last close that is still awaiting approval:
+
+> tomorrow.md for today, drafted in yesterday's close, never approved. Say yes and I will save it. briefs/2026-07-22-close.md
 
 ### 6. Capability check
 
@@ -78,15 +86,15 @@ Anything you drafted that needs a yes or a no. One line each. Link or filename. 
 
 > Otter has not returned a transcript since July 3. Three weeks of meetings did not get swept.
 
-**A nudge**, when a missing tool cost the leader something specific yesterday:
+**A nudge**, when a missing tool cost the leader something specific in the past week:
 
-> You had four meetings yesterday with nothing capturing them. A transcription tool that records where you meet (Grain, Otter, Fathom) would let me pull the action items automatically. I will not raise this again for two weeks.
+> You had four meetings on Thursday with nothing capturing them. A transcription tool that records where you meet (Grain, Otter, Fathom) would let me pull the action items automatically. I will not raise this again for two weeks.
 
 If both a nudge and an offer are queued, the **offer wins**. It is news, and it is the one the leader can act on today. The nudge waits for its next cadence window.
 
 If the queue is empty, **this slot does not render.** No "everything is connected." No green checkmarks. Most mornings there is nothing here and that is the system working.
 
-After rendering a nudge, write today's date into `Last nudged` for that capability in `connections.md`. After rendering an offer, leave it pending until the leader answers, then mark it accepted or declined.
+After rendering a nudge, write today's date into `Last nudged` for that capability in `connections.md`. After rendering an offer, add one to its `shown` count and leave it pending. When the leader answers, in this session or any later one, mark it accepted or declined. An offer that has reached `shown: 3` with no answer is marked `dropped` and does not render again.
 
 ### 7. What I could not see
 
@@ -112,7 +120,8 @@ Do not open with a greeting or the date. The leader knows what day it is. Start 
 ## Approval rules
 
 - May save the brief to `briefs/YYYY-MM-DD-brief.md`.
-- May update nudge dates and offer statuses in `connections.md`.
+- May update nudge dates, offer statuses, and offer `shown` counts in `connections.md`.
+- May save a proposed `tomorrow.md` from the last close when the leader says yes to it in this session, and change that close's status line to match. Never on a scheduled run with nobody there, per `{{MANUAL}}` gate 13.
 - May not send anything, book anything, or reply to anything.
 - May not act on an activation offer. Rendering the offer and recording the answer is the whole job. Turning the behaviour on happens in a session where the leader is present, per `{{MANUAL}}` gate 9.
 - May not render a **nudge** for a capability the registry marks `Dismissed`. An activation offer for a dismissed capability that has since been connected still renders, because that is news rather than nagging.
@@ -124,8 +133,8 @@ Today is about getting the Ridley proposal out before the 15:00 call.
 
 PRIORITIES
 1. Ridley proposal, final pass. Due today. Nothing else on the list has a date.
-2. Marcus 1:1 prep. He flagged the hiring plan twice last week and you have not
-   answered. (source: commitments.md, awaiting since Jul 14)
+2. Marcus 1:1 prep. His hiring plan was due Jul 14 and has not arrived. Get
+   a date in the 1:1. (source: commitments.md, awaiting since Jul 14)
 3. Quarterly planning doc can wait. It has no external dependency this week.
 
 CALENDAR
@@ -134,16 +143,16 @@ CALENDAR
   15:00  Ridley call. This is the one the proposal is for.
 
 OPEN LOOPS
-  Marcus, hiring plan answer, awaiting 9 days.
+  Marcus, hiring plan, awaiting 9 days.
   Sven, contract redline, due tomorrow.
 
 DRAFTS WAITING
   Reply to Priya re: timeline. briefs/2026-07-23-draft-priya-timeline.md
 
 CAPABILITY
-  You had four meetings yesterday with nothing capturing them. A transcription
+  You had four meetings on Thursday with nothing capturing them. A transcription
   tool that records where you meet (Grain, Otter, Fathom) would let me pull the
   action items automatically. I will not raise this again for two weeks.
 ```
 
-Under 400 words. Every claim has a source or a label. The capability line names yesterday's actual cost and promises to go quiet.
+Under 400 words. Every claim has a source or a label. The capability line names a real cost from last week, with its day, and promises to go quiet.

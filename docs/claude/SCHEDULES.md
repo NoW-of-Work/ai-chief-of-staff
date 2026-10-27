@@ -1,6 +1,6 @@
 # SCHEDULES
 
-**AI Chief of Staff, v1.3.0. Created by The NoW of Work.**
+**AI Chief of Staff, v1.4.0. Created by The NoW of Work.**
 
 Every recurring job in the system, as text you can copy and paste. Nine of the fourteen behaviours can run on a schedule, and they take ten scheduled tasks, because inbox triage runs twice a day. The other five need a subject only a person can give, so they run when asked.
 
@@ -105,6 +105,10 @@ Otherwise run the daily-transcript-sweep behaviour for yesterday.
 Save each meeting to ai-chief-of-staff/meetings/ in a dated folder,
 for example 2026-07-14-ridley-review/actions.md.
 
+Save the roll-up to ai-chief-of-staff/briefs/ named with today's date and
+the suffix -sweep, for example 2026-07-14-sweep.md. The morning brief
+reads it.
+
 Append new commitments to commitments.md. Do not draft or send anything.
 ```
 
@@ -182,7 +186,8 @@ Save the close to ai-chief-of-staff/briefs/ named with today's date,
 for example 2026-07-14-close.md.
 
 Draft tomorrow.md and show it to me in full. Do not save tomorrow.md
-until I say yes.
+until I say yes. Put the draft inside the close file with the line
+status: awaiting approval, so tomorrow's brief can see I never answered.
 ```
 
 **One warning worth taking seriously.** If you stop approving `tomorrow.md`, every morning brief afterwards starts from a stale premise. Better to turn this job off than to let it draft into a void. The approval gate is identical on both platforms.

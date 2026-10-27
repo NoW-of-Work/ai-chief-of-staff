@@ -19,7 +19,7 @@ description: Monday look back and forward: what moved, what slipped, where the t
 4. `about-me.md`, sections 4, 6, 7.
 5. `commitments.md`, all of it.
 6. `decisions.md`, for the entries this morning's decisions pass named. Not the whole file.
-7. Last week's `briefs/`, both morning briefs and closes, plus today's decisions pass if `decision-brief` has run.
+7. Last week's `briefs/`: morning briefs, closes, and sweep roll-ups, plus today's decisions pass if `decision-brief` has run.
 8. Last week's calendar as it actually ran. Next week's calendar.
 9. `meetings/` from last week.
 

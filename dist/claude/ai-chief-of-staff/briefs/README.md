@@ -3,9 +3,10 @@
 Output folder. The AI Chief of Staff writes here. Nothing to fill in.
 
 - `YYYY-MM-DD-brief.md` — morning brief
-- `YYYY-MM-DD-close.md` — end-of-day close
+- `YYYY-MM-DD-close.md` — end-of-day close, carrying the proposed `tomorrow.md` and whether it was approved
 - `YYYY-MM-DD-weekly.md` — Monday weekly review
 - `YYYY-MM-DD-triage-am.md`, `YYYY-MM-DD-triage-pm.md` — the two inbox passes
+- `YYYY-MM-DD-sweep.md` — the daily transcript sweep's roll-up, read by the morning brief
 - `YYYY-MM-DD-chases.md` — the chase run
 - `YYYY-MM-DD-decisions.md` — the Monday pass over `decisions.md`
 - `YYYY-MM-DD-decision-[slug].md` — a decision brief

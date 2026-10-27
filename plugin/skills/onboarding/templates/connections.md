@@ -63,12 +63,12 @@ The nudge is only worth making if the leader gets something concrete. This colum
 
 ## 5. Activation queue
 
-When `connection-check` finds a **newly connected** capability, it appends an offer here. The next morning brief renders it as one line. It stays `pending` until the leader answers, then becomes `accepted` or `declined`. If it goes unanswered across three briefs, drop it quietly. A repeating offer is a nag with extra steps.
+When `connection-check` finds a **newly connected** capability, it appends an offer here. The next morning brief renders it as one line. It stays `pending` until the leader answers, in that session or any later one, then becomes `accepted` or `declined`. Each brief that renders it adds one to `shown`. At `shown: 3` with no answer it becomes `dropped` and stops rendering. A repeating offer is a nag with extra steps.
 
 An offer is an offer. The AI Chief of Staff never switches on a behaviour because a tool appeared.
 
 ```
-[offer] YYYY-MM-DD | [Capability] | [Provider] | [Behaviour to turn on] | status: pending / accepted / declined
+[offer] YYYY-MM-DD | [Capability] | [Provider] | [Behaviour to turn on] | shown: [N] | status: pending / accepted / declined / dropped
 ```
 
 **Pending offers:**
@@ -85,7 +85,7 @@ A nudge about a missing capability surfaces only when **all three** gates pass.
 
 1. **Cadence.** At least `Nudge cadence` days since `Last nudged`.
 2. **Not silenced.** `Snoozed until` is empty or in the past, and `Dismissed` is `no`.
-3. **Relevant trigger.** Something happened that day where the missing capability would have helped. Being due is not a reason to speak.
+3. **Relevant trigger.** Something happened in the seven days before the check where the missing capability would have helped. Being due is not a reason to speak.
 
 Trigger conditions, per capability:
 
@@ -94,7 +94,7 @@ Trigger conditions, per capability:
 | Calendar | The leader asks for a brief or prep and there is no schedule to read |
 | Email | There were external meetings and no inbox to check for follow-through |
 | Documents | A brief had to label something `(not connected)` for a project the leader named as a priority |
-| Transcripts | The leader had two or more meetings yesterday and nothing captured them |
+| Transcripts | A working day in that week had two or more meetings and nothing captured them |
 | Chat | A commitment surfaced that clearly originated in a channel the system cannot read |
 | Tasks | The commitment ledger has gone stale for more than 14 days |
 | CRM | Meeting prep for an external party returned no history at all |

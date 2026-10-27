@@ -65,6 +65,14 @@ Rules for the draft:
 
 Show the draft. Ask for approval. Save only on a yes.
 
+The draft also goes into the close file, under its own heading, with a status line beneath it:
+
+```
+status: awaiting approval
+```
+
+This job usually runs on a schedule, and the leader may not answer until morning, or at all. The status line is how the next `morning-brief` knows a draft is sitting there unapproved. When the leader says yes, in this session or any later one, save `tomorrow.md` and change the line to `status: approved YYYY-MM-DD`. When they say no, change it to `status: declined`.
+
 ---
 
 ## Rules
@@ -78,7 +86,7 @@ Show the draft. Ask for approval. Save only on a yes.
 ## Approval rules
 
 - May append and update `commitments.md` with sourced entries.
-- May save today's close to `briefs/YYYY-MM-DD-close.md`.
+- May save today's close to `briefs/YYYY-MM-DD-close.md`, with the proposed `tomorrow.md` and its status line inside it.
 - May **not** save `tomorrow.md` without explicit approval. This one is non-negotiable, because the morning brief treats that file as the leader's own words. If it is saved unapproved, the whole source hierarchy is built on a guess.
 - May not send anything.
 
@@ -86,16 +94,17 @@ Show the draft. Ask for approval. Save only on a yes.
 
 ```
 WHAT MOVED
-Ridley proposal went out at 15:40. Marcus 1:1 happened, hiring plan answered.
-Quarterly planning doc did not move. Third day.
+Ridley proposal went out at 15:40. Marcus 1:1 happened. He committed to the
+hiring plan by Jul 25. Quarterly planning doc did not move. Third day.
 
 WHAT CAME IN
 2 new commitments (budget draft for Elena, board pre-read for Elena).
 Board sync added next Tuesday 09:00, which lands on your deep work block.
 
 LEDGER
-Appended 2. Closed 1 (Ridley proposal, evidence: sent mail 15:40).
-1 to verify from the ops call.
+Appended 2. Re-dated 1 (Marcus hiring plan, due Jul 25, from the 1:1).
+Closed 1 (Ridley proposal, evidence: sent mail 15:40). 1 to verify from the
+ops call.
 
 PROPOSED tomorrow.md
   Must respect
@@ -111,6 +120,7 @@ PROPOSED tomorrow.md
     Website redesign thread. my-work.md says not this quarter.
   Question
     Tuesday's board sync sits on your deep work block. Move it, or move the block?
+  status: awaiting approval
 
 Save this?
 ```

@@ -35,7 +35,7 @@ The third one is the dangerous one. The leader still thinks the sweep is running
 1. `PROJECT-INSTRUCTIONS.md`.
 2. `connections.md`. This is both the input and the output.
 3. `about-me.md` and `my-work.md`, only far enough to judge whether a gap actually matters to this leader.
-4. Yesterday's calendar, if the Transcripts trigger needs evaluating.
+4. For each capability that passes gates 1 and 2 under Job B, only what its gate 3 trigger needs, over the last seven days: the calendar, the `-brief.md` files in `briefs/`, the prep files in `meetings/`, or `commitments.md`. Nothing for a capability that already failed a gate.
 
 ---
 
@@ -54,7 +54,7 @@ Registry says `missing`, probe says it responds.
 The offer names the behaviour, not the tool:
 
 ```
-[offer] 2026-07-24 | Transcripts | Otter | daily-transcript-sweep | status: pending
+[offer] 2026-07-24 | Transcripts | Otter | daily-transcript-sweep | shown: 0 | status: pending
 ```
 
 Which the morning brief renders as:
@@ -63,7 +63,7 @@ Which the morning brief renders as:
 
 **Never turn the behaviour on yourself.** A tool appearing is not consent. It is frequently someone else in the org connecting something, or the leader trying a trial. Offer, wait, log the answer.
 
-If the offer is declined, mark it `declined` and do not re-offer for that provider. If the leader says nothing for three briefs, drop the offer quietly. A pending offer that keeps reappearing is a nag with extra steps.
+If the offer is declined, mark it `declined` and do not re-offer for that provider. The morning brief adds one to `shown` each time it renders the offer, and marks it `dropped` once it reaches three with no answer. Count from the field, never from memory: a scheduled run has none. A pending offer that keeps reappearing is a nag with extra steps.
 
 ### 2. Newly disconnected or failing
 
@@ -117,14 +117,16 @@ Two soft noes are a hard no. Someone who declines twice is not undecided. They a
 
 ### Gate 3: Relevant trigger
 
-Being due is not a reason to speak. There has to be a moment that day where the missing capability would have paid for itself, and you have to be able to name it.
+Being due is not a reason to speak. There has to be a moment in the window where the missing capability would have paid for itself, and you have to be able to name it, with its day.
 
-| Capability | Trigger |
+The window is the seven days before this run. The scheduled run is weekly and lands on a Monday, so "yesterday" would be a Sunday and almost nothing would ever trigger.
+
+| Capability | Trigger, inside the window |
 |-----------|---------|
-| Calendar | The leader asked for a brief or prep and there was no schedule to read |
+| Calendar | A brief or prep had no schedule to read |
 | Email | External meetings happened and there is no inbox to check for follow-through |
 | Documents | A brief had to label something `(not connected)` for a project `my-work.md` lists as a priority |
-| Transcripts | Two or more meetings on yesterday's calendar and nothing captured any of them |
+| Transcripts | A working day had two or more meetings and nothing captured any of them |
 | Chat | A commitment surfaced that clearly started in a channel you cannot read |
 | Tasks | The commitment ledger has not moved in more than 14 days |
 | CRM | Meeting prep for an external party returned no history at all |
@@ -160,13 +162,13 @@ One line. Name the moment, name the cost, name the tool class, and say when you 
 
 Good:
 
-> You had four meetings yesterday with nothing capturing them. A transcription tool that records where you meet (Grain, Otter, Fathom, Granola) would let me pull the action items automatically. I will not raise this again for two weeks.
+> You had four meetings on Thursday with nothing capturing them. A transcription tool that records where you meet (Grain, Otter, Fathom, Granola) would let me pull the action items automatically. I will not raise this again for two weeks.
 
 Bad:
 
 > I noticed you don't have a transcription tool connected! Connecting one would help me serve you better. Would you like some recommendations?
 
-The first names a real cost the leader felt yesterday and promises to go away. The second is an advertisement.
+The first names a real cost the leader felt last week, on a day they will remember, and promises to go away. The second is an advertisement.
 
 Always include the "I will not raise this again for [cadence]" clause. It is the part that makes the nudge tolerable, and it is a promise the registry actually keeps.
 
@@ -176,7 +178,7 @@ Always include the "I will not raise this again for [cadence]" clause. It is the
 - Turn on a behaviour because a tool appeared.
 - Nudge about a capability marked `Dismissed`.
 - Nudge more than once per brief.
-- Nudge without a named trigger from that day.
+- Nudge without a named trigger from the last seven days.
 - Speak to the leader directly on a scheduled run. It decides. The morning brief delivers.
 - Recommend a specific vendor as the answer. Name two or three, or name the class. Check they cover the platform the leader actually meets on before naming them.
 

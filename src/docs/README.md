@@ -32,10 +32,11 @@ Those two lines are Claude Code. In Claude Cowork, add the marketplace through *
 
 ## What it does
 
-Thirteen behaviours. Nine of them can run on a schedule.
+Fourteen behaviours. Nine of them can run on a schedule.
 
 | Behaviour | When | What comes out |
 |-----------|------|----------------|
+| `welcome` | Right after install, when you ask what this is | What the system does, what it needs, what it never does, and an offer to set up |
 | `onboarding` | Once, at setup | A filled-in workspace, built from the calendar and mail rather than a questionnaire |
 | `morning-brief` | Every morning | Under 400 words: today's priorities, the meetings that need something, open loops, drafts waiting on a yes |
 | `meeting-prep` | Before a meeting that matters | Who, why, what happened last time, what is open between you both ways, three questions, the risks |
@@ -54,7 +55,7 @@ Thirteen behaviours. Nine of them can run on a schedule.
 
 ## The three ideas it is built on
 
-**It drafts, it does not act.** No sending, no booking, no replying. Twelve approval gates, listed in the operating manual, and none of them are negotiable.
+**It drafts, it does not act.** No sending, no booking, no replying. Thirteen approval gates, listed in the operating manual, and none of them are negotiable.
 
 **It knows what it cannot see.** A registry file tracks capabilities (Calendar, Email, Documents, Transcripts, Chat, Tasks, CRM) rather than vendors. That is the only reason the system can tell "nothing happened yesterday" apart from "I cannot see what happened yesterday." Those look the same in the output and they are completely different problems.
 
@@ -72,7 +73,7 @@ Thirteen behaviours. Nine of them can run on a schedule.
 | `build/build.py` | Generates every output below from `src/` |
 | `plugin/` | The Claude plugin. `skills/` inside it is generated |
 | `dist/claude/` | Drop-in workspace folder, plus one upload ZIP per behaviour |
-| `dist/chatgpt/` | Project instructions, thirteen prompt files, workspace files |
+| `dist/chatgpt/` | Project instructions, fourteen prompt files, workspace files |
 | `.claude-plugin/marketplace.json` | Lets anyone install this with `/plugin marketplace add` |
 
 Everything under `dist/`, `docs/`, and `plugin/skills/` is generated and committed, so a client can download and use the repo without running anything. Every markdown file in the repo root is generated too, this README included. Edit the copy in `src/docs/` and let the build write the output. A doc named in `PLATFORM_DOCS` in `build/build.py` is written once per platform into `docs/`, and everything else is written once to the root.
@@ -81,7 +82,7 @@ Everything under `dist/`, `docs/`, and `plugin/skills/` is generated and committ
 
 | Path | What it is |
 |------|-----------|
-| `src/behaviours/` | Thirteen behaviour files, one per skill. YAML frontmatter carries `name`, `order`, and a description under 200 characters |
+| `src/behaviours/` | Fourteen behaviour files, one per skill. YAML frontmatter carries `name`, `order`, and a description under 200 characters |
 | `src/workspace/` | The seven files that make up a workspace: `_manual.md`, `about-me.md`, `my-work.md`, `tomorrow.md`, `commitments.md`, `decisions.md`, and `connections.md`, plus a README per output folder |
 | `src/example/` | A filled-in workspace for a leader who does not exist. Copied into every build so you have something to compare against |
 | `src/docs/` | Every markdown file that lands in the repo root. Rendered with `platform=claude`, so ChatGPT specifics go in as plain prose |

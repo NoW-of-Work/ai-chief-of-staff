@@ -1,6 +1,6 @@
 # SCHEDULES
 
-**AI Chief of Staff, v1.3.0. Created by The NoW of Work.**
+**AI Chief of Staff, v1.4.0. Created by The NoW of Work.**
 
 Every recurring job in the system, as text you can copy and paste. Nine of the fourteen behaviours can run on a schedule, and they take ten scheduled tasks, because inbox triage runs twice a day. The other five need a subject only a person can give, so they run when asked.
 

@@ -139,7 +139,7 @@ Write the pass to `briefs/YYYY-MM-DD-decisions.md` and stop there. `weekly-revie
 - May save the Monday review pass to `briefs/YYYY-MM-DD-decisions.md`. That file is what `weekly-review` reads.
 - May append an `Open` entry to `decisions.md` naming the decision and the date that forces it.
 - May append sourced entries to `commitments.md` for promises the decision creates, once it is made.
-- May change an entry's `Status` to `Reopened`, `Superseded`, or `Stood`, and may append the one reopening line `decisions.md` specifies. No other field on a `Made` entry changes.
+- May change an entry's `Status` to `Reopened`, `Superseded`, or `Stood`, and may append the line `decisions.md` specifies for that change. Marking an entry `Stood` also sets its new **Review on** date. No other field on a `Made` entry changes.
 - May **not** write an outcome to `decisions.md` without the leader stating what they decided, in the same session. `PROJECT-INSTRUCTIONS.md` gate 11. An inferred decision becomes the record the system reasons from a quarter later.
 - May **not** log an outcome from a meeting file alone.
 - May not edit `my-work.md` section 5 because a decision contradicts it. `PROJECT-INSTRUCTIONS.md` gate 7. Propose the edit and ask.
@@ -171,16 +171,18 @@ YOUR FILTERS
 1. "Does this move a priority forward this month?" Points away from my read:
    Halvorsen funds the Q4 hire.
 2. "Does this protect a paying client?" Teale pays today. Section 7: revenue
-   protection wins unless the new work is dated. It is.
+   protection wins unless the new work is dated. Halvorsen is, so this points
+   to option 1 too.
 
 AGAINST THE NO-LIST
 my-work.md section 5: "No retainers over 20 hours this quarter."
 Option 1 is exactly that.
 
 MY READ
-Option 2. Holds the no-list, books revenue.
+Option 2. Both filters lean to option 1. The no-list rules it out, and
+option 2 still books revenue.
 Wrong if Halvorsen refuses any counter (known Jul 28), or if Teale phase two
 is dead (Dana Okonjo confirms, Aug 8).
 ```
 
-195 words. The first filter argues against the recommendation and the recommendation still stands, which is the only version of that slot worth rendering. A fourth option would have cost the stakes slot its second line. How the offer arrived does not appear anywhere.
+214 words. Both filters argue against the recommendation and the no-list still decides it, which is the only version of that slot worth rendering. A fourth option would have cost the stakes slot its second line. How the offer arrived does not appear anywhere.

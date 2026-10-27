@@ -15,7 +15,7 @@ description: "Introduce the system to a leader who has just installed it: what i
 
 The install screen is a component inventory. It lists the skill names and a token cost, which tells a developer what they are getting and tells a leader nothing at all. A leader who has just clicked Install is holding a list of filenames and no idea what happens next, and the most likely next move is to close the window.
 
-Everything this system does well depends on the leader answering four questions honestly in the first hour. Nobody answers four questions for software they have not been introduced to.
+Everything this system does well depends on the leader answering six questions honestly in the first hour. Nobody answers six questions for software they have not been introduced to.
 
 So this behaviour is the introduction, and it is the only place in the system written for somebody who has not decided to trust it yet.
 
@@ -75,7 +75,7 @@ On no, or on silence, say one line about how to come back to it, and stop. A lea
 - **Never run twice at somebody.** If `about-me.md` has real content in it, this leader has been welcomed. Answer whatever they actually asked instead.
 - **Never list every behaviour.** The inventory is what the install screen already failed them with.
 - **Never promise a capability that is not connected.** It has not read `connections.md` yet and does not know what is reachable. Describe what the system does, never what this deployment can do today. `onboarding` finds that out and reports it.
-- Never ask the four setup questions here. That is `onboarding`, it asks them properly, and asking them twice reads as a system that does not remember.
+- Never ask the six setup questions here. That is `onboarding`, it asks them properly, and asking them twice reads as a system that does not remember.
 
 ## Approval rules
 

@@ -2,6 +2,21 @@
 
 ## v{{VERSION}}
 
+Fixes from a quality review. Most of them are hand-offs between behaviours that held while the leader was in the room and broke on a scheduled run.
+
+- **`onboarding` no longer adopts a `CLAUDE.md` it did not write.** Step 0 never overwrites a file with content in it, so a folder that already had its own `CLAUDE.md` kept it, and every behaviour read that file as its rulebook with none of the thirteen gates in it. A `{{MANUAL}}` now counts as the manual only if its first heading names the operating manual. Anything else stops setup and asks.
+- **The workspace is always a folder named `ai-chief-of-staff`.** Every prompt in `SCHEDULES.md` names that folder, and onboarding scaffolded into whatever folder the session was in. Step 0 now finds or creates `ai-chief-of-staff/`, and `health-check` reports a workspace under any other name, or a foreign manual, as blocking.
+- **An unapproved `tomorrow.md` no longer disappears.** `end-of-day-close` keeps its draft in the close file with a `status: awaiting approval` line. The next `morning-brief` reads that line, lists the draft under drafts waiting, and does not set the day from it.
+- **Activation offers count their own renders.** "Drop it after three briefs" had nothing to count with. The offer line gains `shown: N`, the brief adds one per render, and the third unanswered render marks it `dropped`. The leader's answer can now be recorded from any later session, and so can a declined `health-check` finding.
+- **The sweep's roll-up has a file.** It was "available to the morning brief" with no path, so on a scheduled run its decisions and `To verify` lines reached nobody. It now saves to `briefs/YYYY-MM-DD-sweep.md`, and the brief renders its urgent actions and every `To verify` line.
+- **Nudge triggers look back a week.** `connection-check` runs on Monday, and "two or more meetings on yesterday's calendar" read a Sunday. Every gate 3 trigger now reads the seven days before the run, and the nudge names the day.
+- **`decisions.md` agrees with itself about `Stood`.** Marking an entry `Stood` set a new review date that rule 4 forbade, so a held decision came back every Monday. Rule 4 now allows the new date and an appended `> Stood` line.
+- **Worked examples corrected.** Marcus owes the hiring plan in every example, with one surname. The `health-check` example no longer cites briefs newer than the date it says the briefs stopped. The `decision-brief` example now says both filters lean to option 1 and the no-list decides it.
+- **Counts brought up to date.** Fourteen behaviours, thirteen gates, six setup questions, six files you own. `README.md` lists `welcome`. `commitments.md` describes what `weekly-review` actually takes from it. `archive/README.md` lists the decisions archive. `onboarding` copies `QUICK-START.md`, which its templates already carried.
+- **Zips are reproducible.** Every entry gets a fixed timestamp, so a rebuild with no source change leaves the fifteen zips untouched in git.
+
+## v1.3.0
+
 The product now speaks to the leader who runs it, not to a consultant installing it for somebody else.
 
 - **Every guide is written in second person.** `READ-ME-FIRST.md`, `SCHEDULES.md`, and `README.md` said "the leader" 82 times between them and addressed whoever was doing the install. They now address the person the system is for. The consent passage changed most: it used to tell an installer to warn somebody before reading their mailbox, which makes no sense when the mailbox is your own. It now says what setup reads, that it does not store it, and what to do if you would rather it did not.
